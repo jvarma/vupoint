@@ -1,4 +1,10 @@
 Vupoint::Application.routes.draw do
+  root to: 'pages#home'
+
+  match "/help" => 'pages#help', as: :help
+
+  match "/tou" => 'pages#tou', as: :terms
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
