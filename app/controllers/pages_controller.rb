@@ -1,14 +1,12 @@
 class PagesController < ApplicationController
   def home
-  	respond_to do |format|
-  		format.html
-  		format.mobile
-  	end
   end
 
   def help
+  	@title = "help"
   end
 
   def tou
+  	@title = "terms of use"
   end
 end
