@@ -7,18 +7,20 @@
   <%= stylesheet_link_tag    "mobile" if mobile_device? %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+   <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
+  <header class="navbar-fixed-top container-float">
+    
 
-<%= yield %>
-
-<p>
-    <% if mobile_device? %>
-      <%= link_to "Full Site", :mobile => 0 %>
-    <% else %>
-      <%= link_to "Mobile Site", :mobile => 1 %>
-    <% end %>
-  </p>
-
+          <%= link_to "vupoint", root_path, id: "logo" %>
+    
+  </header>
+  <div class="container-float">
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </div>
 </body>
 </html>

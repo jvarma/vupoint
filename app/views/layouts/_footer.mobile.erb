@@ -1,0 +1,13 @@
+<footer class="footer">
+  <nav>
+    <ul>
+      <% if mobile_device? %>
+        <li><%= link_to "full site", :mobile => 0 %></li>
+      <% else %>
+        <li><%= link_to "mobile site", :mobile => 1 %></li>
+      <% end %>
+      <li><%= link_to "help", help_path %></li>
+      <li><%= link_to "terms", terms_path %></li>
+    </ul>
+  </nav>
+</footer>
