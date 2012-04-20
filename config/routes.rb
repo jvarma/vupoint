@@ -1,9 +1,13 @@
 Vupoint::Application.routes.draw do
+  get "users/new"
+
   root to: 'pages#home'
 
   match "/help" => 'pages#help', as: :help
 
   match "/tou" => 'pages#tou', as: :terms
+
+  match "/signup" => 'users#new', as: :signup
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
