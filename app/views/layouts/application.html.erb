@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vupoint</title>
+  <title><%= full_title(@title) %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "mobile" if mobile_device? %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+   <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
+  <header class="navbar-fixed-top container-float">
+    
 
-<%= yield %>
-
-<p>
-    <% if mobile_device? %>
-      <%= link_to "Full Site", :mobile => 0 %>
-    <% else %>
-      <%= link_to "Mobile Site", :mobile => 1 %>
+          <%= link_to "vupnt", root_path, id: "logo" %>
+    
+  </header>
+  <div class="container-float">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
     <% end %>
-  </p>
-
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
 </body>
 </html>
+
+
