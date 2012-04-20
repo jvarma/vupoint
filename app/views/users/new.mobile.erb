@@ -1,2 +1,27 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="row-fluid"><h1 class="pull-left">sign up</h1></div>
+
+<div class="row-fluid">
+  
+    <%= form_for(@user) do |f| %>
+
+    	<%= render 'shared/error_messages' %>	
+
+      	<%= f.label :name, "Your full name" %>
+      	<%= f.text_field :name, placeholder: "e.g. John Doe" %>
+
+      	<%= f.label :email %>
+      	<%= f.text_field :email, placeholder: "@" %>
+
+      	<%= f.label :password %>
+      	<%= f.password_field :password, placeholder: "minimum 6 characters" %>
+
+      	<%= f.label :password_confirmation, "Re-enter password" %>
+      	<%= f.password_field :password_confirmation, placeholder: "same as above" %>
+
+      	<div class="row-fluid center">
+      		<%= f.submit "submit", class: "btn btn-large btn-primary" %>
+      	</div>
+    
+    <% end %>
+  
+</div>
