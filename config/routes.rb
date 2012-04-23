@@ -2,13 +2,19 @@ Vupoint::Application.routes.draw do
 
   resources :users
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   root to: 'pages#home'
 
-  match "/help" => 'pages#help', as: :help
+  match "/help", to: 'pages#help', as: :help
 
-  match "/tou" => 'pages#tou', as: :terms
+  match "/tou", to: 'pages#tou', as: :terms
 
-  match "/signup" => 'users#new', as: :signup
+  match "/signup", to: 'users#new', as: :signup
+
+  match "/signin", to: 'sessions#new', as: :signin
+
+  match "/signout", to: 'sessions#destroy', as: :signout, via: :delete
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
