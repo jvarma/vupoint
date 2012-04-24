@@ -1,6 +1,9 @@
-<%= will_paginate @users, page_links: false, container: false %>
-<ul class="users">
+
+
+	<ul class="users">
 	<% @users.each do |user|  %>
 		<li><%= link_to user.name, user %>
 	<% end %>
-</ul>
+	</ul>
+
+<%= will_paginate @users, page_links: false, container: false %>
