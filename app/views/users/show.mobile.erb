@@ -1,8 +1,10 @@
-
+<h1>
+	<%= @user.name.downcase %>
+</h1>
     <% if @user.debates.any? %>
-      <h3>
+      <h2>
       	my <%= pluralize(@user.debates.count, "debate") %>
-      </h3>
+      </h2>
       <ol class="debates">
         <%= render @debates %>
       </ol>
