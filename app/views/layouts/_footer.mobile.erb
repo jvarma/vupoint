@@ -1,10 +1,16 @@
 <footer class="footer">
   <small>
     <%= link_to image_tag("home.png", alt: "home"), root_path %>
+    <%= link_to image_tag("full_site.png", alt: "full site"), :mobile => 0 %></li>
   </small>
   <nav>
     <ul>
-      <li><%= link_to "full site", :mobile => 0 %></li>
+      <% if signed_in? %>
+        <% if !current_user.confirmed_at %>
+          <li><%= link_to "confirm email", '#' %></li>
+        <% end %>
+      <li><%= link_to "sign out", signout_path, method: "delete" %></li>
+      <% end %>
       <li><%= link_to "help", help_path %></li>
       <li><%= link_to "terms", terms_path %></li>
     </ul>

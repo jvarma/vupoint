@@ -16,6 +16,8 @@ Vupoint::Application.routes.draw do
 
   match "/signout", to: 'sessions#destroy', as: :signout, via: :delete
 
+  match "/confirm", to: 'users#confirm', as: :confirmation
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
