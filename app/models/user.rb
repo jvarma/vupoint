@@ -29,8 +29,14 @@ class User < ActiveRecord::Base
 
 	validates :password_confirmation, presence: true, :if => :password_validation_required?
 
+	has_many :debates, dependent: :destroy
+
 	def password_validation_required?
   		password_digest.blank? || !@password.blank?
+	end
+
+	def feed
+		Debate.where("user_id = ?", id)
 	end
 	
 	private

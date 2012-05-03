@@ -34,6 +34,12 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in first!"
+    end
+  end
 
 
   	private

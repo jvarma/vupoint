@@ -1,11 +1,12 @@
 
 <% if signed_in? %>
-List new debates here
- 
-<div class="center">
-  	<%= link_to "new debate", '#', class: "btn btn-small btn-primary" %>
+<section>
+	<%= render 'shared/debate_form' %>
+</section>
+ <div>
+      <h3>Debates</h3>
+      <%= render 'shared/feed' %>
 </div>
-
 
 <% else %>
 <div class="center">

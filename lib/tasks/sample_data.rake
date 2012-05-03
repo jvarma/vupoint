@@ -22,5 +22,12 @@ namespace :db do
                    password_confirmation: password,
                    confirmed_at: Time.now)
     end
+    users = User.all(limit: 6)
+    20.times do 
+      content = Faker::Lorem.sentence(5)
+      users.each {
+        |user| user.debates.create!(content: content)
+      }
+    end
   end
 end

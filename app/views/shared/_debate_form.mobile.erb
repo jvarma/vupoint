@@ -1,0 +1,7 @@
+<%= form_for(@debate) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "your topic for new debate...", rows: 3 %>
+  </div>
+  <%= f.submit "post", class: "btn btn-small btn-primary" %>
+<% end %>

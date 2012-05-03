@@ -4,6 +4,8 @@ Vupoint::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
+  resources :debates, only: [:create, :destroy]
+
   root to: 'pages#home'
 
   match "/help", to: 'pages#help', as: :help
