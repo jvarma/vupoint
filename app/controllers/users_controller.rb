@@ -23,7 +23,8 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
   	if @user.save
       sign_in @user
-		  flash[:success] = "You have signed up successfully!"
+      UserMailer.confirm_email(@user).deliver
+		  flash[:success] = "You have signed up! We have sent you an email with instructions to confirm your email id."
   		redirect_to @user
   	else
   		render :new
