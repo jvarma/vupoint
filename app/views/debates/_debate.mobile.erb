@@ -3,7 +3,7 @@
   <span class="timestamp">
     <%= time_ago_in_words(debate.created_at) %> ago.
   </span>
-  <% if current_user?(micropost.user) %>
+  <% if current_user?(debate.user) %>
   	<%= link_to "delete", debate, method:  :delete,
                                      confirm: "You sure?",
                                      title:   debate.content %>
