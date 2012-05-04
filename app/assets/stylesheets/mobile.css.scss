@@ -41,20 +41,17 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  margin-bottom: 5px;
 }
 
 h1 {
   font-size: 1.5em;
   letter-spacing: -2px;
-  margin-bottom: 5px;
-  text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
   color: #999;
 }
@@ -88,7 +85,7 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 20px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #999;
@@ -133,7 +130,7 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   padding: 10px;
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   @include box_sizing;
 }
 
@@ -141,7 +138,7 @@ input, textarea, select, .uneditable-input {
   color:#f00;
   ul {
     list-style: none;
-    margin: 0 0 18px 0;
+    margin: 2px 0 18px 0;
   }
 }
 
@@ -165,11 +162,11 @@ input, textarea, select, .uneditable-input {
 }
 
 
-/* microposts */
+/* debates */
 
 .debates {
   list-style: none;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
 
   li {
     padding: 10px 0;
@@ -190,5 +187,26 @@ aside {
   textarea {
     height: 100px;
     margin-bottom: 5px;
+  }
+}
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $grayLighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
   }
 }

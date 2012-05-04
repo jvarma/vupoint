@@ -1,0 +1,15 @@
+
+    <section>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Debates:</b> <%= @user.debates.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+  <section>
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+        <%= render "/users/index" %>
+    <% end %>
+  </section>

@@ -1,10 +1,13 @@
 
 <% if signed_in? %>
 <section>
+  <%= render 'shared/stats' %>
+</section>
+<section>
 	<%= render 'shared/debate_form' %>
 </section>
  <div>
-      <h3>Debates</h3>
+      <h3>new debates</h3>
       <%= render 'shared/feed' %>
 </div>
 

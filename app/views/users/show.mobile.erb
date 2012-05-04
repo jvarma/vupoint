@@ -1,12 +1,19 @@
 <h1>
 	<%= @user.name.downcase %>
 </h1>
-    <% if @user.debates.any? %>
-      <h2>
-      	my <%= pluralize(@user.debates.count, "debate") %>
-      </h2>
-      <ol class="debates">
-        <%= render @debates %>
-      </ol>
-      <%= will_paginate @debates %>
-    <% end %>
+<section>
+  <%= render 'shared/stats'%>
+</section>
+<section>
+  <%= render 'follow_form' if signed_in? %>
+</section>
+
+<% if @user.debates.any? %>
+  <h2>
+    my <%= pluralize(@user.debates.count, "debate") %>
+  </h2>
+  <ol class="debates">
+    <%= render @debates %>
+  </ol>
+  <%= will_paginate @debates %>
+<% end %>
