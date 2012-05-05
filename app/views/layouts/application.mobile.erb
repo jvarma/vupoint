@@ -12,10 +12,10 @@
     <![endif]-->
 </head>
 <body>
-  <header class="navbar navbar-fixed-top container-float">
+  <header class="navbar navbar-fixed-top container-fluid">
     <%= link_to "vupnt", root_path, id: "logo" %>
   </header>
-  <div class="container-float">
+  <div class="container-fluid">
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>">
         <%= value %>

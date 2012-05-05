@@ -13,6 +13,9 @@ class Debate < ActiveRecord::Base
   	# Returns microposts from the users being followed by the given user.
   	scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
+	def self.recent_debates(count)
+		Debate.all(limit: count)
+	end
 
 private
 

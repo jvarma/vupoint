@@ -1,16 +1,12 @@
 
 <% if signed_in? %>
-<section>
-  <%= render 'shared/stats' %>
-</section>
-<section>
-	<%= render 'shared/debate_form' %>
-</section>
- <div>
-      <h3>new debates</h3>
-      <%= render 'shared/feed' %>
-</div>
-
+  <div class="header">
+    hello <%= link_to current_user.name.downcase, current_user%>! start a new debate-
+  </div>
+  <section>
+    <%= render 'shared/debate_form' %>
+  </section>
+ 
 <% else %>
 <div class="center">
   	<h1>
@@ -24,4 +20,8 @@
   	<%= link_to "sign in", signin_path, class: "btn btn-small btn-primary" %>
 </div>
 <% end %>
+<div>
+      <h3>new debates</h3>
+      <%= render 'shared/feed' %>
+</div>
   
