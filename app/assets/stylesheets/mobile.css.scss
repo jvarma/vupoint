@@ -67,19 +67,24 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.5em;
-  color: yellow;
+  color: blue;
   text-transform: uppercase;
   font-weight: bold;
   line-height: 1;
+  
 }
 
 #logo:hover {
-  color: #fff;
+  color: green;
   text-decoration: none;
 }
 
 .navbar-fixed-top {
   background: black;
+}
+
+.navbar {
+  background: yellow; 
 }
 
 /* footer */
@@ -152,6 +157,7 @@ input, textarea, select, .uneditable-input {
 .users {
   list-style: none;
   margin: 0;
+  font-size: 2.5em;
   li {
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
