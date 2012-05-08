@@ -1,8 +1,8 @@
 <li id="<%= feed_item.id %>">
-  <span class="user">
+  <div class="user">
     <%= link_to feed_item.user.name, feed_item.user %>
-  </span>
-  <span class="content"><%= wrap(feed_item.content) %></span>
+  </div>
+  <div class="content"><%= wrap(feed_item.content) %></div>
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>

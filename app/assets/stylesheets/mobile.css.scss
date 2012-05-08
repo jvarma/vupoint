@@ -65,9 +65,11 @@ p {
 
 #logo {
   float: left;
+  margin-top: 5px;
   margin-right: 10px;
+  margin-bottom: 5px;
   font-size: 1.5em;
-  color: blue;
+  color: black;
   text-transform: uppercase;
   font-weight: bold;
   line-height: 1;
@@ -75,7 +77,7 @@ p {
 }
 
 #logo:hover {
-  color: green;
+  color: blue;
   text-decoration: none;
 }
 
@@ -156,8 +158,10 @@ input, textarea, select, .uneditable-input {
 
 .users {
   list-style: none;
+  display: block;
   margin: 0;
-  font-size: 2.5em;
+  font-size: 1.3em;
+  font-weight: bold;
   li {
     padding: 10px 0;
     border-top: 1px solid $grayLighter;

@@ -13,9 +13,7 @@ class Debate < ActiveRecord::Base
   	# Returns microposts from the users being followed by the given user.
   	scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
-	def self.recent_debates(count)
-		Debate.all(limit: count)
-	end
+    scope :from_admin, lambda { from_admin }
 
 private
 
@@ -27,4 +25,18 @@ private
       where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
             { user_id: user })
     end
+
+    def self.from_admin
+      admin_ids = []
+      admins = User.admin
+
+      admins.each do |admin|
+        admin_ids << admin.id
+      end
+
+      where(user_id: admin_ids)
+
+    end
+
+
 end

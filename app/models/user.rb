@@ -41,14 +41,21 @@ class User < ActiveRecord::Base
   
   	has_many :followers, through: :reverse_relationships, source: :follower
 
+  	scope :admin, where(admin: true)
 
 	def password_validation_required?
   		password_digest.blank? || !@password.blank?
 	end
 
-	def feed
-		Debate.from_users_followed_by(self)
+	def feed(featured=false)
+		if !featured
+			Debate.from_users_followed_by(self)
+		else
+			Debate.from_admin
+		end
 	end
+
+
 
 	
 

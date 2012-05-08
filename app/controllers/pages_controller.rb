@@ -1,11 +1,11 @@
 class PagesController < ApplicationController
-  require 'will_paginate/array'
+  
   def home
   	if signed_in?
   		@debate = current_user.debates.build
   		@feed_items = current_user.feed.paginate(page: params[:page], per_page: 10)
     else
-      @feed_items = Debate.recent_debates(5).paginate(page: params[:page], per_page: 5)
+      @feed_items = User.new.feed(true).paginate(page: params[:page], per_page: 10)
     end
 
   end
