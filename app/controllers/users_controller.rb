@@ -21,16 +21,24 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.new(params[:user])
-  	if @user.save
-      sign_in @user
-      UserMailer.confirm_email(@user).deliver
-		  flash[:success] = "Hey #{@user.name}! You have signed up successfully but you still need to confirm your email id. We have sent you an email with instructions!"
-  		redirect_to @user
-  	else
-  		render :new
-  	end
+  	if verify_recaptcha
+      @user = User.new(params[:user])
+      if @user.save
+        sign_in @user
+        UserMailer.confirm_email(@user).deliver
+        flash[:success] = "Hey #{@user.name}! You have signed up successfully but you still need to confirm your email id. We have sent you an email with instructions!"
+        redirect_to @user
+      else
+        render :new
+      end
+    else
+      flash[:error] = "problemo...!"
+      render :new
+    end
+        
   end
+
+ 
 
   def edit
     @title = @user.name.downcase

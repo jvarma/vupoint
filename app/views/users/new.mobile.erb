@@ -1,3 +1,8 @@
+ <script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'clean'
+ };
+ </script>
 <div class="row-fluid"><h1 class="pull-left">sign up</h1></div>
 
 <div class="row-fluid">
@@ -17,8 +22,9 @@
 
       	<%= f.label :password_confirmation, "Re-enter password" %>
       	<%= f.password_field :password_confirmation, placeholder: "same as above" %>
-
-      	<div class="row-fluid center">
+        <div class="row-fluid center">
+          <%= recaptcha_tags %>
+        
       		<%= f.submit "submit", class: "btn btn-large btn-primary" %>
       	</div>
     
