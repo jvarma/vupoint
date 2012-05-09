@@ -1,0 +1,16 @@
+<div class="content">
+	<b><%= @debate.content %></b>
+</div>
+<div class="user">
+	topic created by <%= link_to @debate.user.name, user_path(@debate.user)%>
+</div>
+
+
+<%= render 'shared/viewpoints' %>
+
+<% if current_user == @debate.user %>
+
+	<!-- place holder for the vupoint form -->
+	<%= render 'shared/viewpoint_form' %>
+	
+<% end %>

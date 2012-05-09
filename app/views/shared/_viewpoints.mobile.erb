@@ -1,0 +1,6 @@
+<% if @viewpoints.any? %>
+  <ol class="debates">
+    <%= render partial: 'shared/viewpoints_item', collection: @viewpoints %>
+  </ol>
+  <%= will_paginate @viewpoints, page_links: false, class: "my_pagination" %>
+<% end %>

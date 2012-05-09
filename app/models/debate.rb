@@ -15,6 +15,8 @@ class Debate < ActiveRecord::Base
 
     scope :from_admin, lambda { from_admin }
 
+    has_many :viewpoints, dependent: :destroy
+
 private
 
     # Returns an SQL condition for users followed by the given user.

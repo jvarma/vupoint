@@ -1,0 +1,9 @@
+
+<%= form_for(@viewpoint) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :desc, placeholder: "what's your view?", rows: 2 %>
+  </div>
+  <%= f.hidden_field :debate_id, value: @debate.id %> 
+  <div class="center"><%= f.submit "post your vupnt", class: "btn btn-large btn-primary" %></div>
+<% end %>

@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
  	
   <div class="field">
-    <%= f.text_area :content, placeholder: "your topic...?", rows: 2 %>
+    <%= f.text_field :content, placeholder: "your topic...?" %>
   </div>
   <div class="center"><%= f.submit "start", class: "btn btn-large btn-primary" %></div>
 <% end %>

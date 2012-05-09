@@ -1,5 +1,9 @@
 Vupoint::Application.routes.draw do
 
+  get "viewpoints/create"
+
+  get "viewpoints/destroy"
+
   resources :users do
     member do
       get :following, :followers
@@ -8,9 +12,11 @@ Vupoint::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :debates, only: [:create, :destroy]
+  resources :debates, only: [:create, :destroy, :show]
 
   resources :relationships, only: [:create, :destroy]
+
+  resources :viewpoints, only: [:create, :destroy]
 
   root to: 'pages#home'
 

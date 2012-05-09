@@ -6,7 +6,7 @@ class DebatesController < ApplicationController
   	@debate = current_user.debates.build(params[:debate])
     if @debate.save
       	flash[:success] = "A new topic created!"
-      	redirect_to root_path
+      	redirect_to debate_path @debate
     else
     	@feed_items = []
       	render 'pages/home'
@@ -16,6 +16,14 @@ class DebatesController < ApplicationController
   def destroy
 	@debate.destroy
     redirect_back_or root_path
+  end
+
+  def show
+    @debate = Debate.find(params[:id])
+    @viewpoint = @debate.viewpoints.build
+    @viewpoints = @debate.viewpoints.paginate(page: params[:page], per_page: 10)
+
+
   end
 
    private

@@ -1,0 +1,2 @@
+module ViewpointsHelper
+end

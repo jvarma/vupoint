@@ -3,13 +3,21 @@
     <%= link_to feed_item.user.name, feed_item.user %>
   </div>
   <div class="content"><%= wrap(feed_item.content) %></div>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span>
+  
+  <%= render 'shared/win_loss_positions' %>
+
+  <%= link_to "vupnts", debate_path(feed_item.id) %>
+  
   <% if current_user?(feed_item.user) %>
-  	<%= link_to "delete", feed_item, method:  :delete,
+    | <%= link_to "delete this topic", feed_item, method:  :delete,
                                      confirm: "You sure?",
                                      title:   feed_item.content %>
+  <% else %>
+    | <%= link_to "follow debate", '#' %>                                       
   <% end %>
-  <%= render 'shared/win_loss_positions' %>
+
+  <span class="timestamp">
+    updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
+  </span>
+
 </li>

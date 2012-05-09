@@ -1,0 +1,24 @@
+<li id="<%= viewpoints_item.id %>">
+  <div class="user">
+    <%= link_to viewpoints_item.debate.user.name, viewpoints_item.debate.user %>
+  </div>
+  <div class="content"><%= wrap(viewpoints_item.desc) %></div>
+  
+  <span class="timestamp">
+    posted <%= time_ago_in_words(viewpoints_item.created_at) %> ago.
+  </span>
+
+  <div class="actions">
+    <%= link_to "vote this up!", '#' %>
+    <% if current_user?(viewpoints_item.debate.user) %>
+      | <%= link_to "delete", viewpoints_item, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   viewpoints_item.desc %>
+
+    <% end %>
+
+  </div>
+
+  
+
+</li>
