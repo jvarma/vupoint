@@ -1,5 +1,10 @@
 
 <% if @feed_items.any? %>
+	<% if signed_in? %>
+		<h3>from your network...</h3>
+	<% else %>
+		<h3>recent discussions</h3>
+	<% end %>
   <ol class="debates">
     <%= render partial: 'shared/feed_item', collection: @feed_items %>
   </ol>

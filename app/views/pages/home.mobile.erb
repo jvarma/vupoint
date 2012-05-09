@@ -21,9 +21,19 @@
 <% end %>
 
 <div>
-<h3>people you follow are discussing...</h3>
-<%= render 'shared/feed' %>
+  <%= render 'shared/feed' %>
 </div>
 
+
+  <% if signed_in? %>
+  <div class="row-fluid">
+    <div class="span2">
+      <%= image_tag("search_people.png")%>
+    </div>
+    <div class="span5", style="font-size:1.5em; font-weight:bold; align:center;">
+      <%= link_to "find people", users_path %>
+    </div>
+  </div>
+<% end %>
 
   

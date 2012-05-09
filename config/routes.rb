@@ -32,6 +32,8 @@ Vupoint::Application.routes.draw do
 
   match "/confirm", to: 'users#confirm', as: :confirmation
 
+  match "/users/search_by_name", to: 'users#search_by_name'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

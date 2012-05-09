@@ -93,6 +93,18 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def search_by_name
+    @users = User.by_name(params[:full_name]).paginate(page: params[:page], per_page: 10)
+    if @users.size > 0
+      flash.now[:success] = "found #{@users.size} people!"
+      render :index
+    else
+      flash[:error] = "matching results not found for #{params[:full_name]}!"
+      redirect_to users_path
+    end
+  end
+
+
   private
     
     

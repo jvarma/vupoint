@@ -169,6 +169,12 @@ input, textarea, select, .uneditable-input {
       border-bottom: 1px solid $grayLighter;
     }
   }
+
+  .description {
+    font-size: 1em;
+    font-weight: normal;
+    color: $grayLight;
+  }
 }
 
 

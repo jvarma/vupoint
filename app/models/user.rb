@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
 
   	scope :admin, where(admin: true)
 
+  	scope :by_name, lambda { |name| where("name LIKE ?", %w(#{name})) }
+
 	def password_validation_required?
   		password_digest.blank? || !@password.blank?
 	end
@@ -86,9 +88,20 @@ class User < ActiveRecord::Base
 			end
 
 		end
+
+
+		def self.by_name(name)
+      		user_ids = []
+      		users = User.all
+
+      		users.each do |user|
+        		user_ids << user.id
+      		end
+
+      		where(name: name)
+		end
+
 end
-
-
 
 
 
