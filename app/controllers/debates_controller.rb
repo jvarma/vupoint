@@ -20,6 +20,7 @@ class DebatesController < ApplicationController
 
   def show
     @debate = Debate.find(params[:id])
+    @user = @debate.user
     @viewpoint = @debate.viewpoints.build
     @viewpoints = @debate.viewpoints.paginate(page: params[:page], per_page: 10)
 
