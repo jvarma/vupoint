@@ -1,8 +1,5 @@
 Vupoint::Application.routes.draw do
 
-  get "viewpoints/create"
-
-  get "viewpoints/destroy"
 
   resources :users do
     member do

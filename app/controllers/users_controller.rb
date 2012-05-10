@@ -80,17 +80,27 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = "Following"
+    @title = ">> following"
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page], per_page: 10)
-    render 'show_follow'
+    if @users.size == 0
+      flash[:notice] = "#{@user.name.downcase} is not following anyone!"
+      redirect_to user_path(@user)
+    else
+      render 'show_follow'
+    end
   end
 
   def followers
-    @title = "Followers"
+    @title = "<< followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page], per_page: 10)
-    render 'show_follow'
+    if @users.size == 0
+      flash[:notice] = "#{@user.name.downcase} has no followers!"
+      redirect_to user_path(@user)
+    else
+      render 'show_follow'
+    end
   end
 
   def search_by_name

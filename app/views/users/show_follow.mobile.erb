@@ -1,15 +1,12 @@
 
-    <section>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Debates:</b> <%= @user.debates.count %></span>
-    </section>
-    <section>
-      <%= render 'shared/stats' %>
-    </section>
+<% if @users.any? %>
   <section>
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-        <%= render "/users/index" %>
-    <% end %>
+    <h1><%= link_to @user.name.downcase, user_path(@user) %></h1> 
+    <h2><%= "#{@title}" %></h2>
   </section>
+  <section>
+    <%= render "/users/index" %>
+  </section>
+<% else %>
+
+<% end %>

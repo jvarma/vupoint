@@ -1,4 +1,3 @@
-<%= render 'search_by_name_form' %>
 <ul class="users">
 	<% @users.each do |user|  %>
 		<li>
@@ -14,3 +13,4 @@
 </ul>
 
 <%= will_paginate @users, page_links: false, class: "my_pagination" %>
+<%= render 'search_by_name_form' %>
