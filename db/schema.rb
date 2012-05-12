@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508171921) do
+ActiveRecord::Schema.define(:version => 20120510112829) do
+
+  create_table "arguments", :force => true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "viewpoint_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "is_up_vote",   :default => true
+  end
+
+  add_index "arguments", ["user_id"], :name => "index_arguments_on_user_id"
+  add_index "arguments", ["viewpoint_id"], :name => "index_arguments_on_viewpoint_id"
 
   create_table "debates", :force => true do |t|
     t.string   "content"
@@ -61,8 +73,9 @@ ActiveRecord::Schema.define(:version => 20120508171921) do
   create_table "viewpoints", :force => true do |t|
     t.string   "desc"
     t.integer  "debate_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "votes",      :default => 0
   end
 
   add_index "viewpoints", ["debate_id"], :name => "index_viewpoints_on_debate_id"

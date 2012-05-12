@@ -1,0 +1,18 @@
+<% if @is_up_vote %>
+	<div class="alert alert-success">
+<% else %>
+	<div class="alert alert-error">
+<% end %>
+		<%= @viewpoint.desc %>
+	</div>
+
+<%= render 'argument_form' %>
+
+
+<% if @argument_items.any? %>
+	<h3>others are saying...</h3>
+	<ol class="debates">
+    	<%= render partial: 'shared/argument_item', collection: @argument_items %>
+  	</ol>
+  	<%= will_paginate @argument_items, page_links: false, class: "my_pagination" %>
+<% end %>

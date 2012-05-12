@@ -1,25 +1,29 @@
 
-<div class="row-fluid">
-  <div class="win-position">
+
+    <% if leaders_laggers(debate).size > 1 %>
     <div class="row-fluid">
-      <div class="span1">
-        <%= image_tag("thumbs_up.png")%>
-      </div>
-      <div class="span9">
-        This is the winning position!
+      <div class="win-position">
+        <div class="row-fluid">
+          <div class="span1">
+            <%= image_tag("thumbs_up.png")%>
+          </div>
+          <div class="span9">
+            <%= leaders_laggers(debate).last.desc if leaders_laggers(debate).first %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="loss-position">
+    
     <div class="row-fluid">
-      <div class="span1">
-        <%= image_tag("thumbs_down.png")%>
-      </div>
-      <div class="span9">
-        This is the loosing position!
+      <div class="loss-position">
+        <div class="row-fluid">
+          <div class="span1">
+            <%= image_tag("thumbs_down.png")%>
+          </div>
+          <div class="span9">
+            <%= leaders_laggers(debate).first.desc if leaders_laggers(debate).last %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <% end %>

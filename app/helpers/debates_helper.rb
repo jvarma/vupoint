@@ -4,6 +4,15 @@ module DebatesHelper
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
 
+  def leaders_laggers(debate)
+    viewpoints = debate.viewpoints
+    viewpoints.sort_by { |v| v.votes }
+
+    
+  end
+
+
+
   private
 
     def wrap_long_string(text, max_width = 20)

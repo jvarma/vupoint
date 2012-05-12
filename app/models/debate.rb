@@ -1,6 +1,6 @@
 class Debate < ActiveRecord::Base
 
-  	attr_accessible :content
+  	attr_accessible :content, :updated_at
 
   	belongs_to :user
   
@@ -8,7 +8,7 @@ class Debate < ActiveRecord::Base
 
   	validates :content, presence: true, length: { maximum: 140 }
   
-  	default_scope order: 'debates.created_at DESC'
+  	default_scope order: 'debates.updated_at DESC'
 
   	# Returns microposts from the users being followed by the given user.
   	scope :from_users_followed_by, lambda { |user| followed_by(user) }

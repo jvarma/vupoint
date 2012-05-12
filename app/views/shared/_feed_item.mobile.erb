@@ -4,7 +4,7 @@
   </div>
   <div class="content"><%= wrap(feed_item.content) %></div>
   
-  <%= render 'shared/win_loss_positions' %>
+  <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
 
   <%= link_to "vupnts", debate_path(feed_item.id) %>
   

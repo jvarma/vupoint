@@ -43,9 +43,16 @@ class User < ActiveRecord::Base
   
   	has_many :followers, through: :reverse_relationships, source: :follower
 
+  	has_many :arguments, dependent: :destroy
+
   	scope :admin, where(admin: true)
 
-  	scope :by_name, lambda { |name| where("name LIKE ?", %w(#{name})) }
+  	#scope :by_name, lambda { |name| where("name LIKE ?", %w(#{name})) }
+
+	#scope :by_name, lambda { |name| where('UPPER(name) LIKE %?%', name.upcase) }
+
+	scope :by_name, lambda { |name| where('UPPER(name) LIKE ?', "%#{name.upcase}%") }
+
 
 	def password_validation_required?
   		password_digest.blank? || !@password.blank?

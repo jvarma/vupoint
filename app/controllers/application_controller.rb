@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     helper :all
     protect_from_forgery
     include SessionsHelper
+    include DebatesHelper
     before_filter :prepare_for_mobile
 
     private
