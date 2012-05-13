@@ -241,3 +241,63 @@ aside {
   color: red;
   font-size: 1.2em;
 }
+
+
+.section-title {
+  background: gray;
+  margin-top: 10px;
+  padding-left: 2px;
+  font-size: 1.2em;
+  color: black;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+
+
+
+
+/* actions */
+
+.actions {  
+    float:rightright;  
+    font-size: 1em;
+    padding-left: 0;
+      
+}  
+.voteup, .votedown, .follow, .listview, .delete{  
+      float:left;
+}  
+.voteup a, .votedown a, .follow a, .listview a, .delete a{  
+    border: 1px solid #CFE9FF;  
+    margin-right: 5px;  
+    padding: 0 2px;  
+}  
+.voteup a:hover, .votedown a:hover, .follow a:hover, .listview a:hover, .delete a:hover{  
+    border:1px solid #8FCDFF;  
+}  
+  
+.delete a{  
+    color:#BF0B12;  
+    border:1px solid #FFCFD1;  
+}  
+  
+.delete a:hover{  
+    color:#BF0B12;  
+    border:1px solid #FF8F93;  
+}
+
+
+/* actions end */
+
+
+.well label {
+  color: gray;
+  margin-bottom: 2px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+
+
+

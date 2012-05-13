@@ -3,9 +3,9 @@
   <h3>find people</h3>
     
 </div>
-
-<%= form_tag(controller: :users, action: :search_by_name, class: "well") do %>
-	<%= text_field_tag 'full_name', nil, placeholder: "enter name"%>
-	<%= submit_tag "search", class: "btn btn-small btn-primary"%>  
-<% end %>
-
+<div class="welll">
+  <%= form_tag(controller: :users, action: :search_by_name) do %>
+  	<%= text_field_tag 'full_name', nil, placeholder: "enter name"%>
+  	<%= submit_tag "search", class: "btn btn-small btn-primary"%>  
+  <% end %>
+</div>

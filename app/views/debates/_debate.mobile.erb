@@ -1,19 +1,34 @@
 <li>
   <span class="content"><%= debate.content %></span>
-  <%= render partial: 'shared/win_loss_positions', locals: {debate: debate} %>
+  <div class="timestamp">
+    last updated <%= time_ago_in_words(debate.updated_at) %> ago.
+  </div>
+  
+<%= render partial: 'shared/win_loss_positions', locals: {debate: debate} %>
+    
   <div class="actions">
-    <%= link_to "vupnts", debate_path(debate.id) %>
+    
+    <div class="listview">
+      <%= link_to "vupnts", debate_path(debate.id) %>
+    </div>
+
     <% if current_user?(debate.user) %>
-      | <%= link_to "delete", debate, method:  :delete,
+
+      <div class="delete">
+        <%= link_to "delete", debate, method:  :delete,
                                      confirm: "You sure?",
                                      title:   debate.content %>
+      </div>
+    
     <% else %>
-      | <%= link_to "follow debate", '#' %>                                         
+      <div class="follow">    
+        <%= link_to "follow debate", '#' %>
+      </div>                                         
     <% end %>
-  </div>
-  <span class="timestamp">
-    last updated <%= time_ago_in_words(debate.updated_at) %> ago.
-  </span>
   
+  </div>
 
+  
+  
 </li>
+<br />

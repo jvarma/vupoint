@@ -5,22 +5,32 @@
   <div class="content">
     <%= wrap(feed_item.content) %>
   </div>
-  
-  <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
-
-
-  <%= link_to "all vupnts", debate_path(feed_item.id) %>
-  
-  <% if current_user?(feed_item.user) %>
-    | <%= link_to "delete debate", feed_item, method:  :delete,
-                                     confirm: "You sure?",
-                                     title:   feed_item.content %>
-  <% else %>
-    | <%= link_to "follow debate", '#' %>                                       
-  <% end %>
-
   <span class="timestamp">
     updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
   </span>
 
+  <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
+
+
+  <div class="actions">
+    <div class="listview">
+      <%= link_to "all vupnts", debate_path(feed_item.id) %>
+    </div>
+  
+    <% if current_user?(feed_item.user) %>
+    <div class="delete">
+      <%= link_to "delete debate", feed_item, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   feed_item.content %>
+    </div>
+
+    <% else %>
+    <div class="follow">
+      <%= link_to "follow debate", '#' %>
+    </div>                                       
+    <% end %>
+
+  </div>
+
 </li>
+<br />

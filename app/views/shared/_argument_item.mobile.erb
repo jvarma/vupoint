@@ -2,6 +2,7 @@
   <div class="user">
     <%= link_to argument_item.user.name, argument_item.user %>
   </div>
+  
   <div class="content">
 
   <% if argument_item.is_up_vote %>
@@ -19,14 +20,20 @@
 
   </div>
   
-  <% if current_user?(argument_item.user) %>
-    <%= link_to "delete", argument_item, method:  :delete,
-                                     confirm: "You sure?",
-                                     title:   argument_item.content %>
-  <% end %>
-
   <span class="timestamp">
     posted <%= time_ago_in_words(argument_item.created_at) %> ago.
   </span>
+
+  <% if current_user?(argument_item.user) %>
+    <div class="actions">
+      <div class="delete">
+        <%= link_to "delete", argument_item, method:  :delete,
+                                       confirm: "You sure?",
+                                        title:   argument_item.content %>
+      </div>
+    </div>                                     
+  <% end %>
+
+  
 
 </li>

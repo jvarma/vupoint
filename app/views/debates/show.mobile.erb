@@ -1,8 +1,20 @@
-<div class="content">
-	<b><%= @debate.content %></b>
-</div>
-<div class="user">
-	topic created by <%= link_to @debate.user.name, user_path(@debate.user)%>
+
+<div class="row-fluid">
+	<div class="span1">
+		<%= image_tag("debate.png")%>
+	</div>
+	<div class="span10">
+		<div class="row-fluid">
+			<div class="content">
+				<b><%= @debate.content %></b>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="user">
+				topic created by <%= link_to @debate.user.name, user_path(@debate.user)%>
+			</div>
+		</div>
+	</div>
 </div>
 
 
