@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
 	#scope :by_name, lambda { |name| where('UPPER(name) LIKE %?%', name.upcase) }
 
-	scope :by_name, lambda { |name| where('UPPER(name) LIKE ?', "%#{name.upcase}%") }
+	scope :by_name, lambda { |name| where('name LIKE ?', name) }
 
 
 	def password_validation_required?
