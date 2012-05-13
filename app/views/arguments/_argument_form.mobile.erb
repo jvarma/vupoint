@@ -1,3 +1,4 @@
+<div class="well">
 <%= form_for (@argument) do |f| %>
 
 	<%= render 'shared/error_messages', object: f.object %>	
@@ -16,5 +17,9 @@
 		<%= f.text_area :content, placeholder: "your argument...", rows: 3 %>
 		<%= f.submit "vote down!", class: "btn btn-small btn-primary" %>
 	<% end %>
+		<%= link_to "cancel", debate_path(@viewpoint.debate)%>
+
+	 
 
 <% end %>
+</div>

@@ -8,9 +8,12 @@
 
 <%= render 'argument_form' %>
 
-
 <% if @argument_items.any? %>
-	<h3>others are saying...</h3>
+	<% if @is_up_vote %>
+		<h3>others voted it up saying...</h3>
+	<% else %>
+		<h3>others voted it down saying...</h3>
+	<% end %>
 	<ol class="debates">
     	<%= render partial: 'shared/argument_item', collection: @argument_items %>
   	</ol>

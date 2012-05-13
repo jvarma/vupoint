@@ -11,8 +11,13 @@ class Viewpoint < ActiveRecord::Base
 	default_scope order: 'viewpoints.updated_at DESC'
 
 	def argument_feed(is_up_vote)
-		Argument.by_votes(self, is_up_vote)
+		if is_up_vote.nil?
+			Argument.by_viewpoint(self)
+		else
+			Argument.by_votes(self, is_up_vote)
+		end
 	end
+
 
 	def update_attributes(attr_hash)
 		super(attr_hash)

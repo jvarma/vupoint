@@ -1,6 +1,6 @@
 <li id="<%= feed_item.id %>">
   <div class="user">
-    <%= link_to feed_item.user.name, feed_item.user %>
+    <h3><%= link_to feed_item.user.name, feed_item.user %></h3>
   </div>
   <div class="content">
     <%= wrap(feed_item.content) %>

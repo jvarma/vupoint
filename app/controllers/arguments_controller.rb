@@ -47,8 +47,10 @@ class ArgumentsController < ApplicationController
 
   def index
   	@viewpoint = Viewpoint.find(params[:viewpoint])
-  	@arguments = @viewpoint.arguments
-  	if @arguments.empty?
+
+    @argument_items = @viewpoint.argument_feed(nil).paginate(page: params[:page], per_page: 10)
+
+  	if !@argument_items.any?
   		flash[:notice] = "There is no buzz around the vupnt! Vote up a vupnt if you agree with it or down, if you disagree."
   		redirect_to debate_path(@viewpoint.debate)
   	end

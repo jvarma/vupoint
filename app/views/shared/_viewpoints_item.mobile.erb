@@ -1,8 +1,9 @@
 <li id="<%= viewpoints_item.id %>">
   <!-- link_to viewpoints_item.debate.user.name, viewpoints_item.debate.user -->
   
-    <%= wrap(viewpoints_item.desc) %>
-    <div>votes: <%= viewpoints_item.votes %></div>
+    <div class="content">
+      <%= wrap(viewpoints_item.desc) %>
+    </div>
     <% if current_user?(viewpoints_item.debate.user) %>
       <%= link_to image_tag("delete.png"), viewpoints_item, method:  :delete,
                                      confirm: "You sure?",
@@ -17,7 +18,7 @@
   </span>
 
   <div class="actions">
-    <%= link_to "up votes", new_argument_path(viewpoint: viewpoints_item, is_up_vote: true) %> | <%= link_to "down votes", new_argument_path(viewpoint: viewpoints_item) %> | <%= link_to "view all", arguments_path(viewpoint: viewpoints_item) %>
+    <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: true) %> | <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %> | <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
   </div>
 
   

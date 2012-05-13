@@ -10,6 +10,8 @@ class Argument < ActiveRecord::Base
 
 
   	scope :by_votes, lambda { |viewpoint, is_up_vote| where('viewpoint_id is ? and is_up_vote is ?', viewpoint.id, is_up_vote) }
+ 
+ 	scope :by_viewpoint, lambda { |viewpoint| where('viewpoint_id is ?', viewpoint.id)} 	
 
 
 

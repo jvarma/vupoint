@@ -1,6 +1,6 @@
 <li>
   <span class="content"><%= debate.content %></span>
-  <%= render 'shared/win_loss_positions' %>
+  <%= render partial: 'shared/win_loss_positions', locals: {debate: debate} %>
   <div class="actions">
     <%= link_to "vupnts", debate_path(debate.id) %>
     <% if current_user?(debate.user) %>

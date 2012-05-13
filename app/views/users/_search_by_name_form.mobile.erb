@@ -1,14 +1,11 @@
 <div class="row-fluid">
-    <div class="span2">
-      <%= image_tag("search_people.png")%>
-    </div>
-    <div class="span8", style="font-size:1.5em; font-weight:bold;">
-      <h3>find people</h3>
-    </div>
-  </div>
+
+  <h3>find people</h3>
+    
+</div>
+
 <%= form_tag(controller: :users, action: :search_by_name, class: "well") do %>
-	<%= label_tag "full_name", "enter name"%>
-	<%= text_field_tag 'full_name', ""%>
+	<%= text_field_tag 'full_name', nil, placeholder: "enter name"%>
 	<%= submit_tag "search", class: "btn btn-small btn-primary"%>  
 <% end %>
 

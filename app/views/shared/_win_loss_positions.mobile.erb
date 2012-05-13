@@ -1,21 +1,16 @@
 
   <% unless debate.viewpoints.empty? %>
-  <div class="row-fluid">
-    <div class="span2">
-      <%=  image_tag("thumbs_up.png") %>
+    <div class="row-fluid">
+      <div class="content win-position">
+        <%=  image_tag("thumbs_up.png") %> <%= debate.viewpoints.first.desc  %>
+      </div>
     </div>
-    <div class="span8 content win-position">
-      <%= debate.viewpoints.first.desc  %>
-    </div>
-  </div>
   <% end %>
+
   <% unless (debate.viewpoints.empty? || debate.viewpoints.size == 1) %>
-  <div class="row-fluid">
-    <div class="span2">
-      <%=  image_tag("thumbs_down.png") %>
+    <div class="row-fluid">
+      <div class="content loss-position">
+        <%=  image_tag("thumbs_down.png") %> <%= debate.viewpoints.last.desc  %>
+      </div>
     </div>
-    <div class="span8 content loss-position">
-      <%= debate.viewpoints.last.desc  %>
-    </div>
-  </div>
   <% end %>

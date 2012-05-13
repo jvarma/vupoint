@@ -2,10 +2,25 @@
   <div class="user">
     <%= link_to argument_item.user.name, argument_item.user %>
   </div>
-  <div class="content"><%= argument_item.content %></div>
+  <div class="content">
+
+  <% if argument_item.is_up_vote %>
+
+    <div class="win-position">
+
+  <% else %> 
+
+    <div class="loss-position">
+
+  <% end %>
+      <%= argument_item.content %>
+    
+    </div>
+
+  </div>
   
   <% if current_user?(argument_item.user) %>
-    | <%= link_to "delete", argument_item, method:  :delete,
+    <%= link_to "delete", argument_item, method:  :delete,
                                      confirm: "You sure?",
                                      title:   argument_item.content %>
   <% end %>
