@@ -6,7 +6,8 @@
   
   <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
 
-  <%= link_to "vupnts", debate_path(feed_item.id) %>
+
+  <%= link_to "all vupnts", debate_path(feed_item.id) %>
   
   <% if current_user?(feed_item.user) %>
     | <%= link_to "delete this topic", feed_item, method:  :delete,
