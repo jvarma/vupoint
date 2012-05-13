@@ -6,6 +6,9 @@
 
 	<%= will_paginate @argument_items, page_links: false, class: "my_pagination" %>
 
-	<h3><%= link_to "back to debate", debate_path(@viewpoint.debate) %></h3>
 
 <% end %>
+
+<div class="row-fluid">
+	<h3><%= link_to "back to debate", debate_path(@viewpoint.debate) %></h3>
+</div>

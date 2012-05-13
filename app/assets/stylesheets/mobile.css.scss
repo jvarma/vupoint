@@ -162,24 +162,24 @@ input, textarea, select, .uneditable-input {
   margin: 0;
   li {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 3px solid $grayLighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 3px solid $grayLighter;
     }
 
   a {
       font-size: 1.3em;
       font-weight: bold;
   
+    }
   }
 }
-
   .description {
     font-size: 1em;
     font-weight: normal;
     color: $grayLight;
   }
-}
+
 
 
 /* debates */
@@ -244,11 +244,11 @@ aside {
 
 
 .section-title {
-  background: gray;
+  background: black;
   margin-top: 10px;
   padding-left: 2px;
   font-size: 1.2em;
-  color: black;
+  color: yellow;
   font-weight: bold;
   line-height: 1.5;
 }
@@ -269,22 +269,22 @@ aside {
       float:left;
 }  
 .voteup a, .votedown a, .follow a, .listview a, .delete a{  
-    border: 1px solid #CFE9FF;  
+    border: 2px solid #CFE9FF;  
     margin-right: 5px;  
-    padding: 0 2px;  
+    padding: 0 4px;  
 }  
 .voteup a:hover, .votedown a:hover, .follow a:hover, .listview a:hover, .delete a:hover{  
-    border:1px solid #8FCDFF;  
+    border:3px solid #8FCDFF;  
 }  
   
 .delete a{  
     color:#BF0B12;  
-    border:1px solid #FFCFD1;  
+    border:2px solid #FFCFD1;  
 }  
   
 .delete a:hover{  
     color:#BF0B12;  
-    border:1px solid #FF8F93;  
+    border:2px solid #FF8F93;  
 }
 
 
