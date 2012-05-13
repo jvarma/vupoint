@@ -160,15 +160,19 @@ input, textarea, select, .uneditable-input {
   list-style: none;
   display: block;
   margin: 0;
-  font-size: 1.3em;
-  font-weight: bold;
   li {
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
     }
+
+  a {
+      font-size: 1.3em;
+      font-weight: bold;
+  
   }
+}
 
   .description {
     font-size: 1em;
