@@ -9,12 +9,12 @@ class ArgumentsController < ApplicationController
 
     @argument_items = @viewpoint.argument_feed(@is_up_vote).paginate(page: params[:page], per_page: 10)
 
-    #desc = @viewpoint.desc
-    #user_name = @user.user
-    #is_up_vote = @is_up_vote
-    #argument_items_size = @argument_items.any?
+    desc = @viewpoint.desc
+    user_name = @user.name
+    is_up_vote = @is_up_vote
+    argument_items_size = @argument_items.any?
 
-    #flash[:notice] = "#{desc} - #{user_name} - #{is_up_vote}"
+    flash[:notice] = "#{desc} - #{user_name} - #{is_up_vote} - #{argument_items_size}"
 
   end
 
