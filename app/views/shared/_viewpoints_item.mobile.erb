@@ -4,41 +4,36 @@
     <div class="content">
       <%= wrap(viewpoints_item.desc) %>
     </div>
-    
-
   
-  <span class="timestamp">
-    updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
-  </span>
+    <span class="timestamp">
+      updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
+    </span>
 
-  <div class="actions">
+    <div class="actions">
 
-    <div class="voteup">
-      <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: true) %>
-    </div>
+      <div class="voteup">
+        <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: true) %>
+      </div>
     
-    <div class="votedown">
-      <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
-    </div>
+      <div class="votedown">
+        <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
+      </div>
 
-    <div class="listview">
-      <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
-    </div>
+      <div class="listview">
+        <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
+      </div>
 
-    <% if current_user?(viewpoints_item.debate.user) %>
+      <% if current_user?(viewpoints_item.debate.user) %>
   
-    <div class="delete">
-      <%= link_to "delete", viewpoints_item, method:  :delete,
+      <div class="delete">
+        <%= link_to "delete", viewpoints_item, method:  :delete,
                                      confirm: "You sure?",
                                      title:   viewpoints_item.desc %>
+      </div>
+
+      <% end %>
+    
     </div>
-
-    <% end %>
-
-
-  </div>
-
-  
 
 </li>
 
