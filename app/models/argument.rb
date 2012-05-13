@@ -9,7 +9,7 @@ class Argument < ActiveRecord::Base
 	default_scope order: 'arguments.created_at DESC'
 
 
-  	scope :by_votes, lambda { |viewpoint, is_up_vote| where('viewpoint_id is ? && is_up_vote is ?', viewpoint.id, is_up_vote) }
+  	scope :by_votes, lambda { |viewpoint, is_up_vote| where('(viewpoint_id IS ?) AND (is_up_vote IS ?)', viewpoint.id, is_up_vote) }
  
  	scope :by_viewpoint, lambda { |viewpoint| where('viewpoint_id is ?', viewpoint.id)} 	
 
