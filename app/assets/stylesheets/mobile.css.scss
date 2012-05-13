@@ -195,7 +195,8 @@ input, textarea, select, .uneditable-input {
 }
 .content {
   display: block;
-  font-size: 1.3em
+  font-size: 1.3em;
+  line-height: 1.2em;
 }
 .timestamp {
   color: $grayLight;
