@@ -4,11 +4,7 @@ class ArgumentsController < ApplicationController
   def new
   	@viewpoint = Viewpoint.find(params[:viewpoint])
     @user = @viewpoint.debate.user
-  	if params[:is_up_vote]
-      @is_up_vote = true
-    else
-      @is_up_vote = false
-    end
+    params[:is_up_vote] ? (@is_up_vote = true) : (@is_up_vote = false)  	
     @argument = @viewpoint.arguments.build
 
     @argument_items = @viewpoint.argument_feed(@is_up_vote).paginate(page: params[:page], per_page: 10)
