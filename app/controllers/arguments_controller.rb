@@ -12,7 +12,7 @@ class ArgumentsController < ApplicationController
     desc = @viewpoint.desc
     user_name = @user.user
     is_up_vote = @is_up_vote
-    argument_items_size = @argument_items.size
+    argument_items_size = @argument_items.any?
 
     flash[:notice] = "#{desc} - #{user_name} - #{is_up_vote} - #{argument_items_size}"
 
