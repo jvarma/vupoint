@@ -14,7 +14,7 @@
 
   <div class="actions">
     <div class="listview">
-      <%= link_to "all vupnts", debate_path(feed_item.id) %>
+      <%= link_to pluralize(feed_item.viewpoints.size, "vupnt"), debate_path(feed_item.id) %>
     </div>
   
     <% if current_user?(feed_item.user) %>
