@@ -12,7 +12,6 @@
 	<% if current_user != @user %>
 		<div class="alert">
 			<%= "#{@user.name.downcase} has not posted any vupnts for this debate!" %>
-			<span class="actions delete"><%= link_to "suggest", '#' %></span>
 		</div>
 	<% end %>
 <% end %>

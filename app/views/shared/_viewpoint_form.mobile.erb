@@ -1,9 +1,25 @@
 
+<div class="section-title">
+	<% if current_user == @debate.user %> 
+  		add a vupnt
+	<% else %>
+		what's your vupnt?
+	<% end %>
+</div>
 <%= form_for(@viewpoint) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :desc, placeholder: "add a vupnt...", rows: 2 %>
-  </div>
-  <%= f.hidden_field :debate_id, value: @debate.id %> 
-  <div class="center"><%= f.submit "add a vupnt", class: "btn btn-large btn-primary" %></div>
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<div class="field">
+    	<%= f.text_area :desc, placeholder: "add a vupnt...", rows: 2 %>
+  	</div>
+ 	<%= f.hidden_field :debate_id, value: @debate.id %>
+ 	<%= f.hidden_field :user_id, value: current_user.id %>
+  	<% if current_user == @debate.user %> 
+  		<div class="center">
+	  		<%= f.submit "add your vupnt", class: "btn btn-large btn-primary" %>
+		</div>
+	<% else %>
+		<div class="center">
+	  		<%= f.submit "suggest", class: "btn btn-large btn-primary" %>
+		</div>
+	<% end %>
 <% end %>

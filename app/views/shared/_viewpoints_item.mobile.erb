@@ -1,6 +1,11 @@
 <li id="<%= viewpoints_item.id %>">
-  <!-- link_to viewpoints_item.debate.user.name, viewpoints_item.debate.user -->
   
+
+    <div class="user">
+      <%=link_to viewpoints_item.user.name, viewpoints_item.user %>
+    </div>
+  
+    
     <div class="content">
       <%= wrap(viewpoints_item.desc) %>
     </div>

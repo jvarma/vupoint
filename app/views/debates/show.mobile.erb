@@ -20,9 +20,9 @@
 
 <%= render 'shared/viewpoints' %>
 
-<% if current_user == @debate.user %>
+<% if signed_in? %>
 
 	<!-- place holder for the vupoint form -->
-	<%= render 'shared/viewpoint_form' %>
+	<%= render 'shared/viewpoint_form', locals: {debate: @debate} %>
 	
 <% end %>
