@@ -13,12 +13,15 @@
   	</div>
  	<%= f.hidden_field :debate_id, value: @debate.id %>
  	<%= f.hidden_field :user_id, value: current_user.id %>
-  	<% if current_user == @debate.user %> 
-  		<div class="center">
+ 	
+  	<% if (current_user == @debate.user) || @debate.user.following?(current_user) %> 
+  		<%= f.hidden_field :published, value: true %>
+ 		<div class="center">
 	  		<%= f.submit "add your vupnt", class: "btn btn-large btn-primary" %>
 		</div>
 	<% else %>
-		<div class="center">
+		<%= f.hidden_field :published, value: false %>
+ 		<div class="center">
 	  		<%= f.submit "suggest", class: "btn btn-large btn-primary" %>
 		</div>
 	<% end %>

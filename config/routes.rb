@@ -35,6 +35,9 @@ Vupoint::Application.routes.draw do
 
   match "/users/search_by_name", to: 'users#search_by_name'
 
+  match "viewpoints/publish/:id", to: 'viewpoints#publish', as: :publish, via: :put
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

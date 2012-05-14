@@ -22,7 +22,11 @@ class DebatesController < ApplicationController
     @debate = Debate.find(params[:id])
     @user = @debate.user
     @viewpoint = @debate.viewpoints.build
-    @viewpoints = @debate.viewpoints.paginate(page: params[:page], per_page: 10)
+    if current_user?(@user)
+      @viewpoints = @debate.viewpoints.paginate(page: params[:page], per_page: 10)
+    else
+      @viewpoints = @debate.viewpoints.published.paginate(page: params[:page], per_page: 10)
+    end
 
 
   end

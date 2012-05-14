@@ -1,5 +1,5 @@
 class Viewpoint < ActiveRecord::Base
-  	attr_accessible :debate_id, :desc, :updated_at, :votes, :user_id
+  	attr_accessible :debate_id, :desc, :updated_at, :votes, :user_id, :published
 
   	belongs_to :debate
 
@@ -13,6 +13,9 @@ class Viewpoint < ActiveRecord::Base
 
 	default_scope order: 'viewpoints.votes DESC'
 	default_scope order: 'viewpoints.updated_at DESC'
+	scope :published, lambda {where('published = ?', true)}
+
+	after_save :update_debate_updated_at
 
 	def argument_feed(is_up_vote)
 		if is_up_vote.nil?
@@ -28,5 +31,15 @@ class Viewpoint < ActiveRecord::Base
 		@debate = Debate.find(self.debate_id)
 		@debate.update_attributes(updated_at: Time.now)
 	end
+
+	private
+
+		def update_debate_updated_at
+			if self.published
+				self.debate.update_attributes(updated_at: Time.now)
+			end
+
+		end
+
 
 end

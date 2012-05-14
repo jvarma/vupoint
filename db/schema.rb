@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514075702) do
+ActiveRecord::Schema.define(:version => 20120514094535) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -73,10 +73,11 @@ ActiveRecord::Schema.define(:version => 20120514075702) do
   create_table "viewpoints", :force => true do |t|
     t.string   "desc"
     t.integer  "debate_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "votes",      :default => 0
     t.integer  "user_id"
+    t.boolean  "published",  :default => false
   end
 
   add_index "viewpoints", ["debate_id"], :name => "index_viewpoints_on_debate_id"

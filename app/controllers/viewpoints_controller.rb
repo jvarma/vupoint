@@ -1,17 +1,33 @@
 class ViewpointsController < ApplicationController
+
+
   def create
   	@debate = Debate.find(params[:viewpoint][:debate_id])
   	@viewpoint = @debate.viewpoints.build(params[:viewpoint])
 
   	if @viewpoint.save
-      @debate.update_attributes(updated_at: Time.now)
-      flash[:success] = "Your view has been posted!"
+      if @viewpoint.published
+        flash[:success] = "Your view has been posted!"
+      else
+        flash[:success] = "Your vupnt has been shared with #{@debate.user.name.downcase}"
+      end
   	else
       flash[:error] = "Something went wrong!#{@viewpoint.debate_id} - #{@viewpoint.desc}"
     end
 
     redirect_to debate_path @debate
 
+  end
+
+  def publish
+    @viewpoint = Viewpoint.find(params[:id])
+    if current_user == @viewpoint.debate.user
+      @viewpoint.update_attributes(published: true)
+      flash[:success] = "the vupnt is now published and visible to all!"
+    else
+      flash[:error] = "you can publish vupnts on your own debates only!"
+    end
+    redirect_to debate_path(@viewpoint.debate)
   end
 
   

@@ -1,16 +1,16 @@
 
-  <% unless debate.viewpoints.empty? %>
+  <% unless debate.viewpoints.published.empty? %>
     <div class="row-fluid">
       <div class="content win-position">
-        <%=  image_tag("thumbs_up.png") %> <%= debate.viewpoints.first.desc  %>
+        <%=  image_tag("thumbs_up.png") %> <%= debate.viewpoints.published.first.desc  %>
       </div>
     </div>
   <% end %>
 
-  <% unless (debate.viewpoints.empty? || debate.viewpoints.size == 1) %>
+  <% unless (debate.viewpoints.published.empty? || debate.viewpoints.published.size == 1) %>
     <div class="row-fluid">
       <div class="content loss-position">
-        <%=  image_tag("thumbs_down.png") %> <%= debate.viewpoints.last.desc  %>
+        <%=  image_tag("thumbs_down.png") %> <%= debate.viewpoints.published.last.desc  %>
       </div>
     </div>
   <% end %>

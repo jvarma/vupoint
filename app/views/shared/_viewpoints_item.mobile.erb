@@ -16,26 +16,32 @@
 
     <div class="actions">
 
-      <div class="voteup">
-        <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
-      </div>
+      
+      <% if !viewpoints_item.published? %>
+        <% if current_user?(viewpoints_item.debate.user) %>
+          <div class="publish">
+            <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="voteup">
+          <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
+          </div>
     
-      <div class="votedown">
-        <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
-      </div>
+        <div class="votedown">
+          <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
+        </div>
 
-      <div class="listview">
-        <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
-      </div>
-
-      <% if current_user?(viewpoints_item.debate.user) %>
-  
-      <div class="delete">
-        <%= link_to "delete", viewpoints_item, method:  :delete,
+        <div class="listview">
+          <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
+        </div>
+      <% end %>
+      <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || current_user.admin? %>
+          <div class="delete">
+            <%= link_to "delete", viewpoints_item, method:  :delete,
                                      confirm: "You sure?",
                                      title:   viewpoints_item.desc %>
-      </div>
-
+          </div>
       <% end %>
     
     </div>

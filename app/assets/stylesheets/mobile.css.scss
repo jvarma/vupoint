@@ -266,15 +266,15 @@ aside {
     padding-left: 0;
       
 }  
-.voteup, .votedown, .follow, .listview, .delete{  
+.voteup, .votedown, .follow, .listview, .publish, .delete {  
       float:left;
 }  
-.voteup a, .votedown a, .follow a, .listview a, .delete a{  
+.voteup a, .votedown a, .follow a, .listview a, .publish a, .delete a{  
     border: 2px solid #CFE9FF;  
     margin-right: 5px;  
     padding: 0 4px;  
 }  
-.voteup a:hover, .votedown a:hover, .follow a:hover, .listview a:hover, .delete a:hover{  
+.voteup a:hover, .votedown a:hover, .follow a:hover, .listview a:hover, .publish a:hover, .delete a:hover{  
     border:3px solid #8FCDFF;  
 }  
   
@@ -295,3 +295,13 @@ aside {
 
 
 
+form {
+  margin-top: 5px;
+  label {
+    color: gray;
+    font-weight: bold;
+    text-transform: lowercase;
+
+  }
+  
+}
