@@ -1,4 +1,4 @@
-<% unless notification.message_tokens.nil? %>
+
 <li>
 <%= render partial: get_notification_content_partial_name(notification),
       locals: {notification_message_tokens: notification.message_tokens,
@@ -14,4 +14,3 @@
   </div>
 </li>
 <br />
-<% end %>
