@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515063951) do
+ActiveRecord::Schema.define(:version => 20120516050224) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(:version => 20120515063951) do
   end
 
   add_index "debates", ["user_id", "created_at"], :name => "index_debates_on_user_id_and_created_at"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"

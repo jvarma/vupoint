@@ -111,6 +111,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def notifications
+    @user = User.find(params[:id])
+
+    @notifications = @user.notifications.paginate(page: params[:page], per_page: 10)
+
+  end
+
 
   private
     

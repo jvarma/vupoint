@@ -1,0 +1,14 @@
+<% if @user.notifications.any? %>
+  <div class="section-title">
+  notifications
+  </div>
+  <ol class="debates">
+    <%= render @notifications %>
+  </ol>
+  <%= will_paginate @notifications, page_links: false, class: "my_pagination" %>
+
+<% else %>
+	<div class="content">
+		There are no notifications for you!
+	</div>
+<% end %>

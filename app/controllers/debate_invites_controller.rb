@@ -14,8 +14,11 @@ class DebateInvitesController < ApplicationController
 				@debate_invite.update_attributes(receiver_id: receiver.id)
 
 				#send a notification to the receiver user
-				# -- the code goes here 
-
+				# -- the code goes here
+				
+				@message = "#{current_user.name.downcase} has invited you to join the debate: #{@debate.content}" 
+				notification = Notification.new(user_id: receiver.id, message: @message)
+				notification.save	
 			end
 
 			# in any case, send an email with the debate details to the sender
