@@ -1,7 +1,7 @@
 module NotificationsHelper
 	def get_notification_content_partial_name(notification)
 		if notification
-			"#{notification.id}_content"
+			"#{notification.classname}_content"
 		else
 			"notification is nil"
 		end
