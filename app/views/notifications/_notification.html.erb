@@ -1,0 +1,18 @@
+<% unless notification.message_tokens.nil? %>
+<li>
+  <%= render partial: "notifications/#{notification.classname.downcase}_content",
+      locals: {notification_message_tokens: notification.message_tokens,
+      notification: notification }%>
+
+    
+  <div class="actions">
+    <%= render partial: "notifications/#{notification.classname.downcase}_actions",
+      locals: {notification: notification }%>
+    <div class="delete">
+        <%= link_to "delete", notification, method:  :delete,
+                                     confirm: "You sure?" %>
+    </div>
+  </div>
+</li>
+<br />
+<% end %>
