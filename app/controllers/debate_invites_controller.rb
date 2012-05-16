@@ -17,7 +17,10 @@ class DebateInvitesController < ApplicationController
 				# -- the code goes here
 				
 				@message = "#{current_user.name.downcase} has invited you to join the debate: #{@debate.content}" 
-				notification = Notification.new(user_id: receiver.id, message: @message)
+				#notification = Notification.new(user_id: receiver.id, message: @message)
+				notification = receiver.notifications.build({
+					message: @message, classname: @debate_invite.class.name,
+					unknown_object_id: @debate_invite.id})
 				notification.save	
 			end
 

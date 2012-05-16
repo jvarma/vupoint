@@ -2,7 +2,7 @@ class DebateInvite < ActiveRecord::Base
 
   	attr_accessible :debate_id, :email, :message, :receiver_id, :sender_id
 
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   	belongs_to :sender, class_name: "User"
   	belongs_to :receiver, class_name: "User"
@@ -16,6 +16,36 @@ class DebateInvite < ActiveRecord::Base
 
   	validates :email, uniqueness: {scope: [:sender_id, :debate_id]}
 
-  	validates :message, length: { maximum: 200 }
+  	validates :message, length: { maximum: 140 }
+
+    before_destroy :delete_notifications
+
+    def message_tokens
+      sender = User.find_by_id(self.sender_id)
+      if sender.nil?
+        return nil
+      else
+        sender_name = sender.name
+      end
+
+      debate = Debate.find_by_id(self.debate_id)
+      if debate.nil?
+        return nil
+      else
+        debate_content = debate.content
+      end
+      self.message ? (message = self.message) : (message = nil)
+      message_tokens = [sender_name, debate_content, message]
+    end
+
+    private
+
+      def delete_notifications
+        notifications = Notification.where('unknown_object_id = ? 
+          AND classname = ?', self.id, self.class.name)
+        notifications.each do |notification|
+          notification.destroy
+        end        
+      end
   
 end

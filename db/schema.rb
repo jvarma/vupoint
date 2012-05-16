@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516050224) do
+ActiveRecord::Schema.define(:version => 20120516160638) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -52,8 +52,10 @@ ActiveRecord::Schema.define(:version => 20120516050224) do
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
     t.string   "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "classname"
+    t.integer  "unknown_object_id"
   end
 
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"

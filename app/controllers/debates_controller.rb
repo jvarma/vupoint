@@ -14,7 +14,7 @@ class DebatesController < ApplicationController
   end
 
   def destroy
-	@debate.destroy
+  @debate.destroy
     redirect_back_or root_path
   end
 

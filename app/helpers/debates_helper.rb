@@ -7,10 +7,11 @@ module DebatesHelper
   def leaders_laggers(debate)
     viewpoints = debate.viewpoints
     viewpoints.sort_by { |v| v.votes }
-
-    
   end
 
+  def get_debate_from_notification(notification)
+    DebateInvite.find_by_id(notification.unknown_object_id).debate
+  end
 
 
   private

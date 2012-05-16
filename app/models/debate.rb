@@ -17,7 +17,7 @@ class Debate < ActiveRecord::Base
 
     has_many :viewpoints, dependent: :destroy
 
-    has_many :debate_invites
+    has_many :debate_invites, dependent: :destroy
 
 private
 
