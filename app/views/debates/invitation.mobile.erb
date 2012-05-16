@@ -1,0 +1,31 @@
+
+<div class="alert">
+	<%= image_tag("debate.png") %><%= "#{@debate.content}" %>
+</div>
+
+<div class="section-title">
+invite friend to debate
+</div>
+
+<%= form_for(@debate_invite) do |f|%>
+
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label :email, "friend's email id" %>
+	<%= f.text_field :email, placeholder: "@" %>
+
+	<%= f.label :message, "message (optional)" %>
+	<%= f.text_area :message, rows: 3 %>
+
+	<%= f.hidden_field :debate_id, value: @debate.id %>
+	<%= f.hidden_field :sender_id, value: @debate.user.id %>
+
+	<div class="row-fluid center">
+		<%= f.submit "send", class: "btn btn-large btn-primary" %>
+	</div>
+
+<% end %>
+
+<div class="section-title">
+previous invitations
+</div>

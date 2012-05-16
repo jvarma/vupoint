@@ -13,6 +13,10 @@
     </div>
 
     <% if current_user?(debate.user) %>
+      
+      <div class="invite">
+        <%= link_to "invite a friend", invitation_path(debate) %>
+      </div>
 
       <div class="delete">
         <%= link_to "delete", debate, method:  :delete,

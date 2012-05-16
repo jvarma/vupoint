@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514094535) do
+ActiveRecord::Schema.define(:version => 20120515063951) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(:version => 20120514094535) do
 
   add_index "arguments", ["user_id"], :name => "index_arguments_on_user_id"
   add_index "arguments", ["viewpoint_id"], :name => "index_arguments_on_viewpoint_id"
+
+  create_table "debate_invites", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "debate_id"
+    t.integer  "receiver_id"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "debate_invites", ["debate_id"], :name => "index_debate_invites_on_debate_id"
+  add_index "debate_invites", ["email"], :name => "index_debate_invites_on_email"
+  add_index "debate_invites", ["sender_id", "debate_id", "email"], :name => "index_debate_invites_on_sender_id_and_debate_id_and_email", :unique => true
+  add_index "debate_invites", ["sender_id"], :name => "index_debate_invites_on_sender_id"
 
   create_table "debates", :force => true do |t|
     t.string   "content"

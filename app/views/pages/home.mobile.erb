@@ -2,18 +2,21 @@
 <div id="top">
 </div>
 <% if signed_in? %>
+  <div id="new_debate_form">
+    <%= render 'shared/debate_form' %>
+  </div>
+
   <div class="content">
-    hello <%= link_to current_user.name.downcase, current_user%>! start a <a href="#new_debate_form">new debate</a>. check out what others are debating. and there's <a href="#more_menu">more</a>...
+    <small>
+      check out what others are debating. and there's <a href="#more_menu">more</a>...
+    </small>
   </div>
 
   <div>
     <%= render 'shared/feed' %>
   </div>
 
-  <div id="new_debate_form">
-    <%= render 'shared/debate_form' %>
-  </div>
-
+  
   <div class="section-title", id="more_menu">
     more stuff...
   </div>

@@ -21,22 +21,18 @@ class UsersController < ApplicationController
   end
 
   def create
-  	if verify_recaptcha
-      @user = User.new(params[:user])
-      if @user.save
-        sign_in @user
-        UserMailer.confirm_email(@user).deliver
-        flash[:success] = "Hey #{@user.name}! You have signed up successfully but you still need to confirm your email id. We have sent you an email with instructions!"
-        redirect_to @user
-      else
-        render :new
-      end
+    @user = User.new(params[:user])
+    if @user.save
+      sign_in @user
+      UserMailer.confirm_email(@user).deliver
+      flash[:success] = "Hey #{@user.name}! You have signed up successfully but you still need to confirm your email id. We have sent you an email with instructions!"
+      redirect_to @user
     else
-      flash[:error] = "problemo...!"
       render :new
     end
-        
   end
+        
+  
 
  
 
@@ -70,8 +66,9 @@ class UsersController < ApplicationController
         sign_in @user
         flash[:notice] = "You have already confirmed your email id!"
       else
-        @user.confirmed_at = Time.now
-        @user.save!
+        @user.update_attributes(confirmed_at: Time.now)
+        #@user.save!
+        update_debate_invites @user
         sign_in @user
         flash[:success] = "Yipee!!! You have successfully confirmed your email id!" 
       end
@@ -125,6 +122,14 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_path) unless current_user.admin?
+    end
+
+    def update_debate_invites(user)
+      email = user.email
+      debate_invites = DebateInvite.where('email = ? AND receiver_id = ?', email, nil)
+      debate_invites.each do |debate_invite|
+        debate_invite.update_attributes(receiver_id: user.id)
+      end     
     end
 
 

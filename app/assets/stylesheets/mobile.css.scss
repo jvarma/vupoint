@@ -266,15 +266,15 @@ aside {
     padding-left: 0;
       
 }  
-.voteup, .votedown, .follow, .listview, .publish, .delete {  
+.voteup, .votedown, .follow, .listview, .invite, .publish, .delete {  
       float:left;
 }  
-.voteup a, .votedown a, .follow a, .listview a, .publish a, .delete a{  
+.voteup a, .votedown a, .follow a, .listview a, .invite a, .publish a, .delete a{  
     border: 2px solid #CFE9FF;  
     margin-right: 5px;  
     padding: 0 4px;  
 }  
-.voteup a:hover, .votedown a:hover, .follow a:hover, .listview a:hover, .publish a:hover, .delete a:hover{  
+.voteup a:hover, .votedown a:hover, .follow a:hover, .listview a:hover, .invite a:hover, .publish a:hover, .delete a:hover{  
     border:3px solid #8FCDFF;  
 }  
   

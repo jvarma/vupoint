@@ -3,3 +3,16 @@
 
 en:
  hello: "Hello world"
+ activerecord:
+    attributes:
+      debate_invite:
+        email: ""
+    errors:
+      models:
+        debate_invite:
+          attributes:
+            email:
+              blank: "A valid email id is required, e.g. john@example.com"
+              taken: "An invitation has already been sent!"
+              invalid: "It is not a valid email id!"
+  

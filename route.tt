@@ -1,32 +1,35 @@
-      following_user GET    /users/:id/following(.:format)  users#following
-      followers_user GET    /users/:id/followers(.:format)  users#followers
-               users GET    /users(.:format)                users#index
-                     POST   /users(.:format)                users#create
-            new_user GET    /users/new(.:format)            users#new
-           edit_user GET    /users/:id/edit(.:format)       users#edit
-                user GET    /users/:id(.:format)            users#show
-                     PUT    /users/:id(.:format)            users#update
-                     DELETE /users/:id(.:format)            users#destroy
-            sessions POST   /sessions(.:format)             sessions#create
-         new_session GET    /sessions/new(.:format)         sessions#new
-             session DELETE /sessions/:id(.:format)         sessions#destroy
-             debates POST   /debates(.:format)              debates#create
-              debate GET    /debates/:id(.:format)          debates#show
-                     DELETE /debates/:id(.:format)          debates#destroy
-       relationships POST   /relationships(.:format)        relationships#create
-        relationship DELETE /relationships/:id(.:format)    relationships#destroy
-          viewpoints POST   /viewpoints(.:format)           viewpoints#create
-           viewpoint PUT    /viewpoints/:id(.:format)       viewpoints#update
-                     DELETE /viewpoints/:id(.:format)       viewpoints#destroy
-           arguments GET    /arguments(.:format)            arguments#index
-                     POST   /arguments(.:format)            arguments#create
-        new_argument GET    /arguments/new(.:format)        arguments#new
-            argument DELETE /arguments/:id(.:format)        arguments#destroy
-                root        /                               pages#home
-                help        /help(.:format)                 pages#help
-               terms        /tou(.:format)                  pages#tou
-              signup        /signup(.:format)               users#new
-              signin        /signin(.:format)               sessions#new
-             signout DELETE /signout(.:format)              sessions#destroy
-        confirmation        /confirm(.:format)              users#confirm
-users_search_by_name        /users/search_by_name(.:format) users#search_by_name
+      following_user GET    /users/:id/following(.:format)    users#following
+      followers_user GET    /users/:id/followers(.:format)    users#followers
+               users GET    /users(.:format)                  users#index
+                     POST   /users(.:format)                  users#create
+            new_user GET    /users/new(.:format)              users#new
+           edit_user GET    /users/:id/edit(.:format)         users#edit
+                user GET    /users/:id(.:format)              users#show
+                     PUT    /users/:id(.:format)              users#update
+                     DELETE /users/:id(.:format)              users#destroy
+            sessions POST   /sessions(.:format)               sessions#create
+         new_session GET    /sessions/new(.:format)           sessions#new
+             session DELETE /sessions/:id(.:format)           sessions#destroy
+             debates POST   /debates(.:format)                debates#create
+              debate GET    /debates/:id(.:format)            debates#show
+                     DELETE /debates/:id(.:format)            debates#destroy
+       relationships POST   /relationships(.:format)          relationships#create
+        relationship DELETE /relationships/:id(.:format)      relationships#destroy
+          viewpoints POST   /viewpoints(.:format)             viewpoints#create
+           viewpoint DELETE /viewpoints/:id(.:format)         viewpoints#destroy
+           arguments GET    /arguments(.:format)              arguments#index
+                     POST   /arguments(.:format)              arguments#create
+        new_argument GET    /arguments/new(.:format)          arguments#new
+            argument DELETE /arguments/:id(.:format)          arguments#destroy
+      debate_invites POST   /debate_invites(.:format)         debate_invites#create
+   new_debate_invite GET    /debate_invites/new(.:format)     debate_invites#new
+       debate_invite DELETE /debate_invites/:id(.:format)     debate_invites#destroy
+                root        /                                 pages#home
+                help        /help(.:format)                   pages#help
+               terms        /tou(.:format)                    pages#tou
+              signup        /signup(.:format)                 users#new
+              signin        /signin(.:format)                 sessions#new
+             signout DELETE /signout(.:format)                sessions#destroy
+        confirmation        /confirm(.:format)                users#confirm
+users_search_by_name        /users/search_by_name(.:format)   users#search_by_name
+             publish PUT    /viewpoints/publish/:id(.:format) viewpoints#publish

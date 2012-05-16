@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      
+      <div class="section-title">
+        An invitation to join the debate!
+      </div>
+      
+      <div class="alert">
+        <%= @debate.content %>
+      </div>
+      
+      <div>
+        Topic created by: <%= link_to @sender.name, user_path(@sender) %>
+      </div>
+    
+      <div>
+        Message: <%= @message %>
+      <div>
+
+      <div>
+        <%= link_to "Join the debate", debate_url(@debate, host: @host) %>
+      </div>
+    
+    </div>
+  </body>
+</html>

@@ -17,6 +17,8 @@ class Debate < ActiveRecord::Base
 
     has_many :viewpoints, dependent: :destroy
 
+    has_many :debate_invites
+
 private
 
     # Returns an SQL condition for users followed by the given user.

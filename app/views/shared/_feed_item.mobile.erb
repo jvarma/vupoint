@@ -18,6 +18,11 @@
     </div>
   
     <% if current_user?(feed_item.user) %>
+
+    <div class="invite">
+      <%= link_to "invite a friend", invitation_path(feed_item) %>
+    </div>
+
     <div class="delete">
       <%= link_to "delete debate", feed_item, method:  :delete,
                                      confirm: "You sure?",

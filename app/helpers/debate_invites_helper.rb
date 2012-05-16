@@ -1,0 +1,2 @@
+module DebateInvitesHelper
+end

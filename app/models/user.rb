@@ -29,21 +29,27 @@ class User < ActiveRecord::Base
 
 	validates :password_confirmation, presence: true, :if => :password_validation_required?
 
+	# user has debates, viewpoints and arguments
 	has_many :debates, dependent: :destroy
-
-	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-
-	has_many :followed_users, through: :relationships, source: :followed
-
 	has_many :viewpoints, dependent: :destroy
-
- 	has_many :reverse_relationships, foreign_key: "followed_id",
+	has_many :arguments, dependent: :destroy
+	
+	# user has followers and as well as those that the user follows through relationships
+	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+	has_many :followed_users, through: :relationships, source: :followed
+	has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
                                    dependent:   :destroy
-  
   	has_many :followers, through: :reverse_relationships, source: :follower
 
-  	has_many :arguments, dependent: :destroy
+
+  	# user sends invites and is receiver of invites
+	has_many :debate_invites, foreign_key: "sender_id", dependent: :destroy
+	has_many :invited_users, through: :debate_invites, source: :receiver
+	has_many :reverse_debate_invites, foreign_key: "receiver_id",
+    								class_name: "DebateInvite",
+    								dependent: :destroy
+  	has_many :invite_senders, through: :reverse_debate_invites, source: :sender
 
   	scope :admin, where(admin: true)
 

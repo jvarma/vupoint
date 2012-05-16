@@ -31,6 +31,13 @@ class DebatesController < ApplicationController
 
   end
 
+  def invitation
+    @debate = Debate.find_by_id(params[:id])
+    @debate_invite = @debate.debate_invites.build({sender_id: @debate.user})
+    debate_invites = DebateInvite.where('sender_id = ? AND debate_id = ?', @debate.user.id, @debate.id)
+  
+  end
+
    private
 
     def correct_user
