@@ -1,8 +1,6 @@
 
 <li>
-<%= render partial: get_notification_content_partial_name(notification),
-      locals: {notification_message_tokens: notification.message_tokens,
-      notification: notification }%>
+<%= get_notification_content_partial_name(notification) %>
 
     
   <div class="actions">
