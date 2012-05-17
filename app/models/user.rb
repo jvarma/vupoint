@@ -84,10 +84,20 @@ class User < ActiveRecord::Base
 
   	def follow!(other_user)
     	relationships.create!(followed_id: other_user.id)
+    	# send a notification to the other_user
+    	notification = other_user.notifications.build({
+					message: nil, classname: self.class.name,
+					unknown_object_id: self.id})
+		notification.save
   	end
 	
 	def unfollow!(other_user)
     	relationships.find_by_followed_id(other_user.id).destroy
+	end
+
+	def message_tokens
+		sender_name = self.name.downcase
+		message_tokens = [sender_name]
 	end
 
 	private

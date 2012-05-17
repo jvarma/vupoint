@@ -1,0 +1,8 @@
+<% if !get_viewpoint_from_new_viewpoint_notification(notification).published? %>
+	<div class="publish">
+		<%= link_to "publish vupnt", publish_path(get_viewpoint_from_new_viewpoint_notification(notification)), method: :put %>
+	</div>
+<% end %>
+<div class="join">
+	<%= link_to "go debate", debate_path(get_debate_from_new_vupnt_notification(notification)) %>
+</div>

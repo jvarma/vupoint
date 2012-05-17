@@ -9,9 +9,15 @@ module DebatesHelper
     viewpoints.sort_by { |v| v.votes }
   end
 
-  def get_debate_from_notification(notification)
+  def get_debate_from_debate_invite_notification(notification)
     DebateInvite.find_by_id(notification.unknown_object_id).debate
   end
+
+  def get_debate_from_new_vupnt_notification(notification)
+    Viewpoint.find_by_id(notification.unknown_object_id).debate
+  end
+
+  
 
 
   private

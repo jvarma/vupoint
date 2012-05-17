@@ -3,11 +3,13 @@ class Notification < ActiveRecord::Base
 
   	belongs_to :user
 
-  	validates :message, presence: true
+  	validates :message, length: { maximum: 140 }
 
   	validates :user_id, presence: true
 
-	default_scope order: 'notifications.created_at DESC'
+    default_scope order: 'notifications.created_at DESC'
+
+    before_save :clean_up!
 
 
   	def message_tokens
@@ -17,6 +19,15 @@ class Notification < ActiveRecord::Base
   		else
   			unknown_object.message_tokens
   		end
-	end
+    end
+
+    private
+      def clean_up!
+        #keep hundred notifications per user
+        notifications = Notification.where('user_id is ?', self.user_id)
+        if notifications.size >= 25
+          notifications.last.destroy
+        end
+      end
 
 end

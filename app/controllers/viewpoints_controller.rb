@@ -11,6 +11,19 @@ class ViewpointsController < ApplicationController
       else
         flash[:success] = "Your vupnt has been shared with #{@debate.user.name.downcase}"
       end
+
+      # send notification to debate owner
+      # debate owner is the receiver of the notification
+      receiver = @debate.user
+      @message = "#{@viewpoint.user.name.downcase} has a new vupnt on your debate: #{@debate.content}" 
+      notification = receiver.notifications.build({
+          message: @message, classname: @viewpoint.class.name,
+          unknown_object_id: @viewpoint.id})
+      notification.save
+
+
+
+
   	else
       flash[:error] = "Something went wrong!#{@viewpoint.debate_id} - #{@viewpoint.desc}"
     end

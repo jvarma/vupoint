@@ -32,6 +32,14 @@ class Viewpoint < ActiveRecord::Base
 		@debate.update_attributes(updated_at: Time.now)
 	end
 
+	def message_tokens
+      	vupnt_user_name = User.find_by_id(self.user_id).name.downcase 
+      	debate_content = Debate.find_by_id(self.debate_id).content
+      	vupnt_desc = self.desc 
+		message_tokens = [vupnt_user_name, debate_content, vupnt_desc]
+    end
+
+
 	private
 
 		def update_debate_updated_at
