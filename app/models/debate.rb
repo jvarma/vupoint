@@ -19,6 +19,13 @@ class Debate < ActiveRecord::Base
 
     has_many :debate_invites, dependent: :destroy
 
+
+    def has_invited?(sender, receiver)
+      debate_invite = DebateInvite.where('debate_id = ? AND sender_id = ? AND receiver_id = ?',
+        self.id, sender.id, receiver.id)
+      debate_invite.nil? ? false : true
+    end
+
 private
 
     # Returns an SQL condition for users followed by the given user.

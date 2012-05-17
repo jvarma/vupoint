@@ -10,7 +10,7 @@
  	<%= f.hidden_field :debate_id, value: @debate.id %>
  	<%= f.hidden_field :user_id, value: current_user.id %>
  	
-  	<% if (current_user == @debate.user) || @debate.user.following?(current_user) %> 
+  	<% if (current_user == @debate.user) || @debate.user.following?(current_user) || @debate.has_invited?(@debate.user, current_user) %> 
   		<%= f.hidden_field :published, value: true %>
  		<div class="center">
 	  		<%= f.submit "add your vupnt", class: "btn btn-large btn-primary" %>
