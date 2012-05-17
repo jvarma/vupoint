@@ -1,4 +1,8 @@
 <li>
-back to start
+
+    
+  <div class="actions">
+    <%= render partial: get_notification_actions_partial_name(notification), locals: {notification: notification }%>
+  </div>
 </li>
 <br />
