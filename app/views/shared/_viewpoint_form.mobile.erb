@@ -1,10 +1,6 @@
 
 <div class="section-title">
-	<% if current_user == @debate.user %> 
-  		add a vupnt
-	<% else %>
-		what's your vupnt?
-	<% end %>
+	what's your vupnt?
 </div>
 <%= form_for(@viewpoint) do |f| %>
   	<%= render 'shared/error_messages', object: f.object %>
