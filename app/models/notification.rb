@@ -24,7 +24,7 @@ class Notification < ActiveRecord::Base
     private
       def clean_up!
         #keep hundred notifications per user
-        notifications = Notification.where('user_id is ?', self.user_id)
+        notifications = Notification.where('user_id = ?', self.user_id)
         if notifications.size >= 25
           notifications.last.destroy
         end
