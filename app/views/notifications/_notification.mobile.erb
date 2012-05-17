@@ -6,8 +6,10 @@
 
     
   <div class="actions">
-    <%= render partial: get_notification_actions_partial_name(notification), locals: {notification: notification }%>
-    
+
+    <div class="delete">
+        <%= link_to "delete", notification, method:  :delete,
+                                     confirm: "You sure?" %>
   </div>
 </li>
 <br />
