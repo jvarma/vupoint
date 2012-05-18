@@ -89,7 +89,7 @@ style=" background:yellow; height:4px;" colspan="3">
 
 size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><strong><%= @debate.content %></strong></p>
 
-                                <p><strong><%= @sender.name %></strong> has started a debate on the above subject and would like to know your views on it. </p>
+                                <p><strong><%= @sender.name %></strong> has started a debate on the above subject and would like to know your <strong><%= link_to "vupnt", root_url %></strong>. </p>
                                 <% unless @message.nil? %>    
                                   <p><strong>message: </strong><%= @message %></p>
                                 <% end %>
@@ -102,7 +102,10 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
 
                                 <p>
                                 
-                                <%= link_to "Join debate", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
+                                <%= link_to "Join debate on vupnt", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %><br />
+                                  <small>
+                                    vupnt is currently available from your mobile phone only!
+                                  </small>
 
                                 </p>
 
@@ -119,7 +122,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
 <% if @debate.viewpoints.published.any? %>
   <tr>
 
-    <td height="27" colspan="2" valign="top" bgcolor="black" style="padding-right:5px; padding-left:5px; padding-top:5px; padding-bottom:5px; line-height:16px;font-size:12px; color:yellow; font-family:Verdana, Geneva, sans-serif; font-weight:bold;">
+    <td height="27" width="100%" valign="center" align="center" bgcolor="black" style="padding-right:5px; padding-left:5px; padding-top:5px; padding-bottom:5px; line-height:16px;font-size:12px; color:yellow; font-family:Verdana, Geneva, sans-serif; font-weight:bold;">
       some recent viewpoints...
     </td>
 
@@ -131,7 +134,8 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
 
       <table width="100%" border="0" cellpadding="0" cellspacing="0">
 
-        <% @debate.viewpoints.published.each do |viewpoint| %>
+        <% @debate.viewpoints.published.each_with_index do |viewpoint, index| %>
+        <% break if index == 3 %>
         <tr>
           <td width="97%"  style="padding-right:5px; padding-top:2px;  line-height:20px; font-size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal; text-align:left;">
 
@@ -140,10 +144,12 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
             <br />
 
             <%= pluralize(viewpoint.arguments.size, "argument")%> here!
-            <hr />
+            
           </td>
 
+
         </tr>
+        <hr />
         <% end %>
 
 
@@ -208,7 +214,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
 
                         <tr>
 
-                          <td style="font-family:Verdana, Geneva, sans-serif; font-size:12px" colspan="2"><span style="line-height:18px"></span><strong>mail 
+                          <td style="font-family:Verdana, Geneva, sans-serif; font-size:12px" width="100%"><span style="line-height:18px"></span><strong>mail 
 
 me</strong> at <a target="_blank" style="color:#37728F;text-decoration:none" href="mailto:izebrg@gmail.com">izebrg@gmail.com</a></td>
 
