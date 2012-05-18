@@ -89,20 +89,18 @@ style=" background:yellow; height:4px;" colspan="3">
 
 size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><strong><%= @debate.content %></strong></p>
 
-                                <p><strong><%= @sender.name %></strong> has started a debate on the above subject and would like to know your views on it. </p>
-                                <% unless @message.nil? %>    
-                                  <p><strong>message: </strong><%= @message %></p>
-                                <% end %>
+                                <p><%= @sender.name %> has started a debate on the above subject and would like to know your views on it. </p>
+
     
                                 <p>
 
-                                <%= link_to "Who is #{@sender.name}", user_url(@sender), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
+                                <%= link_to "Who is #{@sender.name}", user_url(@sender), html: {style="color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;" target="_blank"} %>
 
                                 </p>
 
                                 <p>
                                 
-                                <%= link_to "Join debate", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
+                                <%= link_to "Join debate", debate_url(@debate), html: {style="color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;" target="_blank"} %>
 
                                 </p>
 
@@ -135,7 +133,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
         <tr>
           <td width="97%"  style="padding-right:5px; padding-top:2px;  line-height:20px; font-size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal; text-align:left;">
 
-            <strong><%= viewpoint.desc %></strong> | <%= link_to viewpoint.user.name, user_url(viewpoint.user), html: {target: "_blank", style: "color:#37728f; text-decoration:none;  font-family:Verdana, Geneva, sans-serif;font-weight:bold; font-size:12px;"}%>  
+            <strong><%= viewpoint.desc %></strong> | <%= link_to viewpoint.user.name, user_url(viewpoint.user), html: {target="_blank" style="color:#37728f; text-decoration:none;  font-family:Verdana, Geneva, sans-serif;font-weight:bold; font-size:12px;"}%>  
 
             <br />
 
@@ -154,7 +152,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
 
   <tr>
     <td colspan="2" valign="middle" bgcolor="#FFFFFF" style="padding-right:5px; padding-left:5px; line-height:16px;font-size:13px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
-      <strong><%= link_to "all viewpoints", debate_url(@debate), html: {target: "_blank", style: "color:#37728f;text-decoration:none;  display:block; font-family:Verdana, Geneva, sans-serif; font-size:11px; line-height:20px; text-align:right;"} %></strong>
+      <strong><%= link_to "all viewpoints", debate_url(@debate), html: {target="_blank" style="color:#37728f;text-decoration:none;  display:block; font-family:Verdana, Geneva, sans-serif; font-size:11px; line-height:20px; text-align:right;"} %></strong>
 
     </td>
 
