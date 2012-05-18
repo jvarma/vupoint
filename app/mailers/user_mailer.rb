@@ -1,8 +1,9 @@
 class UserMailer < ActionMailer::Base
   default from: "izebrg@gmail.com"
 
-  def confirm_email(user)
+  def confirm_email(user, feed)
   	@user = user
+    @feed = feed
   	mail(to: user.email, subject: "Your view counts! Please confirm your email id.")
   end
 

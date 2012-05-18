@@ -24,7 +24,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      UserMailer.confirm_email(@user).deliver
+      @feed_items = User.new.feed(true)
+      UserMailer.confirm_email(@user, @feed_items).deliver
       flash[:success] = "Hello #{@user.name}! To complete your sign up, please confirm your email id. We have sent you an email with instructions!"
       redirect_to root_path
     else
