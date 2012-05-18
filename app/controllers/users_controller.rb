@@ -25,8 +25,8 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       UserMailer.confirm_email(@user).deliver
-      flash[:success] = "Hey #{@user.name}! You have signed up successfully but you still need to confirm your email id. We have sent you an email with instructions!"
-      redirect_to @user
+      flash[:success] = "Hello #{@user.name}! To complete your sign up, please confirm your email id. We have sent you an email with instructions!"
+      redirect_to root_path
     else
       render :new
     end
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def confirm
     @user = User.find_by_id(params[:user])
     if (!@user || !(@user.confirmation_token == params[:confirmation_token]))
-      flash[:error] = "Oops! Your email id could not be confirmed."
+      flash[:error] = "Your email id could not be confirmed."
     else
       if @user.confirmed_at
         sign_in @user
@@ -133,9 +133,14 @@ class UsersController < ApplicationController
 
     def update_debate_invites(user)
       email = user.email
-      debate_invites = DebateInvite.where('email = ? AND receiver_id = ?', email, nil)
+      debate_invites = DebateInvite.where('email = ?', email)
       debate_invites.each do |debate_invite|
         debate_invite.update_attributes(receiver_id: user.id)
+        notification = {
+          classname: debate_invite.class.name,
+          unknown_object_id: debate_invite.id
+        }
+        user.notify(notification)
       end     
     end
 

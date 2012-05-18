@@ -26,6 +26,15 @@ invite friend to debate
 
 <% end %>
 
-<div class="section-title">
-previous invitations
-</div>
+
+<% if @debate_invites.any? %>
+	<div class="section-title">
+    	invitations sent to...
+	</div>
+  
+  <ol class="debates">
+    <%= render partial: 'shared/debate_invites_item', collection: @debate_invites %>
+  </ol>
+  <%= will_paginate @debate_invites, page_links: false, class: "my_pagination" %>
+
+<% end %>

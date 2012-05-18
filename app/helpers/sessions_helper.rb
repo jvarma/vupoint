@@ -17,7 +17,7 @@ module SessionsHelper
   end
 
   def signed_in?
-  	!current_user.nil?
+  	!current_user.nil? & confirmed_user?(current_user)
   end
 
   def sign_out
@@ -38,6 +38,14 @@ module SessionsHelper
     unless signed_in?
       store_location
       redirect_to signin_path, notice: "Please sign in first!"
+    end
+  end
+
+  def confirmed_user?(user)
+    if !user
+      user
+    else
+      user.confirmed_at
     end
   end
 

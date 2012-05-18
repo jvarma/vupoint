@@ -85,10 +85,18 @@ class User < ActiveRecord::Base
   	def follow!(other_user)
     	relationships.create!(followed_id: other_user.id)
     	# send a notification to the other_user
-    	notification = other_user.notifications.build({
-					message: nil, classname: self.class.name,
-					unknown_object_id: self.id})
-		notification.save
+    	#notification = other_user.notifications.build({
+		#			message: nil, classname: self.class.name,
+		#			unknown_object_id: self.id})
+
+		notification_params = {
+					classname: self.class.name,
+					unknown_object_id: self.id
+				}
+		#notification.save
+
+		other_user.notify(notification_params)
+		
   	end
 	
 	def unfollow!(other_user)
@@ -98,6 +106,11 @@ class User < ActiveRecord::Base
 	def message_tokens
 		sender_name = self.name.downcase
 		message_tokens = [sender_name]
+	end
+
+	def notify(notification_params)
+		notification = self.notifications.build(notification_params)
+		notification.save!
 	end
 
 	private

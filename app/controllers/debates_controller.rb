@@ -34,7 +34,7 @@ class DebatesController < ApplicationController
   def invitation
     @debate = Debate.find_by_id(params[:id])
     @debate_invite = @debate.debate_invites.build({sender_id: @debate.user})
-    debate_invites = DebateInvite.where('sender_id = ? AND debate_id = ?', @debate.user.id, @debate.id)
+    @debate_invites = DebateInvite.where('sender_id = ? AND debate_id = ?', @debate.user.id, @debate.id).paginate(page: params[:page], per_page: 10)
   
   end
 

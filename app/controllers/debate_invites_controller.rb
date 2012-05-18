@@ -1,5 +1,6 @@
 class DebateInvitesController < ApplicationController
 
+  	before_filter :signed_in_user
 
 	def create
 		@debate = Debate.find(params[:debate_invite][:debate_id])
@@ -16,12 +17,22 @@ class DebateInvitesController < ApplicationController
 				#send a notification to the receiver user
 				# -- the code goes here
 				
-				@message = "#{current_user.name.downcase} has invited you to join the debate: #{@debate.content}" 
+				#@message = "#{current_user.name.downcase} has invited you to join the debate: #{@debate.content}" 
 				#notification = Notification.new(user_id: receiver.id, message: @message)
-				notification = receiver.notifications.build({
-					message: @message, classname: @debate_invite.class.name,
-					unknown_object_id: @debate_invite.id})
-				notification.save	
+				
+				notification = {
+					classname: @debate_invite.class.name,
+					unknown_object_id: @debate_invite.id
+				}
+				
+				receiver.notify(notification)
+
+
+				# notification = receiver.notifications.build({
+				#	message: @message, classname: @debate_invite.class.name,
+				#	unknown_object_id: @debate_invite.id})
+				# notification.save
+
 			end
 
 			# in any case, send an email with the debate details to the sender
