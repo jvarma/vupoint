@@ -5,6 +5,16 @@
   	<h2>
   		what's your view? say. share. discuss.  
   	</h2>
-	<p>the full site is coming soon. in the meantime, log on to <%= link_to "#{root_url}", root_url %> from your mobile phone</p> 
+	<div class="content">
+		vupnt is currently available only from a mobile browser!
+	</div>
+
+	<div class="btn btn-large">
+		<%= link_to "view mobile site", :mobile => 1  %>
+	</div>
   
+</div>
+
+<div>
+    <%= render 'shared/feed' %>
 </div>

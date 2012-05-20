@@ -3,6 +3,9 @@ class NotificationsController < ApplicationController
 
 	before_filter :correct_user
 
+  before_filter :force_mobile
+
+
 	def destroy
     	@notification.destroy
     	flash[:success] = "Notification deleted!"

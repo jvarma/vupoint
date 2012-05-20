@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+
+before_filter :force_mobile, except: :home
+
   
   def home
   	if signed_in?

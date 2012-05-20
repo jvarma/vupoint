@@ -1,0 +1,13 @@
+
+<% if @feed_items.any? %>
+
+	<div class="section-title">
+		recent updates!
+	</div>
+	<ol class="debates">
+		<%= render partial: 'shared/feed_item', collection: @feed_items %>
+	</ol>
+
+<%= will_paginate @feed_items %>
+
+<% end %>

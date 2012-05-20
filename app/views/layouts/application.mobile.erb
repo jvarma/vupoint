@@ -14,9 +14,27 @@
     <![endif]-->
 </head>
 <body>
-  <header class="container-fluid navbar">
-    <%= link_to "vupnt", root_path, id: "logo" %>
+
+
+<header>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <%= link_to "vupnt", root_path, class: "brand" %>
+
+        </div>
+      </div>
+    </div>
   </header>
+
+
+
   <div class="container-fluid">
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>">

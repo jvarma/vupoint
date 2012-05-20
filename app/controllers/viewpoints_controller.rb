@@ -1,5 +1,6 @@
 class ViewpointsController < ApplicationController
 
+  before_filter :force_mobile
 
   def create
   	@debate = Debate.find(params[:viewpoint][:debate_id])

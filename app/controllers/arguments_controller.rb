@@ -1,5 +1,6 @@
 class ArgumentsController < ApplicationController
   before_filter :signed_in_user
+  before_filter :force_mobile
   
   def new
   	@viewpoint = Viewpoint.find(params[:viewpoint])

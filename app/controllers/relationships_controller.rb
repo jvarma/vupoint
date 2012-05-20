@@ -1,6 +1,9 @@
 class RelationshipsController < ApplicationController
   before_filter :signed_in_user
 
+  before_filter :force_mobile
+
+
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)

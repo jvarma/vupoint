@@ -1,6 +1,8 @@
 class DebatesController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user, only: :destroy
+  before_filter :force_mobile
+
 
   def create
   	@debate = current_user.debates.build(params[:debate])

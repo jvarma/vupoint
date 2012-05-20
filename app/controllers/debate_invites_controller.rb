@@ -2,6 +2,8 @@ class DebateInvitesController < ApplicationController
 
   	before_filter :signed_in_user
   	before_filter :not_to_self, only: :create
+  	before_filter :force_mobile
+
 
 	def create
 		

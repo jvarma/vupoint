@@ -1,8 +1,13 @@
 <span class="content">
-	<b><%="#{notification_message_tokens[0]}"%></b> invites you to a debate:<br />
-	<i>"<%="#{notification_message_tokens[1]}"%>"</i><br />
-	<% unless notification_message_tokens[2].length <= 0 %>
-		<b><small>message: </small></b><%= "#{notification_message_tokens[2]}" %>
+
+	You've been invited to a <b>new debate</b>:<br />
+	<div class="notification-core">
+		"<%="#{notification_message_tokens[1]}"%>"
+	</div>
+	<% if notification_message_tokens[2].length > 0 %>
+		<%="#{notification_message_tokens[0]}"%>: <%= "#{notification_message_tokens[2]}" %>
+	<% else %>
+		by <%="#{notification_message_tokens[0]}"%>
 	<% end %>
 </span>
 

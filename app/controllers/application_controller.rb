@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
     	request.format = :mobile if mobile_device?
     end
 
+    def force_mobile
+        if request.format != :mobile
+            flash[:notice] = "vupnt is currently available only for mobile browsers!"
+            redirect_to root_path
+        end
+    end
+
 end

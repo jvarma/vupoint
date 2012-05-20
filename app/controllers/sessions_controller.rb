@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  before_filter :force_mobile
+
 	def new
 		@title = "sign in"
 	end
