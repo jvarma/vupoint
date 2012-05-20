@@ -1,5 +1,5 @@
 <div class="section-title">
-	browse
+	<%= @section_title %>
 </div>
 <ul class="users">
 	<% @users.each do |user|  %>
@@ -14,6 +14,6 @@
 		</li>
 	<% end %>
 </ul>
-
+<h2><%= link_to "back", users_path %></h2>
 <%= will_paginate @users, page_links: false, class: "my_pagination" %>
 <%= render 'search_by_name_form' %>

@@ -151,10 +151,14 @@ class UsersController < ApplicationController
   end
 
   def search_by_name
-    @users = User.by_name(params[:full_name]).paginate(page: params[:page], per_page: 10)
+    name = params[:full_name]
+    name_tags = name.split
+
+    @users = User.tagged_with(params[:full_name].split, any: true).paginate(page: params[:page], per_page: 10)
     if @users.size > 0
-      flash.now[:success] = "found #{@users.size} people!"
-      render :index
+      #flash.now[:success] = "found #{@users.size} people with name like #{name}!"
+      #render :index
+      @section_title = "people with name ~ #{name}"
     else
       flash[:error] = "matching results not found for #{params[:full_name]}!"
       redirect_to users_path

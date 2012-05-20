@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
 	before_save { |user| user.email = email.downcase }
 
+	before_save :set_name_tags
+
 	before_save :create_remember_token, :create_confirmation_token
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -52,6 +54,8 @@ class User < ActiveRecord::Base
     								class_name: "DebateInvite",
     								dependent: :destroy
   	has_many :invite_senders, through: :reverse_debate_invites, source: :sender
+
+  	acts_as_taggable
 
   	scope :admin, where(admin: true)
 
@@ -137,6 +141,13 @@ class User < ActiveRecord::Base
       		end
 
       		where(name: name)
+		end
+
+
+		def set_name_tags
+			name = self.name
+			name_tags = name.split.join(",")
+			self.tag_list = name_tags
 		end
 
 end

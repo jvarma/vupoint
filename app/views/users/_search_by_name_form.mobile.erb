@@ -1,7 +1,7 @@
 <div class="section-title">
 	find people
 </div>
-<div class="welll">
+<div class="well">
   <%= form_tag(controller: :users, action: :search_by_name) do %>
   	<%= text_field_tag 'full_name', nil, placeholder: "enter name"%>
   	<%= submit_tag "search", class: "btn btn-small btn-primary"%>  
