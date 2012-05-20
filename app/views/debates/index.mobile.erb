@@ -1,0 +1,18 @@
+<% if @debates %>
+	<% if @debates.any? %>
+		<div class="section-title">
+			<%= @section_title %>
+		</div>
+		<ul class="debates">
+			<% @debates.each do |debate|  %>
+				<li>
+					<%= debate.content%>				
+				</li>
+			<% end %>
+		</ul>
+
+		<%= will_paginate @debates, page_links: false, class: "my_pagination" %>
+	<% end %>
+<% end %>
+
+<%= render 'search' %>

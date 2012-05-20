@@ -57,6 +57,8 @@ class User < ActiveRecord::Base
 
   	acts_as_taggable
 
+  	#acts_as_taggable_on :debates, :viewpoints, :arguments
+
   	scope :admin, where(admin: true)
 
   	#scope :by_name, lambda { |name| where("name LIKE ?", %w(#{name})) }

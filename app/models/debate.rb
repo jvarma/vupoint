@@ -19,6 +19,10 @@ class Debate < ActiveRecord::Base
 
     has_many :debate_invites, dependent: :destroy
 
+    acts_as_taggable
+
+    before_save :set_hash_tags
+
 
     def has_invited?(sender, receiver)
       debate_invites = DebateInvite.where('debate_id = ? AND sender_id = ? AND receiver_id = ?',
@@ -48,6 +52,18 @@ private
 
       where(user_id: admin_ids)
 
+    end
+
+
+    def set_hash_tags
+      all_tags = self.content.split
+      hash_tags = []
+      all_tags.each do |tag|
+        if tag[0] == '#'
+          hash_tags << tag
+        end
+      end
+      self.tag_list = hash_tags.join(",")
     end
 
 

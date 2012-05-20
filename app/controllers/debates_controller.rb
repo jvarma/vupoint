@@ -54,6 +54,28 @@ class DebatesController < ApplicationController
   
   end
 
+  def index
+    #@debates = Debate.paginate(page: params[:page], per_page: 10)
+  end
+
+  def search
+
+    @debates = Debate.tagged_with(params[:topic].split, any: true).paginate(page: params[:page], per_page: 10)
+    if @debates.size > 0
+      #flash.now[:success] = "found #{@users.size} people with name like #{name}!"
+      #render :index
+      @section_title = "matching debate(s)"
+      render :index
+    else
+      flash[:error] = "matching debates not found!"
+      redirect_to debates_path
+    end
+
+
+
+
+  end
+
    private
 
     def correct_user

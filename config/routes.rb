@@ -9,7 +9,8 @@ Vupoint::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :debates, only: [:create, :destroy, :show]
+  resources :debates, only: [:create, :destroy, :show, :index]
+  match "debates/search", to: 'debates#search'
 
   resources :relationships, only: [:create, :destroy]
 
