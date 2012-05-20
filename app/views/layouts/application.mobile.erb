@@ -28,6 +28,12 @@
 
           <%= link_to "vupnt", root_path, class: "brand" %>
 
+          <% if signed_in? %>
+            <div class="btn-group pull-right">
+              <%= link_to "my profile", user_path(current_user), class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
         </div>
       </div>
     </div>
