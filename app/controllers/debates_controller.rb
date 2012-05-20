@@ -28,6 +28,20 @@ class DebatesController < ApplicationController
       @viewpoints = @debate.viewpoints.published.paginate(page: params[:page], per_page: 10)
     end
 
+    @current_user_can_add = false
+
+    debate_invites_user_to_cu_for_curr_debate = DebateInvite.where(
+      'debate_id = ? AND sender_id = ? AND receiver_id = ?', 
+      @debate.id, @user.id, current_user.id)
+
+    if debate_invites_user_to_cu_for_curr_debate.any?
+      @current_user_can_add = true
+    end
+
+    if @user.following?(current_user)
+      @current_user_can_add = true
+    end
+
 
   end
 

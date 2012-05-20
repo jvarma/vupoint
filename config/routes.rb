@@ -1,7 +1,6 @@
 Vupoint::Application.routes.draw do
 
-  get "notifications/destroy"
-
+  
   resources :users do
     member do
       get :following, :followers

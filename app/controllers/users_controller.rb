@@ -160,10 +160,9 @@ class UsersController < ApplicationController
   end
 
   def notifications
+    cookies.permanent[:notifications_last_viewed] =  Time.now
     @user = User.find(params[:id])
-
     @notifications = @user.notifications.paginate(page: params[:page], per_page: 10)
-
   end
 
 

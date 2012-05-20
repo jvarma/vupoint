@@ -1,6 +1,6 @@
 <li id="<%= feed_item.id %>">
   <div class="user">
-    <h3><%= link_to feed_item.user.name, feed_item.user %></h3>
+    <h2><%= link_to feed_item.user.name, feed_item.user %></h2>
   </div>
   <div class="content">
     <%= wrap(feed_item.content) %>
@@ -29,10 +29,6 @@
                                      title:   feed_item.content %>
     </div>
 
-    <% else %>
-    <div class="follow">
-      <%= link_to "follow debate", '#' %>
-    </div>                                       
     <% end %>
 
   </div>
