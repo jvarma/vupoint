@@ -6,11 +6,3 @@
       </div>
     </div>
   <% end %>
-
-  <% unless (debate.viewpoints.published.empty? || debate.viewpoints.published.size == 1) %>
-    <div class="row-fluid">
-      <div class="content loss-position">
-        <%= debate.viewpoints.published.last.desc  %>
-      </div>
-    </div>
-  <% end %>

@@ -4,10 +4,11 @@
 	<div class="section-title">
 		recent updates!
 	</div>
+
 	<ol class="debates">
 		<%= render partial: 'shared/feed_item', collection: @feed_items %>
 	</ol>
 
-<%= will_paginate @feed_items %>
+<div class="center"><%= will_paginate @feed_items %></div>
 
 <% end %>
