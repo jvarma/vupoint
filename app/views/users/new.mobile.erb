@@ -1,11 +1,11 @@
 <% if @user.email.nil? %>
 
 <div class="content">
-Hey! Thank you for your interest in vupnt. We are working to get it up and running as soon as possible. In the meantime, if a friend of yours is already on vupnt, ask them to invite you to a debate, and you will be able to sign up.
+Thank you for your interest in vupnt. We are working to get it up and running as soon as possible. In the meantime, if a friend of yours is already on vupnt, ask them to invite you to a debate, and you will be able to sign up.
 </div>
 
-<div>
-  <strong>already signed up? <%= link_to "sign in here", signin_path %></strong>
+<div class="content">
+  <h2>already signed up? <%= link_to "sign in here", signin_path %></h2>
 </div>
 
 <% else %>

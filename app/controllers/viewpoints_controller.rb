@@ -14,12 +14,16 @@ class ViewpointsController < ApplicationController
 
       # send notification to debate owner
       # debate owner is the receiver of the notification
+      # but only if current user is different from debate owner
+
       receiver = @debate.user
-      @message = "#{@viewpoint.user.name.downcase} has a new vupnt on your debate: #{@debate.content}" 
-      notification = receiver.notifications.build({
+      unless current_user?(receiver)
+        @message = "#{@viewpoint.user.name.downcase} has a new vupnt on your debate: #{@debate.content}" 
+        notification = receiver.notifications.build({
           message: @message, classname: @viewpoint.class.name,
           unknown_object_id: @viewpoint.id})
-      notification.save
+        notification.save
+      end
 
 
 

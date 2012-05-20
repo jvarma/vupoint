@@ -23,7 +23,7 @@
 
   <div class="content">
     <small>
-      check out what others are debating. and there's <a href="#more_menu">more</a>...
+      or, check out some recent debates. and there's <a href="#more_menu">more</a>...
     </small>
   </div>
 
@@ -38,8 +38,8 @@
     <h2><%= link_to "notifications", notifications_path(current_user) %></h2>
   <% end %>
   <h2><%= link_to "people to follow", users_path %></h2>
-  <h2><%= link_to "search topics", '#' %></h2>
-  <h2><%= link_to "my debates", '#' %></h2>
+  <h2><%= link_to "debates to follow", '#', confirm: "This feature is curently under development!" %></h2>
+  <h2><%= link_to "my debates", user_path(current_user) %></h2>
   <h2><a href="#top">back to top</a></h2>
     
 

@@ -1,11 +1,10 @@
 class DebateInvitesController < ApplicationController
 
   	before_filter :signed_in_user
+  	before_filter :not_to_self, only: :create
 
 	def create
-		@debate = Debate.find(params[:debate_invite][:debate_id])
-		@debate_invite = @debate.debate_invites.build(params[:debate_invite])
-
+		
 		if @debate_invite.save
 			# find if a user by the email id exists
 			receiver = User.find_by_email(@debate_invite.email.strip)
@@ -45,10 +44,25 @@ class DebateInvitesController < ApplicationController
 		end
 		
 
-		redirect_to user_path(@debate.user)
+		redirect_to debate_path(@debate)
 	end
 
   	def destroy
   	end
+
+  	private
+
+  		def not_to_self
+  			@debate = Debate.find(params[:debate_invite][:debate_id])
+			@debate_invite = @debate.debate_invites.build(params[:debate_invite])
+
+			if (@debate.user.email == @debate_invite.email.downcase)
+			
+				flash[:error] = "You may not invite yourself!"
+
+				redirect_to debate_path(@debate)
+
+			end
+		end
 
 end
