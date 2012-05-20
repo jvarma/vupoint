@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
 	has_many :viewpoints, dependent: :destroy
 	has_many :arguments, dependent: :destroy
 	has_many :notifications, dependent: :destroy
+	has_many :invitations, dependent: :destroy # invitations to join vupnt, sent by the user
 	
 	# user has followers and as well as those that the user follows through relationships
 	has_many :relationships, foreign_key: "follower_id", dependent: :destroy

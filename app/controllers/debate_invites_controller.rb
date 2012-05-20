@@ -11,7 +11,7 @@ class DebateInvitesController < ApplicationController
 			receiver = User.find_by_email(@debate_invite.email.strip)
 
 			if !receiver.nil?
-				# if one exists, update @debate_invite with the user's ID
+				# if one exists, notify the receiver
 				@debate_invite.update_attributes(receiver_id: receiver.id)
 
 				#send a notification to the receiver user
@@ -26,19 +26,13 @@ class DebateInvitesController < ApplicationController
 				}
 				
 				receiver.notify(notification)
-
-
-				# notification = receiver.notifications.build({
-				#	message: @message, classname: @debate_invite.class.name,
-				#	unknown_object_id: @debate_invite.id})
-				# notification.save
-
 			end
 
-			# in any case, send an email with the debate details to the sender
+			# in any case, send an email with the debate details
 			UserMailer.invitation_for_debate(@debate_invite).deliver
 			flash[:success] = "An invitation has been sent to #{@debate_invite.email}"
-
+			
+			
 		else
 			# the invite could not be saved
 			#flash[:error] = "You have already invited #{@debate_invite.email} to this debate!"

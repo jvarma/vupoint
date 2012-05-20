@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516160638) do
+ActiveRecord::Schema.define(:version => 20120519100758) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -48,6 +48,32 @@ ActiveRecord::Schema.define(:version => 20120516160638) do
   end
 
   add_index "debates", ["user_id", "created_at"], :name => "index_debates_on_user_id_and_created_at"
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "message"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "confirmation_token"
+  end
+
+  add_index "invitations", ["confirmation_token"], :name => "index_invitations_on_confirmation_token"
+  add_index "invitations", ["email"], :name => "index_invitations_on_email"
+  add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
+
+  create_table "invites", :force => true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.integer  "unknown_object_id"
+    t.string   "classname"
+    t.string   "confirmation_token"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "invites", ["email"], :name => "index_invites_on_email"
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"

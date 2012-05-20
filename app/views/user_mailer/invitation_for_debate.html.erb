@@ -89,6 +89,10 @@ style=" background:yellow; height:4px;" colspan="3">
 
 size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><strong><%= @debate.content %></strong></p>
 
+                              <% unless @receiver.nil? %>
+                                <p>hello! <%= @receiver.name %></p>
+                              <% end %>
+
                                 <p><strong><%= @sender.name %></strong> has started a debate on the above subject and would like to know your <strong><%= link_to "vupnt", root_url %></strong>. </p>
                                 <% unless @message.nil? %>    
                                   <p><strong>message: </strong><%= @message %></p>
@@ -96,16 +100,30 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
     
                                 <p>
 
-                                <%= link_to "Who is #{@sender.name}", user_url(@sender), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
+                                <%= link_to "who is #{@sender.name.downcase}", user_url(@sender), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
 
                                 </p>
 
                                 <p>
+
+                                <% if @receiver.nil? %>
+
+                                  <%= link_to "sign up for vupnt", invited_url(confirmation_token: @invitation.confirmation_token), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %><br />
+                                  <small><strong>vupnt</strong> is currently available-
+                                  <ul>
+                                    <li>only by invitation; and</li>
+                                    <li>only on your mobile phone browser</li>
+                                  </ul>
+                                  </small>
+
+                                <% else %>
                                 
-                                <%= link_to "Join debate on vupnt", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %><br />
+                                  <%= link_to "join debate on vupnt", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %><br />
                                   <small>
                                     vupnt is currently available from your mobile phone only!
                                   </small>
+
+                                  <% end %>
 
                                 </p>
 

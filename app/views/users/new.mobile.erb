@@ -1,8 +1,14 @@
- <script type="text/javascript">
- var RecaptchaOptions = {
-    theme : 'clean'
- };
- </script>
+<% if @user.email.nil? %>
+
+<div class="content">
+Hey! Thank you for your interest in vupnt. We are working to get it up and running as soon as possible. In the meantime, if a friend of yours is already on vupnt, ask them to invite you to a debate, and you will be able to sign up.
+</div>
+
+<div>
+  <strong>already signed up? <%= link_to "sign in here", signin_path %></strong>
+</div>
+
+<% else %>
 
 <div class="section-title">sign up</div>
 
@@ -12,17 +18,22 @@
 
     	<%= render 'shared/error_messages', object: f.object %>	
 
-      	<%= f.label :name, "Your full name" %>
+      	<%= f.label :email %>
+        <%= f.email_field :_email, disabled: true, value: @user.email %>
+
+        <%= f.label :name, "Your full name" %>
       	<%= f.text_field :name, placeholder: "e.g. John Doe" %>
 
-      	<%= f.label :email %>
-      	<%= f.text_field :email, placeholder: "@" %>
-
+      	
       	<%= f.label :password %>
       	<%= f.password_field :password, placeholder: "minimum 6 characters" %>
 
       	<%= f.label :password_confirmation, "Re-enter password" %>
       	<%= f.password_field :password_confirmation, placeholder: "same as above" %>
+
+        <%= f.hidden_field :email, value: @user.email %>
+
+
         <div class="row-fluid">
         by signing up for <b>vupnt</b>, you confirm your acceptance of the service <b><%= link_to "terms of use", terms_path%></b>
         </div>
@@ -36,3 +47,4 @@
 <div class="row-fluids">
 <b>already signed up? <%= link_to "sign in", signin_path %></b>
 </div>
+<% end %>

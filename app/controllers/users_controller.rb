@@ -21,21 +21,39 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      sign_in @user
-      @feed_items = User.new.feed(true)
-      UserMailer.confirm_email(@user, @feed_items).deliver
-      flash[:success] = "Hello #{@user.name}! To complete your sign up, please confirm your email id. We have sent you an email with instructions!"
-      redirect_to root_path
-    else
+    # This below section is to be removed once vupnt is no more by invitation only
+    # check if the email has been sent any invitations
+    invitations = Invitation.where('email = ?', params[:user][:email])
+
+    if invitations.nil?
+      flash[:notice] = "There are no invitations pending for #{params[:user][:email]}"
       render :new
+    else
+    # This above section is to be removed once vupnt is no more by invitation only
+    
+      @user = User.new(params[:user])
+
+      if @user.save
+        # Destroy all invitations to join vupnt sent to this user
+      
+        invitations = Invitation.where('email = ?',@user.email)
+        invitations.each do |invitation|
+          invitation.destroy
+        end
+      
+        # do not need to seek confirmation of email during invitation
+        #@feed_items = User.new.feed(true)
+        #UserMailer.confirm_email(@user, @feed_items).deliver
+        #flash[:success] = "Hello #{@user.name}! To complete your sign up, please confirm your email id. We have sent you an email with instructions!"
+        #redirect_to root_path
+        #redirect_to :confirm, {user: @user, confirmation_token: @user.confirmation_token}
+        redirect_to action: :confirm, user: @user, confirmation_token: @user.confirmation_token
+        
+      else
+        render :new
+      end
     end
   end
-        
-  
-
- 
 
   def edit
     @title = @user.name.downcase
@@ -71,10 +89,39 @@ class UsersController < ApplicationController
         #@user.save!
         update_debate_invites @user
         sign_in @user
-        flash[:success] = "Yipee!!! You have successfully confirmed your email id!" 
+        flash[:success] = "Thank you for signing up on vupnt! Start a debate, or share your vupnts on others' debates!" 
       end
     end
     redirect_to root_path
+  end
+
+  def invited
+    # Invitation is meaningless if the user is already signed in
+    if signed_in?
+      flash[:notice] = "you are already signed in!"
+      redirect_to root_path 
+      return
+    end
+
+    # Get the invitation object from the clicked URL
+    @invitation = Invitation.find_by_confirmation_token(params[:confirmation_token])
+
+    if !@invitation
+      # the invitation does not exist!
+      flash[:error] = "The page you are looking for does not exist anymore!"
+      redirect_to new_session_path
+
+    else
+      # the invitation is alright
+      # We do not need to check if the invited user has already signed up
+      # This is based on the premise that the sign up (UsersController > create) method deletes 
+      # all the invitations
+      @user = User.new
+      @user.name = @invitation.name
+      @user.email = @invitation.email
+      render :new
+    end
+
   end
 
   def following

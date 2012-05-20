@@ -36,6 +36,8 @@ Vupoint::Application.routes.draw do
 
   match "/confirm", to: 'users#confirm', as: :confirmation
 
+  match "/invited", to: 'users#invited', as: :invited
+
   match "/users/search_by_name", to: 'users#search_by_name'
 
   match "viewpoints/publish/:id", to: 'viewpoints#publish', as: :publish, via: :put
