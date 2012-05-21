@@ -6,13 +6,13 @@
 
     	<%= render 'shared/error_messages', object: f.object %>	
 
-      	<%= f.label :name, "Your full name" %>
-      	<%= f.text_field :name, maxlength: 30 %>
+      	<%= f.label :name, "your full name" %>
+      	<%= f.text_field :name %>
 
       	<%= f.label :password %>
-      	<%= f.password_field :password, maximum: 15 %>
+      	<%= f.password_field :password %>
 
-      	<%= f.label :password_confirmation, "Re-enter password" %>
+      	<%= f.label :password_confirmation, "re-enter password" %>
       	<%= f.password_field :password_confirmation %>
 
       	<div class="row-fluid center">

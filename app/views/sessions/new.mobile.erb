@@ -5,7 +5,7 @@
     <%= form_for(:session, url: sessions_path) do |f| %>
 
       <%= f.label :email, "your email id" %>
-      <%= f.text_field :email, placeholder: "@", maxlength: 50 %>
+      <%= f.text_field :email, placeholder: "@" %>
 
       <%= f.label :password, "password" %>
       <%= f.password_field :password %>

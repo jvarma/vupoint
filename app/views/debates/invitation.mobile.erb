@@ -12,10 +12,10 @@ invite friend to debate
 	<%= render 'shared/error_messages', object: f.object %>
 
 	<%= f.label :email, "friend's email id" %>
-	<%= f.text_field :email, placeholder: "@", maxlength: 50 %>
+	<%= f.text_field :email, placeholder: "@" %>
 
 	<%= f.label :message, "message (optional)" %>
-	<%= f.text_area :message, rows: 3 %>
+	<%= f.text_area :message, rows: 3, placeholder: "your optional message in 140 characters or less..." %>
 
 	<%= f.hidden_field :debate_id, value: @debate.id %>
 	<%= f.hidden_field :sender_id, value: @debate.user.id %>

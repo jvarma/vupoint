@@ -1,9 +1,9 @@
 <div class="section-title">
 	find debates
 </div>
-<div class="well">
+<div>
   <%= form_tag(controller: :debates, action: :search) do %>
-  	<%= text_field_tag 'topic', nil, placeholder: "#topic to search for...", maxlength: 10%>
+  	<%= text_field_tag 'topic', nil, placeholder: "#topic to search for..." %>
   	<%= submit_tag "search", class: "btn btn-small btn-primary"%>  
   <% end %>
 </div>
