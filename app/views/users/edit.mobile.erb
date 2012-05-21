@@ -7,10 +7,10 @@
     	<%= render 'shared/error_messages', object: f.object %>	
 
       	<%= f.label :name, "Your full name" %>
-      	<%= f.text_field :name %>
+      	<%= f.text_field :name, maxlength: 30 %>
 
       	<%= f.label :password %>
-      	<%= f.password_field :password %>
+      	<%= f.password_field :password, maximum: 15 %>
 
       	<%= f.label :password_confirmation, "Re-enter password" %>
       	<%= f.password_field :password_confirmation %>

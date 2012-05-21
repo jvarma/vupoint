@@ -7,7 +7,7 @@
 		<%= render 'shared/error_messages', object: f.object %>
 
 		<div class="row-fluid">
-			<%= f.text_field :content, placeholder: "your #topic...?" %>
+			<%= f.text_field :content, placeholder: "your #topic (140 chars max)...?", maxlength: 140 %>
 		</div>
 
 		<div class="row-fluid center">

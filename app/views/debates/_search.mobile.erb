@@ -3,7 +3,7 @@
 </div>
 <div class="well">
   <%= form_tag(controller: :debates, action: :search) do %>
-  	<%= text_field_tag 'topic', nil, placeholder: "#topic to search for..."%>
+  	<%= text_field_tag 'topic', nil, placeholder: "#topic to search for...", maxlength: 10%>
   	<%= submit_tag "search", class: "btn btn-small btn-primary"%>  
   <% end %>
 </div>
