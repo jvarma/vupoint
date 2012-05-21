@@ -68,9 +68,7 @@ private
     end
 
     def content_length
-      if content.length > 140
-        content = content[0..139]
-      end
+      
     end
 
 

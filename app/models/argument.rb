@@ -18,9 +18,7 @@ class Argument < ActiveRecord::Base
  	private
 
  		def content_length
- 			if content.length > 500
- 				content = content[0..499]
- 			end
+ 			
  		end 
 
 end

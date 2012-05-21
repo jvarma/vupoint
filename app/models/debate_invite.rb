@@ -51,9 +51,6 @@ class DebateInvite < ActiveRecord::Base
       end
 
       def message_length
-        if message.length > 140
-          message = message[0..139]
-        end
       end
   
 end

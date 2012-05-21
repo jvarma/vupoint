@@ -52,9 +52,7 @@ class Viewpoint < ActiveRecord::Base
 		end
 
 		def desc_length
- 			if desc.length > 140
- 				desc = desc[0..139]
- 			end
+ 			
  		end
 
 
