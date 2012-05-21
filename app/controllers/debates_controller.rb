@@ -60,7 +60,16 @@ class DebatesController < ApplicationController
 
   def search
 
-    @debates = Debate.tagged_with(params[:topic].split, any: true).paginate(page: params[:page], per_page: 10)
+    topics = params[:topic].split
+    to_search = []
+    topics.each do |topic|
+      if topic[0] == '#'
+        topic.slice!(0)
+      end
+      to_search << topic
+    end
+    
+    @debates = Debate.tagged_with(to_search, any: true).paginate(page: params[:page], per_page: 10)
     if @debates.size > 0
       #flash.now[:success] = "found #{@users.size} people with name like #{name}!"
       #render :index

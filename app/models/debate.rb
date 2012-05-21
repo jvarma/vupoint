@@ -60,6 +60,7 @@ private
       hash_tags = []
       all_tags.each do |tag|
         if tag[0] == '#'
+          tag.slice!(0)
           hash_tags << tag
         end
       end
