@@ -9,7 +9,7 @@ class Notification < ActiveRecord::Base
 
     default_scope order: 'notifications.created_at DESC'
 
-    before_save :clean_up!
+    before_save :clean_up!, :message_length
 
 
   	def message_tokens
@@ -29,5 +29,11 @@ class Notification < ActiveRecord::Base
           notifications.last.destroy
         end
       end
+
+      def message_length
+      if message.length > 140
+        message = message[0..139]
+      end
+    end
 
 end

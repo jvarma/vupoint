@@ -3,6 +3,8 @@ class Argument < ActiveRecord::Base
   	belongs_to :viewpoint
   	belongs_to :user
 
+  	before_save :content_length
+
   	validates :content, presence: true, length: { maximum: 500 }
   	validates :user_id, presence: true
 
@@ -13,6 +15,12 @@ class Argument < ActiveRecord::Base
  
  	scope :by_viewpoint, lambda { |viewpoint| where('viewpoint_id = ?', viewpoint.id)} 	
 
+ 	private
 
+ 		def content_length
+ 			if content.length > 500
+ 				content = content[0..499]
+ 			end
+ 		end 
 
 end

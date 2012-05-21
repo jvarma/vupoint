@@ -21,7 +21,7 @@ class Debate < ActiveRecord::Base
 
     acts_as_taggable
 
-    before_save :set_hash_tags
+    before_save :set_hash_tags, :content_length
 
 
     def has_invited?(sender, receiver)
@@ -65,6 +65,12 @@ private
         end
       end
       self.tag_list = hash_tags.join(",")
+    end
+
+    def content_length
+      if content.length > 140
+        content = content[0..139]
+      end
     end
 
 

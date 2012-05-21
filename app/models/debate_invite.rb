@@ -20,6 +20,8 @@ class DebateInvite < ActiveRecord::Base
 
     before_destroy :delete_notifications
 
+    before_save :message_length
+
     def message_tokens
       sender = User.find_by_id(self.sender_id)
       if sender.nil?
@@ -46,6 +48,12 @@ class DebateInvite < ActiveRecord::Base
         notifications.each do |notification|
           notification.destroy
         end        
+      end
+
+      def message_length
+        if message.length > 140
+          message = message[0..139]
+        end
       end
   
 end

@@ -15,6 +15,8 @@ class Invitation < ActiveRecord::Base
 
   	before_save { |invitation| invitation.email = email.downcase }
 
+    before_save :message_length
+
 	before_save :create_confirmation_token
 
 	private
@@ -22,6 +24,12 @@ class Invitation < ActiveRecord::Base
 		def create_confirmation_token
 			self.confirmation_token = Digest::SHA1.hexdigest([Time.now, rand].join)
 		end
+
+    def message_length
+      if message.length > 140
+        message = message[0..139]
+      end
+    end
 
 
 end

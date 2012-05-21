@@ -17,6 +17,8 @@ class Viewpoint < ActiveRecord::Base
 
 	after_save :update_debate_updated_at
 
+	before_save :desc_length
+
 	def argument_feed(is_up_vote)
 		if is_up_vote.nil?
 			Argument.by_viewpoint(self)
@@ -48,6 +50,12 @@ class Viewpoint < ActiveRecord::Base
 			end
 
 		end
+
+		def desc_length
+ 			if desc.length > 140
+ 				desc = desc[0..139]
+ 			end
+ 		end
 
 
 end
