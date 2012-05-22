@@ -126,13 +126,14 @@ footer ul li {
 /* forms */
 
 input, textarea, textfield, select, .uneditable-input {
-  border: 1px solid yellow;
+  border: 1px solid #bbb;
   width: 100%;
   padding: 10px;
   height: auto;
   line-height: 2;
   margin-bottom: 10px;
   @include box_sizing;
+
 }
 
 #error_explanation {
@@ -295,6 +296,9 @@ form {
     font-weight: bold;
     text-transform: lowercase;
 
+  }
+  button {
+    margin-bottom: 2px;
   }
   
 }
