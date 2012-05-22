@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, except: :show
   before_filter :correct_user, only: :destroy
   before_filter :force_mobile
 
@@ -34,14 +34,16 @@ class DebatesController < ApplicationController
     # check if there are any invitations from the debate owner to 
     # the current user for THIS debate.
 
-    user_invites = DebateInvite.where(
-      'debate_id = ? AND sender_id = ? AND receiver_id = ?', 
-      @debate.id, @user.id, current_user.id)
+    if signed_in?
+      user_invites = DebateInvite.where(
+        'debate_id = ? AND sender_id = ? AND receiver_id = ?', 
+        @debate.id, @user.id, current_user.id)
 
-    if user_invites.any? || @user.following?(current_user) || current_user?(@debate.user)
-      @current_user_can_add = true
-    else
-      @current_user_can_add = false
+      if user_invites.any? || @user.following?(current_user) || current_user?(@debate.user)
+        @current_user_can_add = true
+      else
+        @current_user_can_add = false
+      end
     end
 
 

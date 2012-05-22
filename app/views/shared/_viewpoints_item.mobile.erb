@@ -36,7 +36,7 @@
           <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
         </div>
       <% end %>
-      <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || current_user.admin? %>
+      <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || (current_user.admin? unless !signed_in?) %>
           <div class="delete">
             <%= link_to "delete", viewpoints_item, method:  :delete,
                                      confirm: "You sure?",
