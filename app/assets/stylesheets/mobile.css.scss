@@ -125,11 +125,12 @@ footer ul li {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
+input, textarea, textfield, select, .uneditable-input {
+  border: 1px solid yellow;
   width: 100%;
   padding: 10px;
   height: auto;
+  line-height: 2;
   margin-bottom: 10px;
   @include box_sizing;
 }
