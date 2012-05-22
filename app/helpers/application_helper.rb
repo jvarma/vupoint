@@ -7,5 +7,11 @@ module ApplicationHelper
 		end
 	end
 
+	def bookmark
+		title = @title? "'#{@title}'" : "vupnt"
+		url = "'http://www.mysite.com#{request.url}'"
+		%Q|<a href="javascript:bookmarksite(#{title}, #{url});">Bookmark this page</a>|
+	end  
+
 
 end
