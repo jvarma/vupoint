@@ -153,24 +153,17 @@ input, textarea, textfield, select, .uneditable-input {
 
 .users {
   list-style: none;
-  display: block;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  font-size: 2em;
   li {
     padding: 10px 0;
     border-top: 3px solid $grayLighter;
     &:last-child {
       border-bottom: 3px solid $grayLighter;
     }
-
-  a {
-      font-size: 2em;
-      font-weight: bold;
-  
-    }
   }
 }
-  .description {
+
+.description {
     font-size: 1.3em;
     font-weight: normal;
     color: $grayLight;
@@ -295,6 +288,7 @@ aside {
 
 form {
   margin-top: 5px;
+  font-size: 1.5em;
   label {
     color: gray;
     font-weight: bold;
@@ -302,7 +296,7 @@ form {
 
   }
   button {
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
   
 }
