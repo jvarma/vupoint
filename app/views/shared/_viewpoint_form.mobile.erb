@@ -2,6 +2,7 @@
 <div class="section-title">
 	what's your vupnt?
 </div>
+<div class="row-fluid">
 <%= form_for(@viewpoint) do |f| %>
   	<%= render 'shared/error_messages', object: f.object %>
   	<div class="field">
@@ -23,3 +24,4 @@
 		</div>
 	<% end %>
 <% end %>
+</div>
