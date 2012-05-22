@@ -6,7 +6,7 @@
 <%= form_for(@viewpoint) do |f| %>
   	<%= render 'shared/error_messages', object: f.object %>
   	<div class="field">
-    	<%= f.text_field :desc, placeholder: "add a vupnt (in 140 characters or less)...", rows: 2 %>
+    	<%= f.text_field :desc, placeholder: "in 140 characters or less...", rows: 2 %>
   	</div>
  	<%= f.hidden_field :debate_id, value: @debate.id %>
  	<%= f.hidden_field :user_id, value: current_user.id %>
