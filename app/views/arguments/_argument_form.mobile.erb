@@ -16,7 +16,7 @@
 		<%= f.text_area :content, placeholder: "your argument in 500 characters of less...", rows: 3 %>
 		<%= f.submit "vote down!", class: "btn btn-small btn-primary" %>
 	<% end %>
-		<%= link_to "cancel", debate_path(@viewpoint.debate)%>
+		<%= link_to "cancel", debate_url(@viewpoint.debate)%>
 
 	 
 

@@ -1,15 +1,23 @@
 Vupoint::Application.routes.draw do
 
   
+  match 'users/notifications', to: 'users#notifications', as: :notifications
+
   resources :users do
     member do
       get :following, :followers
     end
   end
 
+  
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :debates, only: [:create, :destroy, :show, :index]
+
+  match 'debates/invitation/:id', to: 'debates#invitation', as: :invitation
+
+  match "debates/:id/:url", to: "debates#show"
+  
   match "debates/search", to: 'debates#search'
 
   resources :relationships, only: [:create, :destroy]
@@ -42,10 +50,9 @@ Vupoint::Application.routes.draw do
 
   match "viewpoints/publish/:id", to: 'viewpoints#publish', as: :publish, via: :put
 
-  match 'debates/invitation/:id', to: 'debates#invitation', as: :invitation
+  match 'users/:id/:url', to: "users#show"
 
-  match 'users/notifications/:id', to: 'users#notifications', as: :notifications
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

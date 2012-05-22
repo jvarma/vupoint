@@ -31,6 +31,10 @@ class Debate < ActiveRecord::Base
       
     end
 
+    def to_param
+      "#{self.id}-#{self.content.parameterize}" 
+    end
+
 private
 
     # Returns an SQL condition for users followed by the given user.

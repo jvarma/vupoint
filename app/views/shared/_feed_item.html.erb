@@ -18,7 +18,7 @@
 
   <div class="actions">
     <div class="listview">
-      <%= link_to pluralize(feed_item.viewpoints.published.size, "vupnt"), debate_path(feed_item.id) %>
+      <%= link_to pluralize(feed_item.viewpoints.published.size, "vupnt"), debate_url(feed_item) %>
     </div>
   </div>
 </li>

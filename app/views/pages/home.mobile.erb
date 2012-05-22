@@ -35,7 +35,7 @@
     more stuff...
   </div>
   <% unless @has_new_notifications %>
-    <h2><%= link_to "notifications", notifications_path(current_user) %></h2>
+    <h2><%= link_to "notifications", notifications_url %></h2>
   <% end %>
   <h2><%= link_to "people to follow", users_path %></h2>
   <h2><%= link_to "debates to follow", debates_path %></h2>

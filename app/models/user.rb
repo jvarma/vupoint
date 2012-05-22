@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
 
 	scope :by_name, lambda { |name| where('name LIKE ?', name) }
 
+	# methods
 
 	def password_validation_required?
   		password_digest.blank? || !@password.blank?
@@ -79,11 +80,6 @@ class User < ActiveRecord::Base
 			Debate.from_admin
 		end
 	end
-
-
-
-	
-
 
 	def following?(other_user)
     	relationships.find_by_followed_id(other_user.id)
@@ -119,6 +115,10 @@ class User < ActiveRecord::Base
 		notification = self.notifications.build(notification_params)
 		notification.save!
 	end
+
+	def to_param
+      "#{self.id}-#{self.name.parameterize}" 
+    end
 
 	private
 

@@ -9,7 +9,7 @@
   <div class="actions">
     
     <div class="listview">
-      <%= link_to pluralize(debate.viewpoints.published.size, "vupnt"), debate_path(debate.id) %>
+      <%= link_to pluralize(debate.viewpoints.published.size, "vupnt"), debate_url(debate) %>
     </div>
 
     <% if current_user?(debate.user) %>
