@@ -5,13 +5,10 @@
 			<div class="content">
 				<b><%= @debate.content %></b>
 			</div>
-
 		</div>
 		<div class="row-fluid">
 			<% if signed_in? && current_user?(@debate.user) %>
 				<div class="actions">
-					<span class='st_facebook_hcount'>
-					</span>
 					<div class="invite">
 						<%= link_to "invite a friend", invitation_path(@debate)%>
 					</div>
