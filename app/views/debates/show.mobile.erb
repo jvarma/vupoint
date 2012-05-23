@@ -3,17 +3,14 @@
 
 		<div class="row-fluid">
 			<div class="span2">
-				<span class='st_facebook_large' displayText='share'></span>
+				<span class='st_facebook_large' displayText='share' style="display:inline-block; vertical-align:middle"></span>
 			</div>
 		
 			<div class="span10">
 				<div class="row-fluid">
-					<div class="content">
+					<span class="content">
 						<b><%= @debate.content %></b>
-					</div>
-				</div>
-		
-				<div class="row-fluid">
+					</span>
 					<% if signed_in? && current_user?(@debate.user) %>
 						<div class="actions">
 							<div class="invite">
