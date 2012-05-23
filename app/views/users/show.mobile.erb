@@ -46,6 +46,13 @@
     <%= render @debates %>
   </ol>
   <%= will_paginate @debates, page_links: false, class: "my_pagination" %>
+
+<% else %>
+  <% if current_user?(@user) %>
+    You have not started any debates yet!
+  <% else %>
+    <%= @user.name.downcase %> has not started any debates yet!
+  <% end %>
 <% end %>
 
 
