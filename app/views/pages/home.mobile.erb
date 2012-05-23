@@ -34,12 +34,8 @@
   <div class="section-title", id="more_menu">
     more stuff...
   </div>
-  <% unless @has_new_notifications %>
-    <h2><%= link_to "notifications", notifications_url %></h2>
-  <% end %>
-  <h2><%= link_to "people to follow", users_path %></h2>
-  <h2><%= link_to "debates to follow", debates_path %></h2>
-  <h2><a href="#top">back to top</a></h2>
+  <h2><%= link_to "notifications", notifications_url %> | <%= link_to "debates to follow", debates_path %> | <%= link_to "people to follow", users_path %> | <%= link_to "invite a friend", '#', confirm: "this feature is coming soon..." %></h2>
+  <h2><a href="#top">top of page</a></h2>
     
 
 <% else %>
