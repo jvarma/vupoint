@@ -6,8 +6,19 @@
 		<ul class="debates">
 			<% @debates.each do |debate|  %>
 				<li>
-					<%= debate.content%>				
+					<div class="content">
+						<%= debate.content%>
+					</div>
+					<div class="timestamp">
+						 updated <%= time_ago_in_words(debate.updated_at) %> ago.
+					</div>
+					<div class="actions">
+    					<div class="listview">
+      						<%= link_to pluralize(debate.viewpoints.published.size, "vupnt"), debate_url(debate) %>
+					    </div>
+					</div>				
 				</li>
+				<br />
 			<% end %>
 		</ul>
 
