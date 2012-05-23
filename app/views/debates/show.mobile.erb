@@ -12,8 +12,8 @@
 			</div>
 		</div>
 	<% else %>
-		<div class="user">
-			<%= link_to @debate.user.name, user_path(@debate.user)%>
+		<div>
+			<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
 		</div>
 	<% end %>
 </div>
