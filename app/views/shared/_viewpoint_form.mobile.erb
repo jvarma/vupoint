@@ -14,12 +14,12 @@
   	
   		<%= f.hidden_field :published, value: true %>
  		<div class="center">
-	  		<%= f.submit "add your vupnt", class: "btn btn-large btn-primary" %>
+	  		<%= f.submit "share", class: "btn btn-large btn-primary" %>
 		</div>
 	<% else %>
 		<%= f.hidden_field :published, value: false %>
  		<div class="center">
-	  		<%= f.submit "suggest", class: "btn btn-large btn-primary" %>
+	  		<%= f.submit "share", class: "btn btn-large btn-primary" %>
 		</div>
 	<% end %>
 <% end %>
