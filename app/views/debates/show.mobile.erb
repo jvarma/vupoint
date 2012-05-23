@@ -1,34 +1,26 @@
-
-
-
-		<div class="row-fluid">
-			<div class="span2">
-				<span class='st_facebook_large' displayText='share' style="display:inline-block; vertical-align:middle"></span>
+<div class="row-fluid">
+	<span class="content">
+		<b><%= @debate.content %></b>
+	</span>
+	<% if signed_in? && current_user?(@debate.user) %>
+		<div class="actions">
+			<div class="invite">
+				<%= link_to "invite a friend", invitation_path(@debate)%>
 			</div>
-		
-			<div class="span10">
-				<div class="row-fluid">
-					<span class="content">
-						<b><%= @debate.content %></b>
-					</span>
-					<% if signed_in? && current_user?(@debate.user) %>
-						<div class="actions">
-							<div class="invite">
-								<%= link_to "invite a friend", invitation_path(@debate)%>
-							</div>
-							<div class="delete">
-								<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
-							</div>
-						</div>
-					<% else %>
-						<div class="user">
-							<%= link_to @debate.user.name, user_path(@debate.user)%>
-						</div>
-					<% end %>
+			<div class="delete">
+				<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
 				</div>
 			</div>
 		</div>
-
+	<% else %>
+		<div class="user">
+			<%= link_to @debate.user.name, user_path(@debate.user)%>
+		</div>
+	<% end %>
+</div>
+<div class="center">
+	<span class='st_facebook_large' displayText='share'></span>
+</div>
 
 <%= render 'shared/viewpoints' %>
 
@@ -37,3 +29,5 @@
 <% end %>
 
 
+			<div class="span2">
+			</div>
