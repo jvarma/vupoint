@@ -1,18 +1,16 @@
-<li id="<%= viewpoints_item.id %>">
-  <div>
-  <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
-  <span class="content">
-      <%= wrap(viewpoints_item.desc) %>
-  </span>
-  <span class="timestamp">
+<div class="row-fluid">
+  <li id="<%= viewpoints_item.id %>">
+    <div>
+      <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
+      <span class="content">
+        <%= wrap(viewpoints_item.desc) %>
+      </span>
+      <span class="timestamp">
         updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
-  </span>
-  </div>
+      </span>
+    </div>
   
-
     <div class="actions">
-
-      
       <% if !viewpoints_item.published? %>
         <% if current_user?(viewpoints_item.debate.user) %>
           <div class="publish">
@@ -32,6 +30,7 @@
           <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
         </div>
       <% end %>
+
       <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || (current_user.admin? unless !signed_in?) %>
           <div class="delete">
             <%= link_to "delete", viewpoints_item, method:  :delete,
@@ -39,9 +38,6 @@
                                      title:   viewpoints_item.desc %>
           </div>
       <% end %>
-    
     </div>
-
-</li>
-
-<br />
+  </li>
+</div>
