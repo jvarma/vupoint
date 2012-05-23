@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>your views count! what's your view - say. share. discuss.</title>
+
+</head>
+
+<body>
+
+<table width="572" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center">
+  <tr>
+        <td style="FONT-FAMILY: arial; FONT-SIZE: 11px;padding-bottom:5px;" align="right" colspan="3">
+            To ensure delivery to inbox, add izebrg@gmail.com to your address book<br/>
+        </td>
+    </tr>
+
+  <div style="color:#484a49; margin:0 auto; -moz-border-radius: 5px;">
+
+      <table width="600" cellspacing="0" cellpadding="0" border="0" align="center">
+      <tr>
+
+        <td style="font-family:Verdana, Geneva, sans-serif;font-size:12px; border-left-color:#e1e1e1; border-left-style:solid; border-left-
+
+width:1px; border-right-color:#e1e1e1; border-right-style:solid; border-right-width:1px;" colspan="2">
+
+          <table width="598" cellspacing="0" cellpadding="0" border="0">
+
+                    <tr>
+  
+                        <td>
+                <table width="598" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFFF" align="center">
+
+
+                              <tr>
+
+                                  <td valign="top" align="left" style="padding-left:10px; padding-right:10px">
+                      <table width="578" cellspacing="0" cellpadding="0" border="0">
+  
+                                          <tr>
+
+                                            <td width="358" >
+                            <table width="100%" border="0" cellspacing="0" 
+
+cellpadding="0">
+
+                            <tr>
+  
+                                <td height="4" bgcolor="yellow"  
+
+style=" background:yellow; height:4px;" colspan="3">
+
+                                </td>
+
+                                                    </tr>
+
+                            
+                          </table></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="5" style=" height:5px;"></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td  style=" height:10px;"><table width="578" border="0" align="right" cellpadding="0" cellspacing="0">
+
+                          <tbody>
+
+                            <tr>
+
+                              <td width="384"></td>
+
+                              <td width="194"></td>
+
+                            </tr>
+
+                            <tr>
+
+                              <td colspan="2" valign="top" bgcolor="#FFFFFF" style="padding-right:5px; padding-left:5px; padding-top:5px; line-height:16px;font-
+
+size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
+
+<% if @name.nil? %>
+  <p>hello!</p>
+<% else %>
+  <p>hello <%= @name.downcase %>!</p>
+<% end %>
+
+
+<p><strong><%= @sender.name %></strong> has sent you an invitation to sign up on <strong><%= link_to "vupnt", root_url %></strong>. </p>
+                                
+<% unless @message.nil? %>    
+  <p><strong>message: </strong><%= @message %></p>
+<% end %>
+    
+<p>
+<%= link_to "who is #{@sender.name.downcase}", user_url(@sender), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
+</p>
+
+<p>
+Some of the things you can do after signing up:
+</p>
+<ul style="list-style: none;">
+  <li>follow others so that you know what they are debating upon;</li>
+  <li>start a debate of your own on a topic of your interest;</li>
+  <li>invite your friends to join you in your debates;</li>
+  <li>express your own views on others' debates;</li>
+  <li>argue for or against the views of others;</li>
+  <li>know the leading views on a debate;</li>
+</ul>
+  
+<p>
+
+  <%= link_to "sign up now!", invited_url(confirmation_token: @invitation.confirmation_token), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %>
+  <br />
+  <p>
+<small>Access to vupnt is by invitation, and for now available only on your mobile browser.</small>
+</p>
+
+</p>
+
+
+
+        </td>
+
+                            </tr>
+
+                            <tr>
+
+                              <td>&nbsp;</td>
+
+                            </tr>
+
+<% if @sender.debates.any? %>
+  <tr>
+
+    <td height="27" width="100%" valign="center" align="center" bgcolor="black" style="padding-right:5px; padding-left:5px; padding-top:5px; padding-bottom:5px; line-height:16px;font-size:12px; color:yellow; font-family:Verdana, Geneva, sans-serif; font-weight:bold;">
+      <%= "#{@sender.name.downcase} is debating..."%>
+    </td>
+
+  </tr>
+
+  <tr>
+
+    <td colspan="2" valign="top" bgcolor="#EFEFEF" style="padding-right:10px; padding-left:10px; padding-top:10px; padding-bottom:10px; line-height:16px; font-size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
+
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+        <% @sender.debates.each_with_index do |debate, index| %>
+        <% break if index == 3 %>
+        <tr>
+          <td width="97%"  style="padding-right:5px; padding-top:2px;  line-height:20px; font-size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal; text-align:left;">
+
+            <p><strong><%= debate.content %></strong></p>
+            <%= link_to pluralize(debate.viewpoints.size, "vupnt"), debate_url(debate), html: {target: "_blank", style: "color:#37728f; text-decoration:none;  font-family:Verdana, Geneva, sans-serif;font-weight:bold; font-size:12px;"}%>  
+
+            <br />
+
+            
+          </td>
+
+
+        </tr>
+        <hr />
+        <% end %>
+
+
+      </table>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td colspan="2" valign="middle" bgcolor="#FFFFFF" style="padding-right:5px; padding-left:5px; line-height:16px;font-size:13px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
+      <strong><%= link_to "all debates", user_url(@sender), html: {target: "_blank", style: "color:#37728f;text-decoration:none;  display:block; font-family:Verdana, Geneva, sans-serif; font-size:11px; line-height:20px; text-align:right;"} %></strong>
+
+    </td>
+
+  </tr>
+<% end %>
+
+  <tr>
+
+    <td colspan="2" align="right" valign="top" bgcolor="#FFFFFF" style="padding-right:0px; padding-left:5px; line-height:16px;font-size:11px; font-family: Verdana, Geneva, sans-serif; font-weight:normal;">
+      &nbsp;
+    </td>
+
+  </tr>
+
+</tbody>
+
+</table></td>
+
+</tr>
+
+<tr>
+
+                        <td height="4" bgcolor="yellow"  style=" background:yellow; height:4px;" colspan="3"></td>
+
+                      </tr>
+
+
+                      
+
+                      
+
+                     
+
+                      
+
+                      
+
+                      
+
+                      
+
+                    </table></td>
+
+                </tr>
+
+                <tr>
+
+                  <td valign="top" align="left" style="padding-left:10px; padding-right:10px"><table width="100%" cellspacing="0" cellpadding="0" border="0">
+
+                      <tbody>
+
+                        <tr>
+
+                          <td style="font-family:Verdana, Geneva, sans-serif; font-size:12px" width="100%"><span style="line-height:18px"></span><strong>mail 
+
+me</strong> at <a target="_blank" style="color:#37728F;text-decoration:none" href="mailto:izebrg@gmail.com">izebrg@gmail.com</a></td>
+
+                        </tr>
+
+                        <tr>
+
+                          <td style="font-family:Verdana, Geneva, sans-serif;font-size:12px" colspan="2"></td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                          <td></td>
+
+                        </tr>
+
+                      </tbody>
+
+                    </table></td>
+
+                </tr>
+
+              </table></td>
+
+          </tr>
+
+        </table></td>
+
+        
+
+    </tr>
+
+    
+  </table>
+
+  
+
+  
+
+</div>
+
+  </table>
+
+  </body>
+
+</html>
+    
+    
+

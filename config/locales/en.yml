@@ -7,12 +7,20 @@ en:
     attributes:
       debate_invite:
         email: ""
+      invitation:
+        email: ""
     errors:
       models:
         debate_invite:
           attributes:
             email:
-              blank: "A valid email id is required, e.g. john@example.com"
-              taken: "An invitation has already been sent!"
-              invalid: "It is not a valid email id!"
+              blank: ""
+              taken: "An invitation has already been sent to the id!"
+              invalid: "A valid email id is required!"
+        invitation:
+          attributes:
+            email:
+              blank: ""
+              taken: "An invitation has already been sent to the id!"
+              invalid: "A valid email id is required!"
   

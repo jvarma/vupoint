@@ -8,8 +8,9 @@ class UserMailer < ActionMailer::Base
   end
 
   def invitation_for_debate(debate_invite)
-    @sender = User.find(debate_invite.sender_id)
-    @debate = Debate.find(debate_invite.debate_id)
+    #@sender = User.find(debate_invite.sender_id)
+    @sender = debate_invite.sender
+    @debate = debate_invite.debate
     @receiver = User.find_by_id(debate_invite.receiver_id)
     if @receiver.nil?
       @invitation = @sender.invitations.create({email: debate_invite.email})
@@ -19,5 +20,12 @@ class UserMailer < ActionMailer::Base
     mail(to: @email, subject: "#{@sender.name} invites you to a debate!")
   end
 
-
+  def invitation_to_vupnt(invite)
+    @sender = invite.user
+    @message = invite.message
+    @email = invite.email
+    @name = invite.name
+    @invitation = invite
+    mail(to: @email, subject: "#{@sender.name} invites you to join VUpnt!")
+  end
 end

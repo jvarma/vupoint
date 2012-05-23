@@ -1,6 +1,12 @@
 Vupoint::Application.routes.draw do
 
   
+  get "invitations/new"
+
+  get "invitations/create"
+
+  get "invitations/destroy"
+
   match 'users/notifications', to: 'users#notifications', as: :notifications
 
   resources :users do
@@ -29,6 +35,8 @@ Vupoint::Application.routes.draw do
   resources :debate_invites, only: [:create, :destroy]
 
   resources :notifications, only: :destroy
+
+  resources :invitations, only: [:new, :create, :destroy]
 
   root to: 'pages#home'
 

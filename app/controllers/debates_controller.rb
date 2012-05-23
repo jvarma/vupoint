@@ -22,6 +22,7 @@ class DebatesController < ApplicationController
 
   def show
     @debate = Debate.find(params[:id])
+    @title = @debate.content + " - " + root_url 
     @user = @debate.user
     @viewpoint = @debate.viewpoints.build
     if current_user?(@user)

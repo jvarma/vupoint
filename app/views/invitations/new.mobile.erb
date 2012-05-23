@@ -1,0 +1,19 @@
+<div class="section-title">
+	invite a friend
+</div>
+<%= form_for(@invitation) do |f|%>
+
+	<%= f.label :name, "friend's name" %>
+	<%= f.text_field :name, placeholder: "" %>
+
+	<%= f.label :email, "friend's email id" %>
+	<%= f.text_field :email, placeholder: "@" %>
+
+	<%= f.label :message, "message (optional)" %>
+	<%= f.text_area :message, rows: 3, placeholder: "your message in 140 characters or less..." %>
+
+	<div class="row-fluid center">
+		<%= f.submit "invite", class: "btn btn-large btn-primary" %>
+	</div>
+
+<% end %>

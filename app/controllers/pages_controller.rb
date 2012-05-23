@@ -47,4 +47,8 @@ before_filter :force_mobile, except: :home
   def tou
   	@title = "terms of use"
   end
+
+
+
+  
 end
