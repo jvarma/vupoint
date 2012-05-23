@@ -3,31 +3,32 @@
 
 		<div class="row-fluid">
 			<div class="span2">
-			<div style="display:table-cell; vertical-align:middle">
-				<span class='st_facebook_large' displayText='share'></span>
-				</div>
+				<span class='st_facebook_large' displayText='share' style="display:inline-block; vertical-align:middle"></span>
 			</div>
 		
 			<div class="span10">
-				<div class="content">
-					<%= @debate.content %>
+				<div class="row-fluid">
+					<span class="content">
+						<b><%= @debate.content %></b>
+					</span>
 				</div>
-				<% if signed_in? && current_user?(@debate.user) %>
-					<div class="actions">
-						<div class="invite">
-							<%= link_to "invite a friend", invitation_path(@debate)%>
+		
+				<div class="row-fluid">
+					<% if signed_in? && current_user?(@debate.user) %>
+						<div class="actions">
+							<div class="invite">
+								<%= link_to "invite a friend", invitation_path(@debate)%>
+							</div>
+							<div class="delete">
+								<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
+							</div>
 						</div>
-						<div class="delete">
-							<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
-						</div>
-					</div>
-				<% else %>
-					<div>
-						<h2>
+					<% else %>
+						<div class="user">
 							<%= link_to @debate.user.name, user_path(@debate.user)%>
-						</h2>
-					</div>
-				<% end %>
+						</div>
+					<% end %>
+				</div>
 			</div>
 		</div>
 
