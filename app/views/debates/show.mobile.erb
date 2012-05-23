@@ -1,22 +1,20 @@
-<div class="row-fluid">
-	<span class="content">
-		<b><%= @debate.content %></b>
-	</span>
-	<% if signed_in? && current_user?(@debate.user) %>
-		<div class="actions">
-			<div class="invite">
-				<%= link_to "invite a friend", invitation_path(@debate)%>
-			</div>
-			<div class="delete">
-				<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
-			</div>
+<span class="content">
+	<b><%= @debate.content %></b>
+</span>
+<% if signed_in? && current_user?(@debate.user) %>
+	<div class="actions">
+		<div class="invite">
+			<%= link_to "invite a friend", invitation_path(@debate)%>
 		</div>
-	<% else %>
-		<div>
-			<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
+		<div class="delete">
+			<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
 		</div>
-	<% end %>
-</div>
+	</div>
+<% else %>
+	<div>
+		<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
+	</div>
+<% end %>
 
 <div class="center">
 	<span class='st_facebook_large' displayText='share'></span>
