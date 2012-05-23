@@ -1,8 +1,7 @@
 
 <% if @users.any? %>
   <section>
-    <h1><%= link_to @user.name.downcase, user_path(@user) %></h1> 
-    <h2><%= "#{@title}" %></h2>
+    <h2><%= link_to @user.name.downcase, user_path(@user) %></h2> 
   </section>
   <section>
     <%= render "/users/index" %>

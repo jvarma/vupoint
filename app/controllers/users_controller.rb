@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page], per_page: 10)
-    #@title = "#{@users.count} users"
+    @section_title = "listing people..."
   end
 
   def new
@@ -134,6 +134,7 @@ class UsersController < ApplicationController
       flash[:notice] = "#{@user.name.downcase} is not following anyone!"
       redirect_to user_path(@user)
     else
+      @section_title = "follows..."
       render 'show_follow'
     end
   end
@@ -146,6 +147,7 @@ class UsersController < ApplicationController
       flash[:notice] = "#{@user.name.downcase} has no followers!"
       redirect_to user_path(@user)
     else
+      @section_title = "...followers"
       render 'show_follow'
     end
   end
