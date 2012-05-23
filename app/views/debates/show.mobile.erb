@@ -29,5 +29,7 @@
 <%= render 'shared/viewpoints' %>
 
 <% if signed_in? %>
-	<%= render 'shared/viewpoint_form', locals: {debate: @debate} %>
+	<div class="row-fluid">
+		<%= render 'shared/viewpoint_form', locals: {debate: @debate} %>
+	</div>
 <% end %>
