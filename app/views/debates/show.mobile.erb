@@ -22,14 +22,38 @@
 
 <div class="row-fluid">
 	<div class="center">
-		<span class='st_facebook_large' displayText='share'></span>
+		<span class='st_facebook_large' displayText=''></span>
 	</div>
 </div>
 
 <%= render 'shared/viewpoints' %>
 
 <% if signed_in? %>
-	<div class="row-fluid">
-		<%= render 'shared/viewpoint_form', locals: {debate: @debate} %>
+
+	<div class="section-title">
+		what's your vupnt?
 	</div>
+
+	<%= form_for(@viewpoint) do |f| %>
+
+	    <div class="row-fluid">
+	    	<%= f.text_field :desc, placeholder: "in 140 characters or less...", rows: 2 %>
+	    </div>
+		
+		<%= f.hidden_field :debate_id, value: @debate.id %>
+	 	<%= f.hidden_field :user_id, value: current_user.id %>
+	 	
+	  	<% if @current_user_can_add %>
+	  		<%= f.hidden_field :published, value: true %>
+		<% else %>
+			<%= f.hidden_field :published, value: false %>
+		<% end %>
+		<div class="row-fluid">
+			<div class="center">
+				<%= f.submit "share", class: "btn btn-large btn-primary" %>
+			</div>
+		</div>
+
+	<% end %>
+
 <% end %>

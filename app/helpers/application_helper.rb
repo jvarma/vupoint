@@ -3,7 +3,7 @@ module ApplicationHelper
 		if page_title.nil?
 			"my view point"
 		else
-			"my view point | " + page_title
+			page_title
 		end
 	end
 
