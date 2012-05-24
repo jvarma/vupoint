@@ -29,12 +29,9 @@
 <%= render 'shared/viewpoints' %>
 
 <% if signed_in? %>
-<div class="row-fluid">
 	<div class="section-title">
 		what's your vupnt?
 	</div>
-</div>
-
 
 	<%= form_for(@viewpoint) do |f| %>
 
@@ -57,6 +54,5 @@
 		</div>
 
 	<% end %>
-</div>
 
 <% end %>
