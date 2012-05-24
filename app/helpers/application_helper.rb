@@ -1,7 +1,7 @@
 module ApplicationHelper
 	def full_title(page_title)
 		if page_title.nil?
-			"my view point"
+			"vupnt"
 		else
 			page_title
 		end
