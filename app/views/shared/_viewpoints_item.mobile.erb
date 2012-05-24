@@ -30,13 +30,9 @@
           </div>
         <% end %>
 
-        <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || (current_user.admin? unless !signed_in?) %>
-            <div class="delete">
-              <%= link_to "delete", viewpoints_item, method:  :delete,
-                                       confirm: "You sure?",
-                                       title:   viewpoints_item.desc %>
-            </div>
-        <% end %>
+        <!-- the delete option goes here -->
+
+        
       </div>
     </li>
 
