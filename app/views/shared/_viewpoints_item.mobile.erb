@@ -1,6 +1,4 @@
-
-
-
+  <li id="<%= viewpoints_item.id %>">
     <div class="row-fluid">
       <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
       <span class="content">
@@ -12,35 +10,36 @@
     </div>
   
     <div class="row-fluid">
-    <div class="actions">
-      <% if !viewpoints_item.published? %>
-        <% if current_user?(viewpoints_item.debate.user) %>
-          <div class="publish">
-            <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
+      <div class="actions">
+        <% if !viewpoints_item.published? %>
+          <% if current_user?(viewpoints_item.debate.user) %>
+            <div class="publish">
+              <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="voteup">
+            <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
+            </div>
+      
+          <div class="votedown">
+            <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
+          </div>
+
+          <div class="listview">
+            <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
           </div>
         <% end %>
-      <% else %>
-        <div class="voteup">
-          <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
-          </div>
-    
-        <div class="votedown">
-          <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
-        </div>
 
-        <div class="listview">
-          <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
-        </div>
-      <% end %>
-
-      <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || (current_user.admin? unless !signed_in?) %>
-          <div class="delete">
-            <%= link_to "delete", viewpoints_item, method:  :delete,
-                                     confirm: "You sure?",
-                                     title:   viewpoints_item.desc %>
-          </div>
-      <% end %>
+        <% if current_user?(viewpoints_item.user) || current_user?(viewpoints_item.debate.user) || (current_user.admin? unless !signed_in?) %>
+            <div class="delete">
+              <%= link_to "delete", viewpoints_item, method:  :delete,
+                                       confirm: "You sure?",
+                                       title:   viewpoints_item.desc %>
+            </div>
+        <% end %>
+      </div>
     </div>
-    </div>
+  </li>
 
 
