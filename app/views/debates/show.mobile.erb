@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="content">
-		<b><%= @debate.content %></b>
+		<b><span id=<%="#{@debate.id}"%>><%= @debate.content %></span></b>
 	</div>
 </div>
 <% if signed_in? && current_user?(@debate.user) %>
@@ -22,7 +22,7 @@
 
 <div class="row-fluid">
 	<div class="center">
-		<span class='st_facebook_large' st_title="#{@debate.content}" displayText=''></span>
+		<span class='st_facebook_large' st_title="#{@debate.content}"></span>
 	</div>
 </div>
 
@@ -58,3 +58,16 @@
 	<% end %>
 
 <% end %>
+
+<script>
+         stWidget.addEntry({
+                 "service":"facebook",
+                 "element":document.getElementById("#{@debate.id}"),
+                 "url":"http://vupnt.herokuapp.com",
+                 "title":"sharethis",
+                 "type":"large",
+                 "text":"ShareThis" ,
+                 "image":"http://www.softicons.com/download/internet-icons/social-superheros-icons-by-iconshock/png/256/sharethis_hulk.png",
+                 "summary":"this is description1"
+         });
+</script>
