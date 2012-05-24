@@ -12,7 +12,8 @@
   <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
 
 
-  <div class="actions">
+  <div class="row-fluid">
+    <div class="actions">
     <div class="listview">
       <%= link_to pluralize(feed_item.viewpoints.published.size, "vupnt"), debate_url(feed_item) %>
     </div>
@@ -31,7 +32,9 @@
 
     <% end %>
 
-  </div>
+    </div>
+    </div>
 
 </li>
+
 <br />
