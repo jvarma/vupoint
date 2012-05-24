@@ -22,7 +22,7 @@
 
 <div class="row-fluid">
 	<div class="center">
-		<span class="st_facebook_large "id=<%="#{@debate.id}"%>></span>
+		<span class='st_fbrec_large' displayText='Facebook Recommend'></span>
 	</div>
 </div>
 
@@ -58,16 +58,3 @@
 	<% end %>
 
 <% end %>
-
-<script>
-         stWidget.addEntry({
-                 "service":"facebook",
-                 "element":document.getElementById("#{@debate.id}"),
-                 "url":"http://vupnt.herokuapp.com",
-                 "title":"sharethis",
-                 "type":"large",
-                 "text":"ShareThis" ,
-                 "image":"http://www.softicons.com/download/internet-icons/social-superheros-icons-by-iconshock/png/256/sharethis_hulk.png",
-                 "summary":"this is description1"
-         });
-</script>
