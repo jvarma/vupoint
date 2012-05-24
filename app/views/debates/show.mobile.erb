@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="content">
-		<b><span id=<%="#{@debate.id}"%>><%= @debate.content %></span></b>
+		<b><%= @debate.content %></b>
 	</div>
 </div>
 <% if signed_in? && current_user?(@debate.user) %>
@@ -22,7 +22,7 @@
 
 <div class="row-fluid">
 	<div class="center">
-		<span class='st_facebook_large' st_title="#{@debate.content}"></span>
+		<span id=<%="#{@debate.id}"%>></span>
 	</div>
 </div>
 
