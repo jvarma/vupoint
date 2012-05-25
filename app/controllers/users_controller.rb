@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def new
-  	@title = "sign up"
+  	@title = "Please send me a #vupnt invitation!"
   	@user = User.new
   end
 
