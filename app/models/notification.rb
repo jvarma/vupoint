@@ -9,7 +9,7 @@ class Notification < ActiveRecord::Base
 
     default_scope order: 'notifications.created_at DESC'
 
-    before_save :clean_up!, :message_length
+    before_save :clean_up!
 
 
   	def message_tokens
@@ -23,10 +23,13 @@ class Notification < ActiveRecord::Base
 
     private
       def clean_up!
-        #keep hundred notifications per user
-        notifications = Notification.where('user_id = ?', self.user_id)
-        if notifications.size >= 25
-          notifications.last.destroy
+        #keep hundred notifications per user except for the admin user
+        user = User.find(self.user_id)
+        unless user.admin
+          notifications = Notification.where('user_id = ?', self.user_id)
+          if notifications.size >= 100
+            notifications.last.destroy
+          end
         end
       end
 

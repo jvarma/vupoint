@@ -17,44 +17,59 @@
   <% end %>
 
   
-  <div id="new_debate_form">
-    <%= render 'shared/debate_form' %>
-  </div>
-
   <div class="content">
     <small>
-      or, check out some recent conversations. and there's <a href="#more_menu">more</a>...
+      start a <a href="#new_debate_form">new conversation</a>, or check out some recent ones. and there's <a href="#more_menu">more</a>...
     </small>
   </div>
 
   <div>
     <%= render 'shared/feed' %>
   </div>
-  
+
+  <div id="new_debate_form">
+    <%= render 'shared/debate_form' %>
+  </div>
+
   <div class="section-title", id="more_menu">
     more stuff...
   </div>
+
   <h2><%= link_to "notifications", notifications_url %> | <%= link_to "conversations", debates_path %> | <%= link_to "people", users_path %> | <%= link_to "invite a friend", new_invitation_path %></h2>
   <hr />
+
   <h2><a href="#top">top of page</a></h2>
     
 
 <% else %>
-<div class="center">
+
+<div class="center" id="sign">
   	<h1>
   		your view counts!
   	</h1>
-  	<h2>
+  	
+    <h2>
   		what's your view? say. share. discuss.  
   	</h2>
-	<%= link_to "sign up", signup_path, class: "btn btn-large btn-primary" %>
+    
+    <%= link_to "sign up", signup_path, class: "btn btn-large btn-primary" %>
 
   	<%= link_to "sign in", signin_path, class: "btn btn-large btn-primary" %>
+
 </div>
 
 <div>
     <%= render 'shared/feed' %>
 </div>
+
+<div>
+  <h2>
+    <a href="#sign">start</a> your own conversation!
+  </h2>
+</div>
+
+
+
   
 <% end %>
 
