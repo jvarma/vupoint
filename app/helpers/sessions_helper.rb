@@ -49,9 +49,7 @@ module SessionsHelper
     end
   end
 
-  def admin
-    User.find_by_admin(true)
-  end
+
 
 
   	private

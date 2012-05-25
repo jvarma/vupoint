@@ -2,7 +2,7 @@ class InvitationsController < ApplicationController
 	before_filter :signed_in_user
 	before_filter :force_mobile
 	before_filter :not_to_self_or_registered, only: :create
-  MAX_PENDING = 20
+  MAX_PENDING = 10
 
   	
   	def new

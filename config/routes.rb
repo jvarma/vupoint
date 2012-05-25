@@ -62,7 +62,9 @@ Vupoint::Application.routes.draw do
 
   match 'users/:id/:url', to: "users#show"
 
-  match 'send_invitation', to: "users#send_invitation", as: :send_invitation
+  match '/send_invitation', to: "users#send_invitation", as: :send_invitation
+
+  match '/stats', to: "pages#stats", as: :stats 
 
 
   # The priority is based upon order of creation:
