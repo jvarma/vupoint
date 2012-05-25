@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :signed_in_user, only: [:edit, :update, :index, :destroy, :following, :followers]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :admin_user, only: [:destroy]
+  before_filter :admin_user, only: [:destroy, :send_invitation]
   before_filter :force_mobile
 
 
@@ -124,6 +124,35 @@ class UsersController < ApplicationController
       render :new
     end
 
+  end
+
+  def send_invitation
+
+    invitation_request = InvitationRequest.find(params[:invitation_request])
+    notification = Notification.find(params[:notification])
+    name = invitation_request.name
+    message = "Your invitation to sign up on vupnt!"
+    
+    @invitation = current_user.invitations.build({
+      name: invitation_request.name,
+      email: invitation_request.email,
+      message: message 
+      })
+
+    if @invitation.save
+        UserMailer.invitation_to_vupnt(@invitation).deliver
+        notification.destroy
+        flash[:success] = "An invitation to join VUpnt has been sent to #{@invitation.email}"
+        redirect_to notifications_path
+      else
+        error_message = ""
+        @invitation.errors.full_messages.each do |msg|
+          error_message += msg
+        end
+        flash[:error] = "#{error_message}"
+        redirect_to notifications_path
+      end
+        
   end
 
   def following

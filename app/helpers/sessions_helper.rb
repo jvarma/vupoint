@@ -49,6 +49,10 @@ module SessionsHelper
     end
   end
 
+  def admin
+    User.find_by_admin(true)
+  end
+
 
   	private
   		def user_from_remember_token

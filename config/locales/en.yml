@@ -9,6 +9,9 @@ en:
         email: ""
       invitation:
         email: ""
+      invitation_request:
+        email: ""
+        name: ""
     errors:
       models:
         debate_invite:
@@ -23,4 +26,12 @@ en:
               blank: ""
               taken: "An invitation has already been sent to the id!"
               invalid: "A valid email id is required!"
+        invitation_request:
+          attributes:
+            email:
+              blank: ""
+              taken: "An invitation has already been requested for the id!"
+              invalid: "A valid email id is required!"
+            name:
+              blank: "Your name is required."
   

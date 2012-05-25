@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120520192202) do
+ActiveRecord::Schema.define(:version => 20120525101926) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(:version => 20120520192202) do
   end
 
   add_index "debates", ["user_id", "created_at"], :name => "index_debates_on_user_id_and_created_at"
+
+  create_table "invitation_requests", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "invitation_requests", ["email"], :name => "index_invitation_requests_on_email"
 
   create_table "invitations", :force => true do |t|
     t.integer  "user_id"

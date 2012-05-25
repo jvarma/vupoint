@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
     include SessionsHelper
     include DebatesHelper
     include NotificationsHelper
+    include InvitationRequestsHelper
+    
     before_filter :prepare_for_mobile
 
     private

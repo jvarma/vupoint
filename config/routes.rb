@@ -16,6 +16,8 @@ Vupoint::Application.routes.draw do
   end
 
   
+  resources :invitation_requests, only: [:new, :create, :destroy]
+  
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :debates, only: [:create, :destroy, :show, :index]
@@ -59,6 +61,8 @@ Vupoint::Application.routes.draw do
   match "viewpoints/publish/:id", to: 'viewpoints#publish', as: :publish, via: :put
 
   match 'users/:id/:url', to: "users#show"
+
+  match 'send_invitation', to: "users#send_invitation", as: :send_invitation
 
 
   # The priority is based upon order of creation:
