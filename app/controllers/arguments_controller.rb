@@ -29,7 +29,7 @@ class ArgumentsController < ApplicationController
           votes = votes - 1
         end
         @viewpoint.update_attributes(updated_at: Time.now, votes: votes)
-        flash[:success] = "You have made a point!"
+        flash[:success] = "Your argument has been posted!"
     else
         flash[:error] = "Your argument could not be posted."
     end

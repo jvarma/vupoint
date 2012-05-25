@@ -1,14 +1,13 @@
 <span class="content">
 
-	You've been invited to a <b>new debate</b>:<br />
+	<%="#{notification_message_tokens[0]}"%> has invited you to a <b>new conversation</b>:
 	<div class="notification-core">
 		"<%="#{notification_message_tokens[1]}"%>"
 	</div>
 	<% if notification_message_tokens[2].length > 0 %>
-		<%="#{notification_message_tokens[0]}"%>: <%= "#{notification_message_tokens[2]}" %>
-	<% else %>
-		by <%="#{notification_message_tokens[0]}"%>
+		message: <%= "#{notification_message_tokens[2]}" %>
 	<% end %>
+
 </span>
 
 <div class="timestamp">

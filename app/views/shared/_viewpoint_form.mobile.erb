@@ -5,20 +5,18 @@
 
 <%= form_for(@viewpoint) do |f| %>
 
-    <%= f.text_field :desc, placeholder: "in 140 characters or less...", rows: 2 %>
+    <%= f.text_area :desc, placeholder: "in 140 characters or less...", rows: 2 %>
 	<%= f.hidden_field :debate_id, value: @debate.id %>
  	<%= f.hidden_field :user_id, value: current_user.id %>
  	
   	<% if @current_user_can_add %>
-  	
   		<%= f.hidden_field :published, value: true %>
- 		<div class="center">
-	  		<%= f.submit "share", class: "btn btn-large btn-primary" %>
-		</div>
 	<% else %>
 		<%= f.hidden_field :published, value: false %>
- 		<div class="center">
-	  		<%= f.submit "share", class: "btn btn-large btn-primary" %>
-		</div>
 	<% end %>
+
+	<div class="center">
+  		<%= f.submit "share", class: "btn btn-large btn-primary" %>
+	</div>
+
 <% end %>

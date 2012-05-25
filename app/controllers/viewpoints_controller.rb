@@ -8,7 +8,7 @@ class ViewpointsController < ApplicationController
 
   	if @viewpoint.save
       if @viewpoint.published
-        flash[:success] = "Your view has been posted!"
+        flash[:success] = "Your vupnt has been posted!"
       else
         flash[:success] = "Your vupnt has been shared with #{@debate.user.name.downcase}"
       end
@@ -19,7 +19,7 @@ class ViewpointsController < ApplicationController
 
       receiver = @debate.user
       unless current_user?(receiver)
-        @message = "#{@viewpoint.user.name.downcase} has a new vupnt on your debate: #{@debate.content}" 
+        @message = "#{@viewpoint.user.name.downcase} has a new vupnt on your conversation: #{@debate.content}" 
         notification = receiver.notifications.build({
           message: @message, classname: @viewpoint.class.name,
           unknown_object_id: @viewpoint.id})
@@ -43,7 +43,7 @@ class ViewpointsController < ApplicationController
       @viewpoint.update_attributes(published: true)
       flash[:success] = "the vupnt is now published and visible to all!"
     else
-      flash[:error] = "you can publish vupnts on your own debates only!"
+      flash[:error] = "you can publish vupnts on your own conversations only!"
     end
     redirect_to debate_path(@viewpoint.debate)
   end

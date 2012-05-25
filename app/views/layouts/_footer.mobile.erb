@@ -8,10 +8,16 @@
         <% if !current_user.confirmed_at %>
           <li><%= link_to "confirm email", '#' %></li>
         <% end %>
+
+        <% if current_user.admin %>
+          <li><%= link_to "stats", '#' %></li>
+        <% end %>
+        
       <li><%= link_to "sign out", signout_path, method: "delete" %></li>
       <% end %>
       <li><%= link_to "help", help_path %></li>
       <li><%= link_to "terms", terms_path %></li>
+
     </ul>
   </nav>
 </footer>

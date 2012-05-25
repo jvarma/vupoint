@@ -9,7 +9,7 @@
     			| <%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
     		<% end %>
 			<div class="description">
-				<%= pluralize(user.debates.size, "debate")%> | <%= pluralize(user.viewpoints.published.size, "vupnt")%> | <%= pluralize(user.followers.size, "follower")%> 
+				<%= pluralize(user.debates.size, "conversation")%> | <%= pluralize(user.viewpoints.published.size, "vupnt")%> | <%= pluralize(user.followers.size, "follower")%> 
 			</div>
 		</li>
 	<% end %>

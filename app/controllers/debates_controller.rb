@@ -7,7 +7,7 @@ class DebatesController < ApplicationController
   def create
   	@debate = current_user.debates.build(params[:debate])
     if @debate.save
-      	flash[:success] = "A new topic created!"
+      	flash[:success] = "A new conversation has started! Invite your friends to join."
       	redirect_to debate_path @debate
     else
     	@feed_items = []
@@ -76,10 +76,10 @@ class DebatesController < ApplicationController
     if @debates.size > 0
       #flash.now[:success] = "found #{@users.size} people with name like #{name}!"
       #render :index
-      @section_title = "matching debate(s)"
+      @section_title = "matching conversation(s)"
       render :index
     else
-      flash[:error] = "matching debates not found!"
+      flash[:error] = "matching conversations not found!"
       redirect_to debates_path
     end
 

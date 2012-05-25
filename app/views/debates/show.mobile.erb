@@ -10,7 +10,7 @@
 				<%= link_to "invite a friend", invitation_path(@debate)%>
 			</div>
 			<div class="delete">
-				<%= link_to "delete debate", @debate, method:  :delete, confirm: "You sure?", title: @debate.content %>
+				<%= link_to "delete", @debate, method:  :delete, confirm: "Delete this conversation?", title: @debate.content %>
 			</div>
 		</div>
 	</div>

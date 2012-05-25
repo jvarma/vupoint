@@ -24,7 +24,7 @@
 
 <% if @user.debates.any? %>
   <div class="section-title">
-  my debates
+  my conversations
   </div>
   <ol class="debates">
     <%= render @debates %>
@@ -34,9 +34,9 @@
 <% else %>
   <div class="content">
   <% if current_user?(@user) %>
-    You have not started any debates yet!
+    You have not started any conversations yet!
   <% else %>
-    <%= @user.name.downcase %> has not started any debates yet!
+    <%= @user.name.downcase %> has not started any conversations yet!
   <% end %>
   </div>
 <% end %>
