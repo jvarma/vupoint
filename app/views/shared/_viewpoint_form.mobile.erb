@@ -5,7 +5,7 @@
 
 <%= form_for(@viewpoint) do |f| %>
 
-    <%= f.text_area :desc, placeholder: "in 140 characters or less...", rows: 2 %>
+    <%= f.text_area :desc, rows: 2 %>
 	<%= f.hidden_field :debate_id, value: @debate.id %>
  	<%= f.hidden_field :user_id, value: current_user.id %>
  	
@@ -14,6 +14,10 @@
 	<% else %>
 		<%= f.hidden_field :published, value: false %>
 	<% end %>
+
+	<div class="field-desc">
+	share your view in 140 characters or less! 
+	</div>
 
 	<div class="center">
   		<%= f.submit "share", class: "btn btn-large btn-primary" %>
