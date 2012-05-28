@@ -11,7 +11,7 @@ before_filter :admin_user, only: :stats
   		@debate = current_user.debates.build
   		@feed_items = current_user.feed(include: :user).paginate(page: params[:page], per_page: 10)
       if !@feed_items.any?
-        @feed_items = User.new.feed(true, include: :user).paginate(page: params[:page], per_page: 10)
+        @feed_items = User.new.feed(true).paginate(page: params[:page], per_page: 10)
       end
 
       if !current_user.notifications.first.nil?
@@ -38,7 +38,7 @@ before_filter :admin_user, only: :stats
 
 
     else
-      @feed_items = User.new.feed(true, include: :user).paginate(page: params[:page], per_page: 10)
+      @feed_items = User.new.feed(true).paginate(page: params[:page], per_page: 10)
     end
 
   end
