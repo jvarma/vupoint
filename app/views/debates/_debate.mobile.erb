@@ -17,7 +17,6 @@
     <% end %>
 
     <% if current_user?(debate.user) %>
-      <% cache "debate-user-actions-#{debate.id}" do %>
         <div class="invite">
           <%= link_to "invite a friend", invitation_path(debate) %>
         </div>
@@ -27,7 +26,6 @@
                                        confirm: "Delete this conversation?",
                                        title:   debate.content %>
         </div>
-      <% end %>
     
     <% end %>
   
