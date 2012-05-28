@@ -1,11 +1,15 @@
+<% cache "invitation-debate-content-#{@debate.id}" do %>
 
-<div class="alert">
-	<%= "#{@debate.content}" %>
-</div>
+	<div class="alert">
+		<%= "#{@debate.content}" %>
+	</div>
 
-<div class="section-title">
-invite a friend
-</div>
+	<div class="section-title">
+	invite a friend
+	</div>
+	
+<% end %>
+
 
 <%= form_for(@debate_invite) do |f|%>
 

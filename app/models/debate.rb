@@ -2,7 +2,7 @@ class Debate < ActiveRecord::Base
 
   	attr_accessible :content, :updated_at
 
-  	belongs_to :user
+  	belongs_to :user, touch: true
   
   	validates :user_id, presence: true
 

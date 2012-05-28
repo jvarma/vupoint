@@ -1,6 +1,6 @@
 class Argument < ActiveRecord::Base
   	attr_accessible :content, :user_id, :viewpoint_id, :is_up_vote
-  	belongs_to :viewpoint
+  	belongs_to :viewpoint, touch: true
   	belongs_to :user
 
   	before_save :content_length

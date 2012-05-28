@@ -1,9 +1,9 @@
 class Viewpoint < ActiveRecord::Base
   	attr_accessible :debate_id, :desc, :updated_at, :votes, :user_id, :published
 
-  	belongs_to :debate
+  	belongs_to :debate, touch: true
 
-  	belongs_to :user
+  	belongs_to :user, touch: true
 
   	has_many :arguments
 
@@ -28,11 +28,11 @@ class Viewpoint < ActiveRecord::Base
 	end
 
 
-	def update_attributes(attr_hash)
-		super(attr_hash)
-		@debate = Debate.find(self.debate_id)
-		@debate.update_attributes(updated_at: Time.now)
-	end
+	#def update_attributes(attr_hash)
+	#	super(attr_hash)
+	#	@debate = Debate.find(self.debate_id)
+	#	@debate.update_attributes(updated_at: Time.now)
+	#end
 
 	def message_tokens
       	vupnt_user_name = User.find_by_id(self.user_id).name.downcase 
