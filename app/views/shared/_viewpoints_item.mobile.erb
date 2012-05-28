@@ -1,5 +1,4 @@
   <li id="<%= viewpoints_item.id %>">
-      <% cache "viewpoints-item-#{viewpoints_item.id}", viewpoints_item.updated_at.to_i do %>
         <div class="user">
           <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
         </div>
@@ -9,8 +8,7 @@
         <span class="timestamp">
           updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
         </span>
-      <% end %>
-
+      
       <div class="actions">
         <% if !viewpoints_item.published? %>
           <% if current_user?(viewpoints_item.debate.user) %>
