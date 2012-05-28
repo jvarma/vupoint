@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
-    @debates = @user.debates.paginate(page: params[:page], per_page: 10)
+  	@user = User.find(params[:id], include: :debates)
+    @debates = @user.debates(include: :viewpoints).paginate(page: params[:page], per_page: 10)
   	@title = @user.name.downcase
   end
 
