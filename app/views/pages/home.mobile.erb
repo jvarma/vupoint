@@ -31,32 +31,36 @@
     <%= render 'shared/debate_form' %>
   </div>
 
-  <div class="section-title", id="more_menu">
-    more stuff...
-  </div>
+  <% cache "more-stuff-home" do %>
+    <div class="section-title", id="more_menu">
+      more stuff...
+    </div>
 
-  <h2><%= link_to "notifications", notifications_url %> | <%= link_to "conversations", debates_path %> | <%= link_to "people", users_path %> | <%= link_to "invite a friend", new_invitation_path %></h2>
-  <hr />
+    <h2><%= link_to "notifications", notifications_url %> | <%= link_to "conversations", debates_path %> | <%= link_to "people", users_path %> | <%= link_to "invite a friend", new_invitation_path %></h2>
+    <hr />
 
-  <h2><a href="#top">top of page</a></h2>
-    
+    <h2><a href="#top">top of page</a></h2>
+  <% end %>      
 
 <% else %>
 
-<div class="center" id="sign">
-  	<h1>
-  		your view counts!
-  	</h1>
-  	
-    <h2>
-  		what's your view? say. share. discuss.  
-  	</h2>
-    
-    <%= link_to "sign up", signup_path, class: "btn btn-large btn-primary" %>
+<% cache "sign-up-sign-in" do %>
 
-  	<%= link_to "sign in", signin_path, class: "btn btn-large btn-primary" %>
+  <div class="center" id="sign">
+    	<h1>
+    		your view counts!
+    	</h1>
+    	
+      <h2>
+    		what's your view? say. share. discuss.  
+    	</h2>
+      
+      <%= link_to "sign up", signup_path, class: "btn btn-large btn-primary" %>
 
-</div>
+    	<%= link_to "sign in", signin_path, class: "btn btn-large btn-primary" %>
+
+  </div>
+<% end %>
 
 <div>
     <%= render 'shared/feed' %>

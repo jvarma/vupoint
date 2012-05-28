@@ -1,20 +1,22 @@
+<% cache "sign-in-form" do %>
 
-<div class="section-title">sign in</div>
+  <div class="section-title">sign in</div>
 
-<div class="row-fluid">
-    <%= form_for(:session, url: sessions_path) do |f| %>
+  <div class="row-fluid">
+      <%= form_for(:session, url: sessions_path) do |f| %>
 
-      <%= f.label :email, "your email id" %>
-      <%= f.email_field :email, placeholder: "@" %>
+        <%= f.label :email, "your email id" %>
+        <%= f.email_field :email, placeholder: "@" %>
 
-      <%= f.label :password, "password" %>
-      <%= f.password_field :password %>
+        <%= f.label :password, "password" %>
+        <%= f.password_field :password %>
 
-      <div class="row-fluid center">
-        <%= f.submit "sign in", class: "btn btn-large btn-primary" %>
-      </div>
-    <% end %>
+        <div class="row-fluid center">
+          <%= f.submit "sign in", class: "btn btn-large btn-primary" %>
+        </div>
+      <% end %>
 
-    <p>New user? <%= link_to "sign up now!", signup_path %></p>
-</div>  
-  
+      <p>New user? <%= link_to "sign up now!", signup_path %></p>
+  </div>  
+
+<% end %>  

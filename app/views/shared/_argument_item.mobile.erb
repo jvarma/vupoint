@@ -6,24 +6,30 @@
   <div class="content">
 
   <% if argument_item.is_up_vote %>
+    
+    <% cache "arg-item-win-#{argument_item.id}" do %>
+      <div class="win-position">
+        <%= argument_item.content %>
+      </div>
+      <span class="timestamp">
+        posted <%= time_ago_in_words(argument_item.created_at) %> ago.
+      </span>
+    <% end %>
 
-    <div class="win-position">
+  <% else %>
 
-  <% else %> 
-
-    <div class="loss-position">
+    <% cache "arg-item-loss-#{argument_item.id}" do %>
+      <div class="loss-position">
+        <%= argument_item.content %>
+      </div>
+      <span class="timestamp">
+        posted <%= time_ago_in_words(argument_item.created_at) %> ago.
+      </span>
+    <% end %>
 
   <% end %>
-      <%= argument_item.content %>
-    
-    </div>
-
-  </div>
   
-  <span class="timestamp">
-    posted <%= time_ago_in_words(argument_item.created_at) %> ago.
-  </span>
-
+  
   <% if current_user?(argument_item.user) %>
     <div class="actions">
       <div class="delete">

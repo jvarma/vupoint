@@ -1,7 +1,10 @@
+
+<% cache "debate_invites_item-#{debate_invites_item.id}" do %>
 <li id="<%= debate_invites_item.id %>">
     <div class="content">
-    	<%= debate_invites_item.email %> > <%= debate_invites_item.message %>
+    	<%= debate_invites_item.email %>  <%= debate_invites_item.message %>
     </div>
 </li>
 
 <br />
+<% end %>

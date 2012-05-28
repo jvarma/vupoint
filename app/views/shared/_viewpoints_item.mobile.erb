@@ -1,33 +1,39 @@
   <li id="<%= viewpoints_item.id %>">
-      <div class="user">
-        <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
-      </div>
-      <div class="content">
-        <%= wrap(viewpoints_item.desc) %>
-      </div>
-      <span class="timestamp">
-        updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
-      </span>
+      <% cache "viewpoints-item-#{viewpoints_item.id}", viewpoints_item.updated_at.to_i do %>
+        <div class="user">
+          <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
+        </div>
+        <div class="content">
+          <%= wrap(viewpoints_item.desc) %>
+        </div>
+        <span class="timestamp">
+          updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
+        </span>
+      <% end %>
 
       <div class="actions">
         <% if !viewpoints_item.published? %>
           <% if current_user?(viewpoints_item.debate.user) %>
-            <div class="publish">
-              <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
-            </div>
+            <% cache "viewpoints_item-publish-#{viewpoints_item.id}" do %>
+              <div class="publish">
+                <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
+              </div>
+            <% end %>
           <% end %>
         <% else %>
-          <div class="voteup">
-            <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
+          <% cache "viewpoints_item-vote-#{viewpoints_item.id}" do %>
+            <div class="voteup">
+              <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
+              </div>
+        
+            <div class="votedown">
+              <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
             </div>
-      
-          <div class="votedown">
-            <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
-          </div>
 
-          <div class="listview">
-            <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
-          </div>
+            <div class="listview">
+              <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
+            </div>
+          <% end %>
         <% end %>
 
         <!-- the delete option goes here -->

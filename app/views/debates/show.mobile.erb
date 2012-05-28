@@ -4,28 +4,34 @@
 	</div>
 </div>
 <% if signed_in? && current_user?(@debate.user) %>
-	<div class="row-fluid">
-		<div class="actions">
-			<div class="invite">
-				<%= link_to "invite a friend", invitation_path(@debate)%>
-			</div>
-			<div class="delete">
-				<%= link_to "delete", @debate, method:  :delete, confirm: "Delete this conversation?", title: @debate.content %>
+	<% cache "debate-show-actions-#{@debate.id}" do %>
+		<div class="row-fluid">
+			<div class="actions">
+				<div class="invite">
+					<%= link_to "invite a friend", invitation_path(@debate)%>
+				</div>
+				<div class="delete">
+					<%= link_to "delete", @debate, method:  :delete, confirm: "Delete this conversation?", title: @debate.content %>
+				</div>
 			</div>
 		</div>
-	</div>
+	<% end %>
 <% else %>
-	<div class="row-fluid">
-		<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
-	</div>
+	<% cache "debate-show-user-#{@debate.id}" do %>
+		<div class="row-fluid">
+			<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
+		</div>
+	<% end %>
 <% end %>
 
-<div class="row-fluid">
-	<div class="center">
-		<span class='st_facebook_large'></span>
-		<span class='st_twitter_large'></span>
+<% cache "twitter-fb-debate-share" do %>
+	<div class="row-fluid">
+		<div class="center">
+			<span class='st_facebook_large'></span>
+			<span class='st_twitter_large'></span>
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="row-fluid">
 	<%= render 'shared/viewpoints' %>

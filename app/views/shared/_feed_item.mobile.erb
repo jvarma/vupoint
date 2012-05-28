@@ -1,13 +1,17 @@
+
 <li id="<%= feed_item.id %>">
-  <div class="user">
-    <h2><%= link_to feed_item.user.name, feed_item.user %></h2>
-  </div>
-  <div class="content">
-    <%= wrap(feed_item.content) %>
-  </div>
-  <span class="timestamp">
-    updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
-  </span>
+
+  <% cache "feed_item-#{feed_item.id}" do %>
+    <div class="user">
+      <h2><%= link_to feed_item.user.name, feed_item.user %></h2>
+    </div>
+    <div class="content">
+      <%= wrap(feed_item.content) %>
+    </div>
+    <span class="timestamp">
+      updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
+    </span>
+  <% end %>
 
   <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
 
