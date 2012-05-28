@@ -1,7 +1,9 @@
 <footer class="footer">
-  <small>
-    <%= link_to image_tag("home.png", alt: "home"), root_path %>
-  </small>
+  <% cache "home-icon" do %>
+    <small>
+      <%= link_to image_tag("home.png", alt: "home"), root_path %>
+    </small>
+  <% end %>
   <nav>
     <ul>
       <% if signed_in? %>
