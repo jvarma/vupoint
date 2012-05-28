@@ -22,8 +22,8 @@ class InvitationRequestsController < ApplicationController
               classname: @invitation_request.class.name,
               unknown_object_id: @invitation_request.id
 				    }
-				
-				    admin.notify(notification)
+				    receiver = get_admin
+				    receiver.notify(notification)
 
   				  flash[:success] = "We will send you an invitation soon! Please add izebrg@gmail.com to your address book to prevent your invitation from landing in your junk or spam folder!"
   				  redirect_to root_path
