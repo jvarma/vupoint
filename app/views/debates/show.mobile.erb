@@ -1,10 +1,12 @@
+<% cache "debate-show-#{@debate.id}" do %>
 <div class="row-fluid">
 	<div class="content">
 		<b><%= @debate.content %></b>
 	</div>
 </div>
+<% end %>
+
 <% if signed_in? && current_user?(@debate.user) %>
-	<% cache "debate-show-actions-#{@debate.id}" do %>
 		<div class="row-fluid">
 			<div class="actions">
 				<div class="invite">
@@ -15,16 +17,15 @@
 				</div>
 			</div>
 		</div>
-	<% end %>
+	
 <% else %>
-	<% cache "debate-show-user-#{@debate.id}" do %>
 		<div class="row-fluid">
 			<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
 		</div>
-	<% end %>
+	
 <% end %>
 
-<% cache "twitter-fb-debate-share" do %>
+<% cache "twtr-fb-share" do %>
 	<div class="row-fluid">
 		<div class="center">
 			<span class='st_facebook_large'></span>
