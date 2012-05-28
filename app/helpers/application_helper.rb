@@ -17,9 +17,7 @@ module ApplicationHelper
     	User.find_by_admin(true)
   	end
 
-	def get_admin
-    	User.find_by_admin(true)
-  	end
+
 
 
 
