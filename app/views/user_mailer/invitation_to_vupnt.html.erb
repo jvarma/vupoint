@@ -96,7 +96,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
 <% end %>
 
 
-<p><strong><%= @sender.name %></strong> has sent you an invitation to sign up on <strong><%= link_to "vupnt", root_url %></strong>. </p>
+<p><strong><%= @sender.name %></strong> has sent you an invitation to sign up on <strong><%= link_to "vupnt", invited_url(confirmation_token: @invitation.confirmation_token), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %></strong>. </p>
                                 
 <% unless @message.nil? %>    
   <p><strong>message: </strong><%= @message %></p>
@@ -110,12 +110,12 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
 Some of the things you can do after signing up:
 </p>
 <ul style="list-style: none;">
-  <li>follow others so that you know what they are debating upon;</li>
-  <li>start a debate of your own on a topic of your interest;</li>
-  <li>invite your friends to join you in your debates;</li>
-  <li>express your own views on others' debates;</li>
+  <li>follow others to know about their conversations;</li>
+  <li>start a conversation of your own on a topic of your interest - a question, a debate, or just about anything on your mind;</li>
+  <li>invite your friends to join you in your conversations;</li>
+  <li>express your own views on others' conversations;</li>
   <li>argue for or against the views of others;</li>
-  <li>know the leading views on a debate;</li>
+  <li>know the leading views on a conversation;</li>
 </ul>
   
 <p>
@@ -144,7 +144,7 @@ Some of the things you can do after signing up:
   <tr>
 
     <td height="27" width="100%" valign="center" align="center" bgcolor="black" style="padding-right:5px; padding-left:5px; padding-top:5px; padding-bottom:5px; line-height:16px;font-size:12px; color:yellow; font-family:Verdana, Geneva, sans-serif; font-weight:bold;">
-      <%= "#{@sender.name.downcase} is debating..."%>
+      <%= "#{@sender.name.downcase}'s conversations..."%>
     </td>
 
   </tr>
@@ -181,7 +181,7 @@ Some of the things you can do after signing up:
 
   <tr>
     <td colspan="2" valign="middle" bgcolor="#FFFFFF" style="padding-right:5px; padding-left:5px; line-height:16px;font-size:13px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;">
-      <strong><%= link_to "all debates", user_url(@sender), html: {target: "_blank", style: "color:#37728f;text-decoration:none;  display:block; font-family:Verdana, Geneva, sans-serif; font-size:11px; line-height:20px; text-align:right;"} %></strong>
+      <strong><%= link_to "all conversations", user_url(@sender), html: {target: "_blank", style: "color:#37728f;text-decoration:none;  display:block; font-family:Verdana, Geneva, sans-serif; font-size:11px; line-height:20px; text-align:right;"} %></strong>
 
     </td>
 

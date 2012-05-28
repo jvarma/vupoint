@@ -93,7 +93,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
                                 <p>hello! <%= @receiver.name %></p>
                               <% end %>
 
-                                <p><strong><%= @sender.name %></strong> has started a debate on the above subject and would like to know your <strong><%= link_to "vupnt", root_url %></strong>. </p>
+                                <p><strong><%= @sender.name %></strong> has started a conversation and would like to know your <strong><%= link_to "vupnt", root_url %></strong>. </p>
                                 <% unless @message.nil? %>    
                                   <p><strong>message: </strong><%= @message %></p>
                                 <% end %>
@@ -118,7 +118,7 @@ size:12px; font-family:Verdana, Geneva, sans-serif; font-weight:normal;"><p><str
 
                                 <% else %>
                                 
-                                  <%= link_to "join debate on vupnt", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %><br />
+                                  <%= link_to "join conversation", debate_url(@debate), html: {style: "color:#37728f;font-size:12px;line-height:16px;text-decoration:none; font-weight:bold;", target: "_blank"} %><br />
                                   <small>
                                     vupnt is currently available from your mobile phone only!
                                   </small>
