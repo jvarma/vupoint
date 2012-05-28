@@ -14,14 +14,11 @@
       <div class="actions">
         <% if !viewpoints_item.published? %>
           <% if current_user?(viewpoints_item.debate.user) %>
-            <% cache "viewpoints_item-publish-#{viewpoints_item.id}" do %>
               <div class="publish">
                 <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
               </div>
-            <% end %>
           <% end %>
         <% else %>
-          <% cache "viewpoints_item-vote-#{viewpoints_item.id}" do %>
             <div class="voteup">
               <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
               </div>
@@ -33,7 +30,6 @@
             <div class="listview">
               <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
             </div>
-          <% end %>
         <% end %>
 
         <!-- the delete option goes here -->
