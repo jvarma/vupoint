@@ -1,21 +1,17 @@
 <li>
 
-  <% cache "debate-content-#{debate.id}", debate.updated_at.to_i do %>
     <span class="content"><%= debate.content %></span>
     <div class="timestamp">
       last updated <%= time_ago_in_words(debate.updated_at) %> ago.
     </div>
-  <% end %>
   
   <%= render partial: 'shared/win_loss_positions', locals: {debate: debate} %>
     
   <div class="actions">
-    <% cache "debate-vupnt-count-#{debate.id}", debate.updated_at.to_i do %>
       <div class="listview">
         <%= link_to pluralize(debate.viewpoints.published.size, "vupnt"), debate_url(debate) %>
       </div>
-    <% end %>
-
+    
     <% if current_user?(debate.user) %>
         <div class="invite">
           <%= link_to "invite a friend", invitation_path(debate) %>
