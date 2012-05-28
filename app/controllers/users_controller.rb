@@ -157,7 +157,7 @@ class UsersController < ApplicationController
 
   def following
     @title = ">> following"
-    @user = User.find(params[:id])
+    @user = User.find(params[:id], include: :followed_users)
     @users = @user.followed_users.paginate(page: params[:page], per_page: 10)
     if @users.size == 0
       flash[:notice] = "#{@user.name.downcase} is not following anyone!"
@@ -170,7 +170,7 @@ class UsersController < ApplicationController
 
   def followers
     @title = "<< followers"
-    @user = User.find(params[:id])
+    @user = User.find(params[:id], include: :followers)
     @users = @user.followers.paginate(page: params[:page], per_page: 10)
     if @users.size == 0
       flash[:notice] = "#{@user.name.downcase} has no followers!"
