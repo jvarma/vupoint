@@ -30,7 +30,7 @@ class ViewpointsController < ApplicationController
 
 
   	else
-      flash[:error] = "Something went wrong!#{@viewpoint.debate_id} - #{@viewpoint.desc}"
+      flash[:error] = "Something went wrong! Your vupnt could not be posted. Pls keep it under 140 characters."
     end
 
     redirect_to debate_path @debate
