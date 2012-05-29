@@ -1,7 +1,7 @@
 
 <li id="<%= feed_item.id %>">
 
-  <% cache "feed_item-#{feed_item.id}" do %>
+  <% cache "sha_fee_ite_1-#{feed_item.id}-#{feed_item.updated_at.to_i}" do %>
     <div class="user">
       <h2><%= link_to feed_item.user.name, feed_item.user %></h2>
     </div>
@@ -17,27 +17,32 @@
 
 
   <div class="row-fluid">
-    <div class="actions">
-    <div class="listview">
-      <%= link_to pluralize(feed_item.viewpoints.published.size, "vupnt"), debate_url(feed_item) %>
-    </div>
   
-    <% if current_user?(feed_item.user) %>
+    <div class="actions">
+  
+      <div class="listview">
+        <% cache "sha_fee_ite_2-#{feed_item.id}-#{feed_item.updated_at.to_i}" do %>
+          <%= link_to pluralize(feed_item.viewpoints.published.size, "vupnt"), debate_url(feed_item) %>
+        <% end %>
+      </div>
+  
+      <% if current_user?(feed_item.user) %>
+        <% cache "sha_fee_ite_3-#{feed_item.id}" do %>
+          <div class="invite">
+            <%= link_to "invite a friend", invitation_path(feed_item) %>
+          </div>
 
-    <div class="invite">
-      <%= link_to "invite a friend", invitation_path(feed_item) %>
-    </div>
+          <div class="delete">
+            <%= link_to "delete", feed_item, method:  :delete,
+                                       confirm: "Delete this conversation?",
+                                       title:   feed_item.content %>
+          </div>
+        <% end %>
 
-    <div class="delete">
-      <%= link_to "delete", feed_item, method:  :delete,
-                                     confirm: "Delete this conversation?",
-                                     title:   feed_item.content %>
-    </div>
-
-    <% end %>
+      <% end %>
 
     </div>
-    </div>
+  </div>
 
 </li>
 

@@ -1,5 +1,5 @@
   <li id="<%= viewpoints_item.id %>">
-      <% cache "vupnts-it-cntnt-#{viewpoints_item.id}-#{viewpoints_item.updated_at.to_i}" do %>
+      <% cache "sha_vie_ite_1-#{viewpoints_item.id}-#{viewpoints_item.updated_at.to_i}" do %>
         <div class="user">
           <h2><%=link_to viewpoints_item.user.name, viewpoints_item.user %></h2>
         </div>
@@ -19,6 +19,7 @@
               </div>
           <% end %>
         <% else %>
+          <% cache "sha_vie_ite_2-#{viewpoints_item.id}" do %>
             <div class="voteup">
               <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
               </div>
@@ -30,6 +31,7 @@
             <div class="listview">
               <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
             </div>
+          <% end %>
         <% end %>
 
         <!-- the delete option goes here -->

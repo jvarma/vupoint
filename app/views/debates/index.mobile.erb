@@ -5,6 +5,7 @@
 		</div>
 		<ul class="debates">
 			<% @debates.each do |debate|  %>
+				<% cache "deb_ind-#{debate.id}-#{debate.updated_at.to_i}" do %>
 					<li>
 						<div class="content">
 							<%= debate.content%>
@@ -19,6 +20,7 @@
 						</div>				
 					</li>
 					<br />
+				<% end %>
 			<% end %>
 		</ul>
 

@@ -4,11 +4,12 @@
 <ul class="users">
 	<% @users.each do |user|  %>
 		<li>
-			<%= link_to user.name, user %>
-			<% if current_user.admin? && !current_user?(user) %>
-    			| <%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
-    		<% end %>
+			<h2><%= link_to user.name, user %></h2>
 			<div class="description">
+			<% if current_user.admin? && !current_user?(user) %>
+    			<%= link_to "delete", user, method: :delete, confirm: "You sure?" %> | 
+    		<% end %>
+			
 				<%= pluralize(user.debates.size, "conversation")%> | <%= pluralize(user.viewpoints.published.size, "vupnt")%> | <%= pluralize(user.followers.size, "follower")%> 
 			</div>
 		</li>
