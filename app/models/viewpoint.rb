@@ -27,6 +27,22 @@ class Viewpoint < ActiveRecord::Base
 		end
 	end
 
+	def votes_by_type
+		positive_votes = 0
+		negative_votes = 0
+		arguments = self.arguments
+		unless !arguments
+			arguments.each do |argument|
+				if argument.is_up_vote
+					positive_votes += 1
+				else
+					negative_votes += 1
+				end
+			end
+		end
+		{positive: positive_votes, negative: negative_votes}
+	end
+
 
 	#def update_attributes(attr_hash)
 	#	super(attr_hash)

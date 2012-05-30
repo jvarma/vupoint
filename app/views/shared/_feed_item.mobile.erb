@@ -8,10 +8,11 @@
     <div class="content">
       <%= wrap(feed_item.content) %>
     </div>
+  <% end %>
     <span class="timestamp">
       updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
     </span>
-  <% end %>
+  
 
   <%= render partial: 'shared/win_loss_positions', locals: {debate: feed_item} %>
 

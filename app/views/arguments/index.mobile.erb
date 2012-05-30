@@ -1,4 +1,10 @@
+<%= render 'argument_form' %>
+
 <% if @argument_items.any? %>
+
+<div class="section-title">
+votes so far...
+</div>
 
 	<ol class="debates">
 		<%= render partial: 'shared/argument_item', collection: @argument_items %>
@@ -9,6 +15,9 @@
 
 <% end %>
 
+
+
+<br />
 <div class="row-fluid">
 	<h3><%= link_to "back to debate", debate_url(@viewpoint.debate) %></h3>
 </div>

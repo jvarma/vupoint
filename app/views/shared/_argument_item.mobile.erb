@@ -1,9 +1,11 @@
 <li id="<%= argument_item.id %>">
-  <% cache "sha_arg_1-#{argument_item.id}" do %>
-    <div class="user">
+    <% cache "sha_arg_1-#{argument_item.id}" do %>
+    
+    <h2>
       <%= link_to argument_item.user.name, argument_item.user %>
-    </div>
-  <% end %>
+    </h2>
+
+    <% end %>
   
   <div class="content">
 

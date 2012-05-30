@@ -19,8 +19,12 @@ class ArgumentsController < ApplicationController
     #@true = params[:argument][:is_up_vote]
 
     @argument = @viewpoint.arguments.build(params[:argument])
+    if params[:commit] == 'vote up!'
+      @argument.is_up_vote = true
+    elsif params[:commit] == 'vote down!'
+      @argument.is_up_vote = false
+    end
     
-
     if @argument.save
         votes = @viewpoint.votes
         if @argument.is_up_vote
@@ -28,26 +32,37 @@ class ArgumentsController < ApplicationController
         else
           votes = votes - 1
         end
-        @viewpoint.update_attributes(updated_at: Time.now, votes: votes)
-        flash[:success] = "Your argument has been posted!"
-    else
-        flash[:error] = "Your argument could not be posted."
-    end
-    redirect_to debate_path @argument.viewpoint.debate
 
+        #notify the vupnt owner
+        #code to be written
+        
+        @viewpoint.update_attributes(votes: votes)
+        flash[:success] = "Your vote has been posted!"
+    else
+        flash[:error] = "Your vote could not be posted."
+    end
+    #redirect_to debate_path @argument.viewpoint.debate
+    redirect_to arguments_path({viewpoint: @viewpoint})
   end
 
   def destroy
+    argument = Argument.find(params[:id])
+    viewpoint = argument.viewpoint
+    votes = viewpoint.votes
+    if argument.is_up_vote
+      votes = votes - 1
+    else
+      votes = votes + 1
+    end
+    argument.destroy
+    viewpoint.update_attributes({votes: votes})
+    redirect_to debate_path(viewpoint.debate)
   end
 
   def index
-  	@viewpoint = Viewpoint.find(params[:viewpoint])
-
+    @viewpoint = Viewpoint.find(params[:viewpoint])
+    @argument = @viewpoint.arguments.build
     @argument_items = @viewpoint.argument_feed(nil).paginate(page: params[:page], per_page: 10)
-
-  	if !@argument_items.any?
-  		flash[:notice] = "There is no buzz around the vupnt! Vote up a vupnt if you agree with it or down, if you disagree."
-  		redirect_to debate_path(@viewpoint.debate)
-  	end
+    @user = @viewpoint.debate.user
   end
 end

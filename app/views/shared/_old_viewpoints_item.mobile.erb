@@ -6,36 +6,32 @@
         <div class="content">
           <%= wrap(viewpoints_item.desc) %>
         </div>
-      <% end %>
         <span class="timestamp">
           updated <%= time_ago_in_words(viewpoints_item.updated_at) %> ago.
         </span>
-      
+      <% end %>
       
       <div class="actions">
         <% if !viewpoints_item.published? %>
           <% if current_user?(viewpoints_item.debate.user) %>
-            <div class="field-desc">
-              This vupnt is not public yet!
-            </div>
-            <div class="publish">
-              <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
-            </div>
+              <div class="publish">
+                <%= link_to "publish", publish_path(viewpoints_item), method: :put%>
+              </div>
           <% end %>
         <% else %>
-          <% cache "sha_vie_ite_2-#{viewpoints_item.id}-#{viewpoints_item.updated_at.to_i}" do %>
-            <div>
-              <% votes_by_type = viewpoints_item.votes_by_type %>
-              <small>
-                <%= votes_by_type[:positive] %> <%= image_tag("thumbs_up.png")%>
-                <%= votes_by_type[:negative] %> <%= image_tag("thumbs_down.png")%>
-              </small>
+          <% cache "sha_vie_ite_2-#{viewpoints_item.id}" do %>
+            <div class="voteup">
+              <%= link_to "vote it up!", new_argument_path(viewpoint: viewpoints_item, is_up_vote: "") %>
+              </div>
+        
+            <div class="votedown">
+              <%= link_to "vote it down!", new_argument_path(viewpoint: viewpoints_item) %>
+            </div>
 
-            <span class="listview">
-              <%= link_to "your vote", arguments_path(viewpoint: viewpoints_item) %></span>
+            <div class="listview">
+              <%= link_to "arguments", arguments_path(viewpoint: viewpoints_item) %>
             </div>
           <% end %>
-          
         <% end %>
 
         <!-- the delete option goes here -->
@@ -43,5 +39,7 @@
         
       </div>
     </li>
+
+    <br />
 
 

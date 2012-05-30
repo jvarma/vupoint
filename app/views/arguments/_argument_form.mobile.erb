@@ -1,26 +1,19 @@
 <%= form_for (@argument) do |f| %>
 
 	<%= render 'shared/error_messages', object: f.object %>	
-	
 	<%= f.hidden_field :viewpoint_id, value: @viewpoint.id %>
 	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field :is_up_vote, value: @is_up_vote %>
-	
-	
-	<% if @is_up_vote %>
-		<%= f.label :content, "vote it up!" %>
-		<%= f.text_area :content, rows: 3 %>
-		<%= f.submit "vote up!", class: "btn btn-small btn-primary" %>
-	<% else %>
-		<%= f.label :content, "vote it down!" %>
-		<%= f.text_area :content, rows: 3 %>
-		<div class="field-desc">
-		what's your argument? in 500 characters or less...
-		</div>
-		<%= f.submit "vote down!", class: "btn btn-small btn-primary" %>
-	<% end %>
-		<%= link_to "cancel", debate_url(@viewpoint.debate)%>
-
-	 
+	<div class="alert">
+		<%= @viewpoint.desc %>
+	</div>
+	<%= f.label :content, "vote it up or down!" %>
+	<%= f.text_area :content, rows: 2 %>
+	<div class="field-desc">
+	...with your argument in 500 characters or less
+	</div>
+	<div class="center">
+		<%= f.submit 'vote up!', class: "btn btn-small btn-success" %>
+		<%= f.submit 'vote down!', class: "btn btn-small btn-danger", confirm: "You have chosen to vote it down!" %>
+	</div>
 
 <% end %>
