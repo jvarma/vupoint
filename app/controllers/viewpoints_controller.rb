@@ -10,7 +10,7 @@ class ViewpointsController < ApplicationController
       if @viewpoint.published
         flash[:success] = "Your vupnt has been posted!"
       else
-        flash[:success] = "Your vupnt has been shared with #{@debate.user.name.downcase}"
+        flash[:success] = "Your vupnt has been shared with #{@debate.user.name.downcase} for approval!"
       end
 
       # send notification to debate owner
