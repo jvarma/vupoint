@@ -3,6 +3,11 @@
     
     <h2>
       <%= link_to argument_item.user.name, argument_item.user %>
+      <% if argument_item.is_up_vote %>
+        <%= image_tag("thumbs_up.png") %>
+      <% else %>
+        <%= image_tag("thumbs_down.png") %>
+      <% end %>
     </h2>
 
     <% end %>
