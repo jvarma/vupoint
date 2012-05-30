@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
     end
     @message = debate_invite.message
     @email = debate_invite.email
-    mail(to: @email, subject: "#{@sender.name} invites you to a debate!")
+    mail(to: @email, subject: "#{@debate.content}")
   end
 
   def invitation_to_vupnt(invite)
