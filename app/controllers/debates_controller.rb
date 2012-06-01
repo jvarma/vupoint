@@ -7,7 +7,13 @@ class DebatesController < ApplicationController
   def create
   	@debate = current_user.debates.build(params[:debate])
     if @debate.save
-      	flash[:success] = "A new conversation has started! Invite your friends to join."
+        if @debate.is_private
+      	flash[:success] = "A private conversation has started! Invite your friends to join."
+      else
+        flash[:success] = "A public conversation has started! Invite your friends to join."
+      end
+        @participation = @debate.participations.build({user_id: current_user.id})
+        @participation.save    
       	redirect_to debate_path @debate
     else
     	@feed_items = []
@@ -82,10 +88,49 @@ class DebatesController < ApplicationController
       flash[:error] = "matching conversations not found!"
       redirect_to debates_path
     end
+  end
 
+  def allow_joining_private_conversation
+    notification = Notification.find_by_id(params[:id])
+    if !notification
+      redirect_to notifications_path
+      return
+    end
+    join_request = JoinRequest.find(notification.unknown_object_id, include: :user)
+    user = join_request.user
+    debate = join_request.debate
+    #flash[:notice] = "inviting #{user.name} to #{debate.content}"
 
+    debate_invite = debate.debate_invites.build({
+      email: user.email,
+      message: "Hi #{user.name.downcase}! Please do join my conversation. :-)",
+      debate_id: debate.id,
+      sender_id: current_user.id,
+      receiver_id: user.id 
+      })
 
+    if debate_invite.save
+      notification.destroy
+      participation = debate_invite.debate.participations.create({user_id: user.id})
+      new_notification = {
+          classname: debate_invite.class.name,
+          unknown_object_id: debate_invite.id
+      }
+        
+      if user.notify(new_notification)
+        flash[:success] = "#{user.name.downcase} has been allowed to join your private conversation!"
+        UserMailer.invitation_for_debate(debate_invite).deliver
+      else
+        flash[:error] = "Problemo!!!"
+      end
+        
+      
+    else
+      flash[:error] = "There was a problem in processing your request! Please try again sometime later."
+    end
+    redirect_to notifications_path
 
+    
   end
 
    private

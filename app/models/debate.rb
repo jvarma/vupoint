@@ -1,6 +1,6 @@
 class Debate < ActiveRecord::Base
 
-  	attr_accessible :content, :updated_at
+  	attr_accessible :content, :updated_at, :is_private
 
   	belongs_to :user, touch: true
   
@@ -19,6 +19,11 @@ class Debate < ActiveRecord::Base
 
     has_many :debate_invites, dependent: :destroy
 
+    has_many :participations, dependent: :destroy
+
+    has_many :join_requests, dependent: :destroy
+    # requests received to join this debate
+
     acts_as_taggable
 
     before_save :set_hash_tags, :content_length
@@ -27,9 +32,29 @@ class Debate < ActiveRecord::Base
     def has_invited?(sender, receiver)
       debate_invites = DebateInvite.where('debate_id = ? AND sender_id = ? AND receiver_id = ?',
         self.id, sender.id, receiver.id)
-      
+      if debate_invites.any?
+        true
+      else
+        false
+      end
+    end
+
+    def has_participant?(user)
+      if !user
+        return user
+      elsif !self.is_private
+        return true
+      else
+        participations = Participation.where('debate_id = ? AND user_id = ?', self.id, user.id)
+        if participations.any?
+          return true
+        else
+          return false
+        end
+      end
       
     end
+
 
     def to_param
       "#{self.id}-#{self.content.parameterize}" 

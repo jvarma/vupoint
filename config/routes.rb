@@ -9,6 +9,8 @@ Vupoint::Application.routes.draw do
 
   match 'users/notifications', to: 'users#notifications', as: :notifications
 
+  match 'users/join/:id', to: 'users#join_private_conversation', as: :join_private_conversation 
+
   resources :users do
     member do
       get :following, :followers
@@ -35,6 +37,8 @@ Vupoint::Application.routes.draw do
   resources :arguments, only: [:new, :create, :destroy, :index]
 
   resources :debate_invites, only: [:create, :destroy]
+
+  match 'conversation/allow/:id', to: "debates#allow_joining_private_conversation", as: :allow_joining_private_conversation
 
   resources :notifications, only: :destroy
 

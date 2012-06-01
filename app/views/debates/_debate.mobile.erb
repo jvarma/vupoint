@@ -1,39 +1,12 @@
 <li>
 
-    <% cache "deb_deb_1-#{debate.id}-#{debate.updated_at.to_i}" do %>
-      <span class="content"><%= debate.content %></span>
-      <div class="timestamp">
-        last updated <%= time_ago_in_words(debate.updated_at) %> ago.
-      </div>
-    <% end %>
+  <%= render partial: 'shared/debate_content', locals: {debate: debate} %>
   
   <%= render partial: 'shared/win_loss_positions', locals: {debate: debate} %>
-    
-  <div class="actions">
-    <% cache "deb_deb_2-#{debate.id}-#{debate.updated_at.to_i}" do %>
-      <div class="listview">
-        <%= link_to pluralize(debate.viewpoints.published.size, "vupnt"), debate_url(debate) %>
-      </div>
-    <% end %>
-    
-    <% if current_user?(debate.user) %>
-      <% cache "deb_deb_3-#{debate.id}" do %>
-        <div class="invite">
-          <%= link_to "invite a friend", invitation_path(debate) %>
-        </div>
 
-        <div class="delete">
-          <%= link_to "delete", debate, method:  :delete,
-                                       confirm: "Delete this conversation?",
-                                       title:   debate.content %>
-        </div>
-      <% end %>
+  <%= render partial: 'shared/debate_item_actions', locals: {
+      debate: debate, user: @user
+      } %>
     
-    <% end %>
-  
-  </div>
-
-  
-  
 </li>
 <br />

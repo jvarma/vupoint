@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy, :following, :followers]
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy, :following, :followers, :join_private_conversation]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: [:destroy, :send_invitation]
   before_filter :force_mobile
@@ -197,10 +197,31 @@ class UsersController < ApplicationController
   end
 
   def notifications
+    #cookies.permanent[:notifications_last_viewed] =  Time.now
     cookies.permanent[:notifications_last_viewed] =  Time.now
     @user = current_user
     @notifications = @user.notifications.paginate(page: params[:page], per_page: 10)
   end
+
+  def join_private_conversation
+    private_debate = Debate.find(params[:id], include: :user)
+    debate_owner = private_debate.user
+    requestor = current_user
+    join_request = private_debate.join_requests.build({user_id: current_user.id})
+    if join_request.save
+      # notify debate_owner
+      notification = {
+          classname: join_request.class.name,
+          unknown_object_id: join_request.id
+        }
+      debate_owner.notify(notification)
+      flash[:success] = "Your request to join conversation has been sent to #{debate_owner.name.downcase}!"
+    else
+      flash[:error] = "Your request could not be sent to #{debate_owner.name.downcase}"
+    end
+    redirect_to root_path
+  end
+
 
 
   private

@@ -1,0 +1,59 @@
+  <div class="row-fluid">
+  
+    <div class="actions">
+      
+      <% if current_user?(user) %>
+          
+          <div class="listview">
+            <%= link_to pluralize(debate.viewpoints.size, "vupnt"), debate_url(debate) %>
+          </div>
+
+          <div class="invite">
+            <%= link_to "invite a friend", invitation_path(debate) %>
+          </div>
+
+          <div class="delete">
+            <%= link_to "delete", debate, method:  :delete,
+                                       confirm: "Delete this conversation?",
+                                       title:   debate.content %>
+          </div>
+
+      <% elsif signed_in? %>
+
+        <% if debate.is_private %>
+
+          <% if debate.has_participant?(current_user) %>
+            <div class="join">
+              <%= link_to pluralize(debate.viewpoints.size, "vupnt"), debate_path(debate) %>
+            </div>
+
+            <div class="join">
+              <%= link_to "leave conversation", '#' %>
+            </div>
+
+          <% else %>
+              <% if join_request_pending?(debate) %>
+                <div class="field-desc">
+                  Your request to join this private conversation is pending!
+                </div>
+              <% else %>
+                <div class="invite">
+                  <%= link_to "request invitation", join_private_conversation_path(debate) %>
+                </div>
+              <% end %>
+          <% end %>
+
+        <% else %>
+          <div class="listview">
+            <%= link_to pluralize(debate.viewpoints.size, "vupnt"), debate_url(debate) %>
+          </div>
+
+        <% end %>
+
+      <% else %>
+        I am not signed in
+      <% end %>
+
+    </div>
+
+  </div>

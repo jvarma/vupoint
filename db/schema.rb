@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525101926) do
+ActiveRecord::Schema.define(:version => 20120531172502) do
 
   create_table "arguments", :force => true do |t|
     t.text     "content"
@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(:version => 20120525101926) do
   create_table "debates", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "is_private", :default => false
   end
 
   add_index "debates", ["user_id", "created_at"], :name => "index_debates_on_user_id_and_created_at"
@@ -86,6 +87,16 @@ ActiveRecord::Schema.define(:version => 20120525101926) do
 
   add_index "invites", ["email"], :name => "index_invites_on_email"
 
+  create_table "join_requests", :force => true do |t|
+    t.integer  "debate_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "join_requests", ["debate_id"], :name => "index_join_requests_on_debate_id"
+  add_index "join_requests", ["user_id"], :name => "index_join_requests_on_user_id"
+
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
     t.string   "message"
@@ -96,6 +107,16 @@ ActiveRecord::Schema.define(:version => 20120525101926) do
   end
 
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
+  create_table "participations", :force => true do |t|
+    t.integer  "debate_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "participations", ["debate_id"], :name => "index_participations_on_debate_id"
+  add_index "participations", ["user_id"], :name => "index_participations_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"

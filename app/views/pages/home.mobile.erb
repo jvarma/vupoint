@@ -2,21 +2,15 @@
 <div id="top">
 </div>
 <% if signed_in? %>
-  <% if @has_new_notifications %>
-    <div>
-      <h2>
-        hello <%= current_user.name.downcase%>! you have <%= link_to "new notifications", notifications_path(current_user) %><%= image_tag("alert.png")%>
-      </h2>
-    </div>
-  <% else %>
-    <div>
-      <h2>
-        hello <%= current_user.name.downcase%>!
-      </h2>
-    </div>
-  <% end %>
+    <% if @has_new_notifications %>
+      <div>
+        <h2>
+          you have <%= link_to "new notifications", notifications_path(current_user) %><%= image_tag("alert.png")%>
+        </h2>
+      </div>
+    <% end %>
 
-  
+
   <div class="content">
     <small>
       start a <a href="#new_debate_form">new conversation</a>, or check out some recent ones. and there's <a href="#more_menu">more</a>...

@@ -1,0 +1,10 @@
+<% debate = get_debate_from_join_request_notification(notification) %>
+<% user = get_user_from_join_request_notification(notification) %>
+
+<div class="invite">
+	<%= link_to "view profile", user_path(user) %>
+</div>
+
+<div class="invite">
+	<%= link_to "allow", allow_joining_private_conversation_path(notification) %>
+</div>

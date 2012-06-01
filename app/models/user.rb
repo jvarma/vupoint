@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
 	has_many :arguments, dependent: :destroy
 	has_many :notifications, dependent: :destroy
 	has_many :invitations, dependent: :destroy # invitations to join vupnt, sent by the user
+	has_many :participations, dependent: :destroy
+	has_many :join_requests, dependent: :destroy
+	# requests sent to join a private conversation
 	
 	# user has followers and as well as those that the user follows through relationships
 	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -113,7 +116,11 @@ class User < ActiveRecord::Base
 
 	def notify(notification_params)
 		notification = self.notifications.build(notification_params)
-		notification.save!
+		if notification.save
+			notification
+		else
+			nil
+		end
 	end
 
 	def to_param

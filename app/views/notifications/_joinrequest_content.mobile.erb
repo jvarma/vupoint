@@ -1,0 +1,12 @@
+<span class="content">
+	<div>
+		<b><%= notification_message_tokens[0]%></b> wants to join your <span class="label-private">private</span> conversation:
+	</div>
+	<div>
+		# <%=notification_message_tokens[1]%>
+	</div>
+</span>
+
+<div class="timestamp">
+	sent <%= time_ago_in_words(notification.created_at) %> ago.
+</div>

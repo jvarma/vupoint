@@ -15,6 +15,8 @@ class DebateInvitesController < ApplicationController
 				# if one exists, notify the receiver
 				@debate_invite.update_attributes(receiver_id: receiver.id)
 
+				participation = @debate_invite.debate.participations.create({user_id: receiver.id})
+
 				#send a notification to the receiver user
 				# -- the code goes here
 				

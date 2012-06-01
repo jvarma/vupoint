@@ -1,10 +1,14 @@
-<% cache "deb_sho_1-#{@debate.id}" do %>
+<!-- cache "_deb_sho_1-#{@debate.id}" do % -->
 	<div class="row-fluid">
+		<% if @debate.is_private %>
+		<span class="label">private</span>
+		<% end %>
+		
 		<div class="content">
 			<b><%= @debate.content %></b>
 		</div>
 	</div>
-<% end %>
+<!-- end % -->
 
 <% if signed_in? && current_user?(@debate.user) %>
 	<% cache "deb_sho_2-#{@debate.id}" do %>
@@ -21,11 +25,11 @@
 	<% end %>
 	
 <% else %>
-	<% cache "deb_sho_3-#{@debate.id}" do %>
+	<!-- % cache "deb_sho_3-#{@debate.id}" do % -->
 		<div class="row-fluid">
-			<h2><%= link_to @debate.user.name, user_path(@debate.user)%></h2>
+			<%= link_to @debate.user.name, user_path(@debate.user)%>
 		</div>
-	<% end %>
+	<!--% end %-->
 <% end %>
 
 <% cache "twtr-fb-share" do %>
@@ -37,11 +41,12 @@
 	</div>
 <% end %>
 
+
 <div class="row-fluid">
 	<%= render 'shared/viewpoints' %>
 </div>
 
-<% if signed_in? %>
+<% if @debate.has_participant?(current_user) %>
 	<div class="section-title">
 		what's your vupnt?
 	</div>
@@ -72,4 +77,8 @@
 
 	<% end %>
 
+<% else %>
+<div class="center">
+	<%= link_to "request invitation", '#', class: "btn btn-large btn-primary" %>
+</div>
 <% end %>

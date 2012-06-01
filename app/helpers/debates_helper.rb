@@ -17,6 +17,11 @@ module DebatesHelper
     Viewpoint.find_by_id(notification.unknown_object_id).debate
   end
 
+  def join_request_pending?(debate)
+    join_request = JoinRequest.where('debate_id = ? AND user_id = ?', debate.id, current_user.id)
+    join_request.any? ? true : false
+  end
+
   
 
 

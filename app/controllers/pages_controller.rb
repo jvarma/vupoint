@@ -7,7 +7,10 @@ before_filter :admin_user, only: :stats
 
   
   def home
+
   	if signed_in?
+
+     
   		@debate = current_user.debates.build
   		@feed_items = current_user.feed(include: :user).paginate(page: params[:page], per_page: 10)
       if !@feed_items.any?

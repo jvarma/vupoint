@@ -1,0 +1,11 @@
+<% if debate.is_private? %>
+	<span class="label-private">private</span>
+<% end %>
+
+<span class="content">
+	<%= debate.content %>
+</span>
+
+<div class="timestamp">
+	last updated <%= time_ago_in_words(debate.updated_at) %> ago.
+</div>

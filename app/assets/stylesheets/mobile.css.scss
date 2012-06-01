@@ -251,7 +251,8 @@ aside {
 
 /* actions */
 
-.actions {  
+
+.actions {
     float:rightright;  
     font-size: 1.2em;
     padding-left: 0;
@@ -259,8 +260,8 @@ aside {
     padding-top: 5px;
     padding-bottom: 2px;
     padding-right: 5px;
-      
-}  
+}
+  
 .join, .voteup, .votedown, .follow, .listview, .invite, .publish, .delete {  
       float:left;
 }  
@@ -335,4 +336,17 @@ form {
   padding-top: 1px;
   padding-bottom: 3px;
   font-size: 0.7em;
+}
+
+
+.label-private {
+  padding: 1px 3px 2px;
+  font-size: 9.75px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  background-color: #da4e49;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
