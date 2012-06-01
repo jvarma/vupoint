@@ -10,7 +10,7 @@ before_filter :admin_user, only: :stats
 
   	if signed_in?
   		@debate = current_user.debates.build
-  		@feed_items = current_user.feed(include: :user).paginate(page: params[:page], per_page: 10)
+  		@feed_items = current_user.feed.paginate(page: params[:page], per_page: 10)
       if !current_user.notifications.first.nil?
         last_notification_time = current_user.notifications.first.created_at
       end
