@@ -60,12 +60,8 @@
 		<%= f.hidden_field :debate_id, value: @debate.id %>
 	 	<%= f.hidden_field :user_id, value: current_user.id %>
 	 	
-	  	<% if @current_user_can_add %>
-	  		<%= f.hidden_field :published, value: true %>
-		<% else %>
-			<%= f.hidden_field :published, value: false %>
-		<% end %>
-
+	  	<%= f.hidden_field :published, value: true %>
+		
 		<div class="field-desc">
 			express your view in 140 characters or less 
 		</div>

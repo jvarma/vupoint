@@ -28,7 +28,7 @@ class DebatesController < ApplicationController
 
   def show
     @debate = Debate.find(params[:id])
-    @title = "#vupnt " + @debate.content 
+    @title = @debate.content 
     @user = @debate.user
     @viewpoint = @debate.viewpoints.build
     if current_user?(@user)
@@ -36,24 +36,6 @@ class DebatesController < ApplicationController
     else
       @viewpoints = @debate.viewpoints.published.paginate(page: params[:page], per_page: 10)
     end
-
-    
-    # check if there are any invitations from the debate owner to 
-    # the current user for THIS debate.
-
-    if signed_in?
-      user_invites = DebateInvite.where(
-        'debate_id = ? AND sender_id = ? AND receiver_id = ?', 
-        @debate.id, @user.id, current_user.id)
-
-      if user_invites.any? || @user.following?(current_user) || current_user?(@debate.user)
-        @current_user_can_add = true
-      else
-        @current_user_can_add = false
-      end
-    end
-
-
   end
 
   def invitation

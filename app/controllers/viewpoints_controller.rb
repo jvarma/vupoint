@@ -1,9 +1,10 @@
 class ViewpointsController < ApplicationController
 
-  before_filter :force_mobile
+  before_filter :force_mobile, :signed_in_user
+
+  before_filter :check_participation, only: :create
 
   def create
-  	@debate = Debate.find(params[:viewpoint][:debate_id])
   	@viewpoint = @debate.viewpoints.build(params[:viewpoint])
 
   	if @viewpoint.save
@@ -55,4 +56,21 @@ class ViewpointsController < ApplicationController
   	@viewpoint.destroy
     redirect_to debate_path @debate 
   end
+
+
+
+  private
+
+    def check_participation
+      @debate = Debate.find(params[:viewpoint][:debate_id])
+      if @debate.is_private
+        participations = Participation.where('debate_id = ? AND user_id = ?', @debate, current_user)
+        if !participations.any?
+          flash[:error] = "You have not been invited to this conversation!"
+          redirect_to debate_path(@debate)
+        end
+      end
+
+
+    end
 end
