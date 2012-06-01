@@ -76,12 +76,8 @@ class User < ActiveRecord::Base
   		password_digest.blank? || !@password.blank?
 	end
 
-	def feed(featured=false)
-		if !featured
-			Debate.from_users_followed_by(self)
-		else
-			Debate.from_admin
-		end
+	def feed
+		Debate.from_users_followed_by(self)
 	end
 
 	def following?(other_user)

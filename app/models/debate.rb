@@ -13,8 +13,6 @@ class Debate < ActiveRecord::Base
   	# Returns microposts from the users being followed by the given user.
   	#scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
-    scope :from_admin, lambda { from_admin }
-
     has_many :viewpoints, dependent: :destroy
 
     has_many :debate_invites, dependent: :destroy
@@ -62,32 +60,11 @@ class Debate < ActiveRecord::Base
 
 private
 
-    # Returns an SQL condition for users followed by the given user.
-    # We include the user's own id as well.
-    def self.followed_by(user)
-      followed_user_ids = %(SELECT followed_id FROM relationships
-                            WHERE follower_id = :user_id)
-      where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
-            { user_id: user })
-    end
 
     def self.from_users_followed_by(user)
       followed_user_ids = user.followed_user_ids
-      Debate.where("user_id IN (?) OR user_id = ?", followed_user_ids, user.id)
+      Debate.where("user_id IN (?) OR user_id = ?", followed_user_ids, user)
     end
-
-    def self.from_admin
-      admin_ids = []
-      admins = User.admin
-
-      admins.each do |admin|
-        admin_ids << admin.id
-      end
-
-      where(user_id: admin_ids)
-
-    end
-
 
     def set_hash_tags
       all_tags = self.content.split
