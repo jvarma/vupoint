@@ -1,7 +1,7 @@
 module ApplicationHelper
 	def full_title(page_title)
 		if page_title.nil?
-			"vupnt"
+			"what's your view? say. share. discuss."
 		else
 			page_title
 		end
