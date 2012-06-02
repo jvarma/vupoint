@@ -22,6 +22,20 @@ module DebatesHelper
     join_request.any? ? true : false
   end
 
+  def get_leading_view(debate)
+    viewpoints = debate.viewpoints
+    if viewpoints.size == 0
+      return nil
+    else
+      viewpoints.sort_by { |v| v.votes }
+      viewpoints[0].desc
+    end
+  end
+
+  def tied_view(debate)
+    false
+  end
+
   
 
 

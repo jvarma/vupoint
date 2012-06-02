@@ -1,8 +1,14 @@
-
-  <% unless debate.viewpoints.published.empty? %>
-    <div class="row-fluid">
-      <div class="content win-position">
-        <%= debate.viewpoints.published.first.desc  %>
-      </div>
-    </div>
-  <% end %>
+<% leading_view = get_leading_view(debate) %>
+<% if leading_view %>
+  	<div>
+        <span class="label-green">leading view</span><%= leading_view  %>
+	</div>
+<% elsif tied_view(debate) %>
+  	<div>
+        <span class="label">tie</span><%= tied_view  %>
+	</div>
+<% else %>
+  	<div>
+        <span class="label-black">unresolved</span>
+	</div>
+<% end %>
