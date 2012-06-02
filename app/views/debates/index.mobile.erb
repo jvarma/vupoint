@@ -5,17 +5,19 @@
 		</div>
 		<ul class="debates">
 			<% @debates.each do |debate|  %>
-				<% cache "deb_ind-#{debate.id}-#{debate.updated_at.to_i}" do %>
+				<% cache "1_deb_ind_#{debate.id}-#{debate.updated_at.to_i}_1" do %>
 					<li>
 						<div class="content">
 							<%= debate.content%>
 						</div>
+				<% end %>
 						<div class="timestamp">
 							 updated <%= time_ago_in_words(debate.updated_at) %> ago.
 						</div>
+				<% cache "2_deb_ind_#{debate.id}-#{debate.updated_at.to_i}_1" do %>
 						<div class="actions">
 	    					<div class="listview">
-	      						<%= link_to pluralize(debate.viewpoints.published.size, "vupnt"), debate_url(debate) %>
+	      						<%= link_to pluralize(debate.viewpoints.size, "vupnt"), debate_url(debate) %>
 						    </div>
 						</div>				
 					</li>

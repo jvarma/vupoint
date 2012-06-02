@@ -1,4 +1,4 @@
-<!-- cache "_deb_sho_1-#{@debate.id}" do % -->
+<% cache "debate_content_with_private_#{@debate.id}_1" do %>
 	<div class="row-fluid">
 		<% if @debate.is_private %>
 		<span class="label-private">private</span>
@@ -8,10 +8,10 @@
 			<b><%= @debate.content %></b>
 		</div>
 	</div>
-<!-- end % -->
+<% end %>
 
 <% if signed_in? && current_user?(@debate.user) %>
-	<% cache "deb_sho_2-#{@debate.id}" do %>
+	<% cache "2_deb_sho_#{@debate.id}_1" do %>
 		<div class="row-fluid">
 			<div class="actions">
 				<div class="invite">
@@ -25,11 +25,9 @@
 	<% end %>
 	
 <% else %>
-	<!-- % cache "deb_sho_3-#{@debate.id}" do % -->
-		<div class="row-fluid">
-			<%= link_to @debate.user.name, user_path(@debate.user)%>
-		</div>
-	<!--% end %-->
+		<h2>
+			started by <% cache "debate_user_name_#{@debate.id}" do %><%= link_to @debate.user.name, user_path(@debate.user)%><% end %>
+		</h2>
 <% end %>
 
 <% cache "twtr-fb-share" do %>

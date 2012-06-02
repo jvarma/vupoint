@@ -245,6 +245,9 @@ class UsersController < ApplicationController
           classname: debate_invite.class.name,
           unknown_object_id: debate_invite.id
         }
+        # if its a private debate, then update debate participation as well!
+        debate = debate_invite.debate
+        debate.participations.create({user_id: user.id})
         user.notify(notification)
       end     
     end

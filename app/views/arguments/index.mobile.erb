@@ -3,21 +3,23 @@
 <% if @argument_items.any? %>
 
 <div class="section-title">
-votes so far...
+	votes so far...
 </div>
 
-	<ol class="debates">
-		<%= render partial: 'shared/argument_item', collection: @argument_items %>
-	</ol>
+<ol class="debates">
+	<%= render partial: 'shared/argument_item', collection: @argument_items %>
+</ol>
 
-	<%= will_paginate @argument_items, page_links: false, class: "my_pagination" %>
-
+<%= will_paginate @argument_items, page_links: false, class: "my_pagination" %>
 
 <% end %>
 
-
-
 <br />
-<div class="row-fluid">
-	<h3><%= link_to "back to conversation", debate_url(@viewpoint.debate) %></h3>
+
+<% cache "arg_ind_#{@viewpoint.debate.id}_1" do %>
+<div>
+	<small>
+		<%= link_to "back to conversation", debate_url(@viewpoint.debate) %>
+	</small>
 </div>
+<% end %>
